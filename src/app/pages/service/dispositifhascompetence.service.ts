@@ -20,6 +20,11 @@ export class DispositifhascompetenceService {
     return this.http.post(url, JSON.stringify(dispositifhascompetence), httpOptions);
 }
 
+createSome(dispositifhascompetences: Dispositifhascompetence[]): Observable<any> {
+  const url = Constantes.url + 'api/infotel/createDispositifhascompetences';
+  return this.http.post(url, JSON.stringify(dispositifhascompetences), httpOptions);
+}
+
 clear(): Observable<any> {
     return this.http.delete(Constantes.url + `api/infotel/clearDispositifhascompetences`);
 }

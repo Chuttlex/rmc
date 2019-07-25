@@ -12,30 +12,42 @@ import { startWith, map } from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Dispositifhascompetence } from '../../classe/dispositifhascompetence';
+import { DispositifhascompetenceService } from '../../service/dispositifhascompetence.service';
 
 @Component({
   selector: 'app-create-dispositif',
   templateUrl: './create-dispositif.component.html',
   styles: ['./create-dispositif.component.css'],
-  providers: [OrganismeService, DispositifService, CompetenceService]
+  providers: [OrganismeService, DispositifService, CompetenceService, DispositifhascompetenceService]
 })
 export class CreateDispositifComponent implements OnInit {
 
   organismes: Organisme[];
   comps: Competence[];
-  competences: string[] = ['Java'];
+  competencesT: string[] = ['Java'];
+  competencesF: string[] = [];
+  competencesE: string[] = [];
 
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  competenceCtrl = new FormControl();
-  filteredCompetences: Observable<string[]>;
+  competenceTCtrl = new FormControl();
+  competenceFCtrl = new FormControl();
+  competenceECtrl = new FormControl();
+  filteredCompetencesT: Observable<string[]>;
+  filteredCompetencesF: Observable<string[]>;
+  filteredCompetencesE: Observable<string[]>;
   allCompetences: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
 
-  @ViewChild('competenceInput', {static: false}) competenceInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+  @ViewChild('competenceInputT', {static: false}) competenceInputT: ElementRef<HTMLInputElement>;
+  @ViewChild('competenceInputF', {static: false}) competenceInputF: ElementRef<HTMLInputElement>;
+  @ViewChild('competenceInputE', {static: false}) competenceInputE: ElementRef<HTMLInputElement>;
+  @ViewChild('autoT', {static: false}) matAutocompleteT: MatAutocomplete;
+  @ViewChild('autoF', {static: false}) matAutocompleteF: MatAutocomplete;
+  @ViewChild('autoE', {static: false}) matAutocompleteE: MatAutocomplete;
 
   form = new FormGroup ({
     nom: new FormControl(''),
@@ -44,11 +56,18 @@ export class CreateDispositifComponent implements OnInit {
   })
 
   constructor(private orgService: OrganismeService, private dispositifService: DispositifService, private router: Router,
-    private compService: CompetenceService) {
-      this.filteredCompetences = this.competenceCtrl.valueChanges.pipe(
+    private compService: CompetenceService, private dcService: DispositifhascompetenceService) {
+      this.filteredCompetencesT = this.competenceTCtrl.valueChanges.pipe(
+        startWith(null),
+        map((competence: string | null) => competence ? this._filter(competence) : this.allCompetences.slice()));
+      this.filteredCompetencesF = this.competenceFCtrl.valueChanges.pipe(
+        startWith(null),
+        map((competence: string | null) => competence ? this._filter(competence) : this.allCompetences.slice()));
+      this.filteredCompetencesE = this.competenceECtrl.valueChanges.pipe(
         startWith(null),
         map((competence: string | null) => competence ? this._filter(competence) : this.allCompetences.slice()));
      }
+     
 
   ngOnInit() {
     this.orgService.getAll().subscribe((organismes) => {
@@ -70,23 +89,51 @@ export class CreateDispositifComponent implements OnInit {
     let org: Organisme;
     org = this.form.get('organisme').value;
     disp.organisme = org.organisme;
+    let cs : Competence[] = [];
+    for(let i = 0; i< this.competencesT.length; i++){
+      let c = new Competence();
+      c.domaine = "Technique";
+      c.nom = this.competencesT[i];
+      cs.push(c);
+    }
+    for(let i = 0; i< this.competencesF.length; i++){
+      let c = new Competence();
+      c.domaine = "Fonctionnel";
+      c.nom = this.competencesF[i];
+      cs.push(c);
+    }
+    for(let i = 0; i< this.competencesE.length; i++){
+      let c = new Competence();
+      c.domaine = "Exploitation";
+      c.nom = this.competencesE[i];
+      cs.push(c);
+    }
+    let dcs : Dispositifhascompetence[] = [];
+    for(let i = 0; i< cs.length; i++){
+      let dc = new Dispositifhascompetence();
+      dc.competence = cs[i].nom;
+      dc.dispositif = disp.nom;
+      dcs.push(dc);
+    }
     this.dispositifService.create(disp).subscribe(
-      (result) => this.orgService.update(org).subscribe(
-        (result) => this.router.navigate([route])
+      (result) => this.compService.createSome(cs).subscribe(
+        (result) => this.dcService.createSome(dcs).subscribe(
+          (result) => this.router.navigate([route])
+        )        
       )
     );
   }
 
-  add(event: MatChipInputEvent): void {
+  addT(event: MatChipInputEvent): void {
     // Add competence only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete.isOpen) {
+    if (!this.matAutocompleteT.isOpen) {
       const input = event.input;
       const value = event.value;
 
       // Add our competence
       if ((value || '').trim()) {
-        this.competences.push(value.trim());
+        this.competencesT.push(value.trim());
       }
 
       // Reset the input value
@@ -94,22 +141,92 @@ export class CreateDispositifComponent implements OnInit {
         input.value = '';
       }
 
-      this.competenceCtrl.setValue(null);
+      this.competenceTCtrl.setValue(null);
     }
   }
 
-  remove(competence: string): void {
-    const index = this.competences.indexOf(competence);
+  addF(event: MatChipInputEvent): void {
+    // Add competence only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocompleteF.isOpen) {
+      const input = event.input;
+      const value = event.value;
+
+      // Add our competence
+      if ((value || '').trim()) {
+        this.competencesF.push(value.trim());
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.competenceFCtrl.setValue(null);
+    }
+  }
+
+  addE(event: MatChipInputEvent): void {
+    // Add competence only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocompleteE.isOpen) {
+      const input = event.input;
+      const value = event.value;
+
+      // Add our competence
+      if ((value || '').trim()) {
+        this.competencesE.push(value.trim());
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.competenceECtrl.setValue(null);
+    }
+  }
+
+  removeT(competence: string): void {
+    const index = this.competencesT.indexOf(competence);
 
     if (index >= 0) {
-      this.competences.splice(index, 1);
+      this.competencesT.splice(index, 1);
     }
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.competences.push(event.option.viewValue);
-    this.competenceInput.nativeElement.value = '';
-    this.competenceCtrl.setValue(null);
+  removeF(competence: string): void {
+    const index = this.competencesF.indexOf(competence);
+
+    if (index >= 0) {
+      this.competencesF.splice(index, 1);
+    }
+  }
+
+  removeE(competence: string): void {
+    const index = this.competencesE.indexOf(competence);
+
+    if (index >= 0) {
+      this.competencesE.splice(index, 1);
+    }
+  }
+
+  selectedT(event: MatAutocompleteSelectedEvent): void {
+    this.competencesT.push(event.option.viewValue);
+    this.competenceInputT.nativeElement.value = '';
+    this.competenceTCtrl.setValue(null);
+  }
+
+  selectedF(event: MatAutocompleteSelectedEvent): void {
+    this.competencesF.push(event.option.viewValue);
+    this.competenceInputF.nativeElement.value = '';
+    this.competenceFCtrl.setValue(null);
+  }
+
+  selectedE(event: MatAutocompleteSelectedEvent): void {
+    this.competencesE.push(event.option.viewValue);
+    this.competenceInputE.nativeElement.value = '';
+    this.competenceECtrl.setValue(null);
   }
 
   private _filter(value: string): string[] {

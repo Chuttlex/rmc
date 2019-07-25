@@ -18,6 +18,11 @@ const httpOptions = {
         return this.http.post(url, JSON.stringify(competence), httpOptions);
     }
 
+    createSome(competences: Competence[]): Observable<any> {
+        const url = Constantes.url + 'api/infotel/createCompetences';
+        return this.http.post(url, JSON.stringify(competences), httpOptions);
+    }
+
     clear(): Observable<any> {
         return this.http.delete(Constantes.url + `api/infotel/clearCompetences`);
     }
