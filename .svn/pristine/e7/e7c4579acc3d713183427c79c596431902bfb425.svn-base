@@ -1,0 +1,6 @@
+#boutonEquipe {
+  background-color: #01579b;
+  color: white;
+  margin-top: 10px;
+  font-family: Verdana;
+}

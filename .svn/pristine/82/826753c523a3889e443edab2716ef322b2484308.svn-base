@@ -1,0 +1,82 @@
+import { Component, OnInit} from '@angular/core';
+import { CompetenceService } from '../../service/competence.service';
+import { RessourceService } from '../../service/ressource.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { RessourcehascompetenceService } from '../../service/ressourcehascompetence.service';
+import { DomaineService } from '../../service/domaine.service';
+import { Router } from '@angular/router';
+import { Ressource } from '../../classe/ressource';
+import { Domaine } from '../../classe/domaine';
+import { Competence } from '../../classe/competence';
+import { Ressourcehascompetence } from '../../classe/ressourcehascompetence';
+import { Organisme } from '../../classe/organisme';
+import { Equipe } from '../../classe/equipe';
+import { EquipeService } from '../../service/equipe.service';
+import { OrganismeService } from '../../service/organisme.service';
+
+@Component({
+  selector: 'app-create-competence',
+  templateUrl: './create-competence.component.html',
+  styles: [],
+  providers: [CompetenceService, RessourceService, RessourcehascompetenceService, DomaineService, EquipeService, OrganismeService]
+})
+export class CreateCompetenceComponent implements OnInit {
+
+  ressources: Ressource[];
+  domaines: Domaine[];
+
+  form = new FormGroup ({
+    nomForm: new FormControl(''),
+    domaineForm: new FormControl(''),
+    ressourceForm: new FormControl(''),
+    niveauForm: new FormControl(''),
+    dateEvolForm: new FormControl(''),
+  })
+
+  constructor(private compService: CompetenceService, private resService: RessourceService, private rcService: RessourcehascompetenceService
+    , private domaineService: DomaineService, private router: Router, private equipeService: EquipeService, private orgService: OrganismeService) { }
+
+  ngOnInit() {
+    this.resService.getAll().subscribe((ressources) => this.ressources = ressources);
+    this.domaineService.getAll().subscribe((domaines) => this.domaines = domaines);
+  }
+
+  create(route: string): void {
+    const comp = new Competence();
+    const rc = new Ressourcehascompetence();
+    comp.nom = this.form.get('nomForm').value;
+    let domaine: Domaine;
+    this.domaineService.getByNom(this.form.get('domaineForm').value).subscribe((dom) => {
+      domaine = dom;
+      comp.domaine = domaine.valeur;
+      let ressource: Ressource;
+      for (let i = 0 ; i < this.ressources.length ; i++) {
+        if (this.ressources[i].referenceClient === this.form.get('ressourceForm').value.referenceClient) {
+          ressource = this.ressources[i];
+          rc.idr = ressource.id;
+          rc.idc = comp.id;
+          rc.dateEvolComp = this.form.get('dateEvolForm').value;
+          rc.rnom = ressource.nom;
+          rc.rprenom = ressource.prenom;
+          rc.cnom = comp.nom;
+        }
+      }
+      let organisme: Organisme;
+      let equipe: Equipe;
+      this.equipeService.getByRessource(ressource.nom, ressource.prenom).subscribe((e) => {
+        equipe = e;
+        this.orgService.getByDispositif(equipe.dispositif).subscribe((o) => {
+          organisme = o;
+          comp.dispositif = equipe.dispositif;
+          rc.niveau = parseInt(this.form.get('niveauForm').value, 10);
+          rc.organisme = organisme.organisme;
+          this.compService.create(comp).subscribe(
+            (result) => this.rcService.create(rc).subscribe(
+              (result) => this.router.navigate([route])
+            )
+          );
+        })
+      })
+    });
+  }
+}

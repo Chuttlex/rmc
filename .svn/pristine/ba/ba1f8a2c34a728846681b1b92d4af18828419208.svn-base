@@ -1,0 +1,7 @@
+<h2>Id: {{regle.id}}</h2>
+<h2>Competence: {{regle.cnom}}</h2>
+<h2>Equipe: {{regle.enom}}</h2>
+<h2>Niveau: {{regle.niveau}}</h2>
+<h2>Nombre: {{regle.nombre}}</h2>
+<h2>Pourcentage: {{regle.pourcentage}}</h2>
+<h2>Moyenne: {{regle.moyenne}}</h2>

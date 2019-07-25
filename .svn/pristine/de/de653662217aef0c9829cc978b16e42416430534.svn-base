@@ -1,0 +1,23 @@
+table {
+  border: medium solid #2D2926;
+  width: 75%;
+  font-family: Verdana;
+  margin-left: 12%;
+}
+
+th {
+  border: thin solid #316195;
+  background: #316195;
+  color: white;
+}
+
+td {
+  border: thin solid #316195;
+}
+
+caption {
+  font-style: italic;
+  font-size: xx-large;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}

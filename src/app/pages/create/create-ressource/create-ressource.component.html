@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Créer une Ressource</h1>
+  <form [formGroup]="form">
+      <div class="form-group">
+          <label for="equipe">Equipe:</label>
+          <select class="form-control" id="equipe" formControlName="equipe" required>
+              <option *ngFor="let equipe of equipes" [ngValue]="equipe">{{equipe.nom}}</option>
+            </select>
+        </div>
+    <div class="form-group">
+      <label for="nom">Nom:</label>
+      <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom:</label>
+      <input type="text" class="form-control" id="prenom" formControlName="prenom" placeholder="Entrer un prénom" required>
+    </div>
+    <div class="form-group">
+      <label for="referenceClient">Référence:</label>
+      <input type="number" class="form-control" id="referenceClient" formControlName="referenceClient" placeholder="Entrer le nombre référencent la ressource" required>
+    </div>
+    <div class="form-group">
+        <label for="actif">Est actif:</label>
+        <select class="form-control" id="actif" formControlName="actif" required>
+          <option value="true">Vrai</option>
+          <option value="false">Faux</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <label for="DateEntree">Date d'entrée:</label>
+          <input type="date" class="form-control" id="DateEntree" formControlName="dateentree" placeholder="Entrer la date à laquelle la ressource entre dans l'équipe" required>
+        </div>
+        <div class="form-group">
+            <label for="DateSortie">Date de sortie:</label>
+            <input type="date" class="form-control" id="DateSortie" formControlName="datesortie" placeholder="Entrer la date à laquelle la ressource quitte l'équipe">
+          </div>
+          <button type="button" class="btn btn-success" (click)="create('/displayRessource')">Créer Ressource</button>
+        <br/>
+          <button type="button" class="btn btn-success" (click)="create('/createRessource')">Créer Ressource et une nouvelle Ressource</button>
+      <br/>
+          <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Ressource et Compétence</button>
+  </form>
+</div>

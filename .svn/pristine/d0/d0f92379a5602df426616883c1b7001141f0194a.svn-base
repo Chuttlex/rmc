@@ -1,0 +1,28 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+#logo{
+  height: 45px;
+  width: auto;
+}
+
+.listTile {
+  font-weight: bold;
+}
+
+.listSubtitle {
+  margin: 20px;
+  font-style: italic;
+}

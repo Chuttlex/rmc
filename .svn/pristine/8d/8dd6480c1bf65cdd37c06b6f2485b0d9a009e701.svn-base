@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Créer une Ressource liée</h1>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="competence">Compétence:</label>
+        <select class="form-control" id="competence" formControlName="competenceForm" required>
+          <option *ngFor="let competence of competences" [ngValue]="competence">{{competence}.nom}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="ressource">Ressource:</label>
+        <select class="form-control" id="ressource" formControlName="ressourceForm" required>
+          <option *ngFor="let ressource of ressources" [ngValue]="ressource">{{ressource.nom}} {{ressource.prenom}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <label for="niveau">Niveau:</label>
+          <input type="number" name="niveau" min="0" max="9" class="form-control" id="niveau" 
+          formControlName="niveauForm" placeholder="0" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="dateEvol" formControlName="dateEvolForm" required>
+          </div>
+     <button type="button" class="btn btn-success" (click)="create('/displayRessourcehascompetence')">Créer Ressource liée</button>
+        <br/>
+      <button type="button" class="btn btn-success" (click)="create('/createRessourcehascompetence')">Créer Ressource liée et créer une nouvelle Ressource liée</button>
+      <br/>
+      <button type="button" class="btn btn-success" (click)="create('/createRegle')">Créer Ressource liée et Règle</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,19 @@
+import { Component, OnInit, Input } from '@angular/core';
+import { Organisme } from '../../classe/organisme';
+
+
+@Component({
+  selector: 'app-organisme',
+  templateUrl: './organisme.component.html',
+  styleUrls: ['./organisme.component.css']
+})
+export class OrganismeComponent implements OnInit {
+
+  @Input() organisme: Organisme;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

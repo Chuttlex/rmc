@@ -1,0 +1,5 @@
+<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+<h1>Liste des liens entre dispositifs et compétences</h1>
+<li *ngFor="let dispositifhascompetence of dispositifhascompetences" [class.selected]="dispositifhascompetence === selectedDispositifhascompetence" (click)="onSelect(dispositifhascompetence)">
+    <app-dispositifhascompetence [dispositifhascompetence]="dispositifhascompetence"></app-dispositifhascompetence>
+</li>

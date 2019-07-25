@@ -1,0 +1,9 @@
+
+<div>{{competence.nom | uppercase}}</div>
+<div>{{competence.id}}</div>
+<div>{{competence.domaine}}</div>
+
+
+
+
+

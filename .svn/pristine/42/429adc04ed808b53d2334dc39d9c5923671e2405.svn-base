@@ -1,0 +1,21 @@
+<table>
+  <caption> Liste des competences</caption>
+  <tr>
+    <th>Id</th>
+    <th>Nom</th>
+    <th>Domaine</th>
+  </tr>
+  <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
+  <tr *ngFor="let competence of competences" [class.selected]="competence === selectedComeptence" (click)="onSelect(competence)">
+    <td>{{competence.id}}</td>
+    <td>{{competence.nom}}</td>
+    <td>{{competence.domaine}}</td>
+    <!-- <app-competence [competence]="competence"></app-competence> -->
+  </tr>
+</table>
+
+<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+
+
+
+

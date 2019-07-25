@@ -1,0 +1,57 @@
+import { Component, OnInit } from '@angular/core';
+import { OrganismeService } from '../../service/organisme.service';
+import { DispositifService } from '../../service/dispositif.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Organisme } from '../../classe/organisme';
+import { Dispositif } from '../../classe/dispositif';
+
+@Component({
+  selector: 'app-create-dispositif',
+  templateUrl: './create-dispositif.component.html',
+  styles: [],
+  providers: [OrganismeService, DispositifService]
+})
+export class CreateDispositifComponent implements OnInit {
+
+  organismes: Organisme[];
+
+  form = new FormGroup ({
+    nom: new FormControl(''),
+    description: new FormControl(''),
+    organisme: new FormControl(''),
+  })
+
+  constructor(private orgService: OrganismeService, private dispositifService: DispositifService, private router: Router) { }
+
+  ngOnInit() {
+    this.orgService.getAll().subscribe((organismes) => this.organismes = organismes);
+  }
+
+  createDispositif(): void {
+    const disp = new Dispositif();
+    disp.nom = this.form.get('nom').value;
+    disp.description = this.form.get('description').value;
+    let org: Organisme;
+    org = this.form.get('organisme').value;
+    disp.organisme = org.organisme;
+    org.dispositif = disp.nom;
+    this.dispositifService.create(disp).subscribe();
+    this.orgService.update(org).subscribe();
+  }
+
+  createToList(): void {
+    this.createDispositif();
+    this.router.navigate(['/dispositifs']);
+  }
+
+  createAndEquipe(): void {
+    this.createDispositif();
+    this.router.navigate(['/equipe']);
+  }
+
+  createAndCompetence(): void {
+    this.createDispositif();
+    this.router.navigate(['/competence']);
+  }
+}

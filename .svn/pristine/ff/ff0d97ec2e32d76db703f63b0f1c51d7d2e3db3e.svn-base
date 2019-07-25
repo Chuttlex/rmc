@@ -1,0 +1,72 @@
+import { Component, OnInit } from '@angular/core';
+import { RessourceService } from '../../service/ressource.service';
+import { HistoriqueresService } from '../../service/historique.service';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
+import { EquipeService } from '../../service/equipe.service';
+import { Router } from '@angular/router';
+import { Ressource } from '../../classe/ressource';
+import { Equipe } from '../../classe/equipe';
+import { Historiqueres } from '../../classe/historiqueres';
+
+@Component({
+  selector: 'app-edit-ressource',
+  templateUrl: './edit-ressource.component.html',
+  styles: [],
+  providers: [EquipeService, RessourceService, HistoriqueresService]
+})
+export class EditRessourceComponent implements OnInit {
+  ressource: Ressource;
+  equipes: Equipe[];
+
+  form = new FormGroup ({
+    nom: new FormControl(''),
+    prenom: new FormControl(''),
+    referenceClient: new FormControl(''),
+    actif: new FormControl(''),
+    dateentree: new FormControl(''),
+    datesortie: new FormControl(''),
+    equipe: new FormControl(''),
+  })
+
+  constructor(private equipeService: EquipeService, private resService: RessourceService, private histService: HistoriqueresService,
+    private router: Router) { }
+
+  ngOnInit() {
+    this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
+  }
+
+  passData(ressource: Ressource): void {
+    this.ressource  = ressource;
+  }
+
+  update(): void {
+    let equipe = new Equipe();
+    let hist = new Historiqueres();
+    this.equipeService.getByNom(this.form.get('equipe').value).subscribe((e) => {equipe = e;
+      (result) => {
+        this.ressource.nom = this.form.get('nom').value;
+        this.ressource.prenom = this.form.get('prenom').value;
+        this.histService.getByRessource(this.ressource.nom, this.ressource.prenom).subscribe((h) => {
+          hist = h;
+          this.ressource.referenceClient = this.form.get('referenceClient').value;
+          hist.dateentree = this.form.get('dateentree').value;
+          hist.datesortie = this.form.get('datesortie').value;
+          hist.isactif = this.form.get('actif').value;
+          hist.rnom = this.ressource.nom;
+          hist.rprenom = this.ressource.prenom;
+          this.resService.update(this.ressource).subscribe(
+            (result) => this.histService.update(hist).subscribe(
+              (result) => this.equipeService.update(equipe).subscribe()
+            )
+          )
+        })
+      }
+    });
+  }
+
+  edit(): void {
+    this.update();
+    this.router.navigate(['/ressources']);
+  }
+
+}

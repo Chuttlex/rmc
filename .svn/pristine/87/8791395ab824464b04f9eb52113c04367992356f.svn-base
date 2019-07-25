@@ -1,0 +1,22 @@
+import { Injectable } from '@angular/core';
+import { Organisme } from './organisme';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class OrganismeService {
+  urlGetAll = 'api/getAllOrganismes';
+  urlCreate = 'api/createOrganisme';
+  
+  constructor(private http: HttpClient) { }
+
+  getOrganismes(): Observable<Organisme[]> {
+    return this.http.get<Organisme[]>(this.urlGetAll);
+  }
+
+  create(org: Organisme): Observable<any>{
+    return this.http.post(this.urlCreate, JSON.stringify(org));
+  }
+}

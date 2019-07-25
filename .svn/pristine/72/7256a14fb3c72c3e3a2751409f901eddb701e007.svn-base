@@ -1,0 +1,32 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { OrganismeComponent } from './organisme/organisme.component';
+import { DisplayOrganismeComponent } from './display-organisme/display-organisme.component';
+import { CreateOrganismeComponent } from './create-organisme/create-organisme.component';
+import { OrganismeService } from './organisme.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    DisplayOrganismeComponent,
+    OrganismeComponent,
+    CreateOrganismeComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [
+    OrganismeService,
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

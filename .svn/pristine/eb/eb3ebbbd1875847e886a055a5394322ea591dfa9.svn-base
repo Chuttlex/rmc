@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-create-ressourcehascompetence',
+  templateUrl: './create-ressourcehascompetence.component.html',
+  styleUrls: ['./create-ressourcehascompetence.component.css']
+})
+export class CreateRessourcehascompetenceComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

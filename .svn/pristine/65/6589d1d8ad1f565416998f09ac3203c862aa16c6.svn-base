@@ -1,0 +1,7 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-navbar>
+  <div style="text-align:center">
+  </div>
+  <a [routerLink]="['/create']" routerLinkActive="router-link-active">Créer Organisme</a>
+  <router-outlet></router-outlet>
+</app-navbar>

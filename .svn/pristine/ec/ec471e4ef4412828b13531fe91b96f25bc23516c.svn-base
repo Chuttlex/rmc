@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { NiveauService } from '../../service/niveau.service';
+import { Niveau } from '../../classe/niveau';
+
+@Component({
+  selector: 'app-display-niveau',
+  templateUrl: './display-niveau.component.html',
+  styleUrls: ['./display-niveau.component.css'],
+  providers: [NiveauService]
+})
+export class DisplayNiveauComponent implements OnInit {
+
+  niveaux: Niveau[];
+
+  constructor(private niveauService: NiveauService) { }
+
+  ngOnInit() {
+    this.niveaux = [];
+  }
+
+  clear(): void {
+    this.niveauService.clear().subscribe();
+  }
+
+  create(niveau: Niveau): void {
+    this.niveauService.create(niveau).subscribe((niveauc) => this.niveaux.push(niveauc));
+  }
+
+  delete(id: number): void {
+    this.niveaux = this.niveaux.filter((c) => c.id !== id);
+    this.niveauService.delete(id).subscribe();
+  }
+
+  update(niveau: Niveau): void {
+    this.niveaux = this.niveaux.filter((c) => c.id !== niveau.id);
+    this.niveaux.push(niveau);
+    this.niveauService.update(niveau).subscribe();
+  }
+
+  getNiveaus(): void {
+    this.niveauService.getAll().subscribe((niveaux) => this.niveaux = niveaux);
+  }
+
+  getById(id: number): void {
+    this.niveauService.getById(id).subscribe((niveau) => this.niveaux.push(niveau));
+  }
+
+}

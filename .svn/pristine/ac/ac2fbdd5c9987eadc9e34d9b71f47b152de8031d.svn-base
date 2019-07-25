@@ -1,0 +1,33 @@
+import { Component, OnInit } from '@angular/core';
+import { OrganismeService } from '../organisme.service';
+import { Organisme } from '../organisme';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
+
+@Component({
+  selector: 'app-create-organisme',
+  templateUrl: './create-organisme.component.html',
+  styleUrls: ['./create-organisme.component.css']
+})
+export class CreateOrganismeComponent implements OnInit {
+  organisme: string;
+  description: string;
+
+  form = new FormGroup ({
+    nom: new FormControl(''),
+    description: new FormControl(''),
+  });
+
+  constructor(private orgService: OrganismeService, private router: Router) { }
+
+  ngOnInit() {
+  }
+
+  create(): void {
+    let org: Organisme;
+    org.organisme = this.form.get('nom').value;
+    org.description = this.form.get('description').value;
+    this.orgService.create(org);
+    this.router.navigate(['/display']);
+  }
+}

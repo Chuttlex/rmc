@@ -1,0 +1,25 @@
+import { Component, OnInit } from '@angular/core';
+import { Organisme } from '../organisme';
+import { OrganismeService } from '../organisme.service';
+
+@Component({
+  selector: 'app-display-organisme',
+  templateUrl: './display-organisme.component.html',
+  styleUrls: ['./display-organisme.component.css']
+})
+export class DisplayOrganismeComponent implements OnInit {
+
+  organismes: Organisme[];
+  selectedOrganisme: Organisme;
+
+  constructor(private orgService: OrganismeService) { }
+
+  onSelect(organisme: Organisme): void {
+    this.selectedOrganisme = organisme;
+  }
+
+  ngOnInit() {
+    this.orgService.getOrganismes().subscribe(orgs => this.organismes = orgs);
+  }
+
+}

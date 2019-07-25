@@ -1,0 +1,5 @@
+<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+<h1>Liste des ressources</h1>
+<li *ngFor="let ressource of ressources" [class.selected]="ressource === selectedRessource" (click)="onSelect(ressource)">
+    <app-ressource [ressource]="ressource"></app-ressource>
+</li>

@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Modifier un Organisme</h1>
+    <form [formGroup]="form">
+      <section class="actuel">
+          <div class="form-group">
+              <label for="nom">Nom:</label>
+              <span class="nom">{{organisme.organisme}}</span>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <span class="description">{{organisme.description}}</span>
+              </div>
+            <div class="form-group">
+              <label for="niveaux">Echelle:</label>
+              <div class="ui-radiobutton">
+                <span class="niveau">{{organisme.niveaux.length}}</span>
+              </div>        
+            </div>
+      </section>
+      <section class="nouveau">
+          <div class="form-group">
+              <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="description" placeholder="Entrer une description">
+              </div>
+            <div class="form-group">
+              <div class="ui-radiobutton">
+                <input type="radio" value=5 name="echelle" formControlName="echelle">Echelle 5
+                <label class="radio5">(niveaux allant de 0 à 4)</label>
+                <input type="radio" value=10 name="echelle" formControlName="echelle">Echelle 10
+                <label class="radio10">(niveaux allant de 0 à 9)</label>
+              </div>        
+            </div>
+      </section>      
+      <button type="button" class="btn btn-success" (click)="edit()">Modifier</button>
+   </form>
+  </div>

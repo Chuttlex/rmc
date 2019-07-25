@@ -1,0 +1,2 @@
+<h3>Dispositif: {{dispositifhascompetence.dispositif}}</h3>
+<h3>Competence: {{dispositifhascompetence.competence}}</h3>

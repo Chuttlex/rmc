@@ -1,0 +1,5 @@
+<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+<h1>Liste des equipes</h1>
+<li *ngFor="let equipe of equipes" [class.selected]="equipe === selectedEquipe" (click)="onSelect(equipe)">
+    <app-equipe [equipe]="equipe"></app-equipe>
+</li>

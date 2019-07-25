@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Créer une Compétence</h1>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="nom">Nom:</label>
+      <input type="text" name="nom" class="form-control" id="nom" formControlName="nomForm" 
+      placeholder="Entrer un nom" required>
+    </div>
+    <div class="form-group">
+      <label for="domaine">Domaine:</label>
+      <select class="form-control" id="domaine" formControlName="domaineForm" required>
+        <!--<option *ngFor="let domaine of domaines" [value]="domaine">{{domaine}}</option>-->
+        <option value="Technique">Technique</option>
+        <option value="Fonctionnel">Fonctionnel</option>
+        <option value="Exploitation">Exploitation</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="dispositif">Dispositif:</label>
+      <select class="form-control" id="dispositif" formControlName="dispositifForm" required>
+        <option *ngFor="let dispositif of dispositifs" [ngValue]="dispositif">{{dispositif.nom}}</option>
+      </select>
+    </div>
+   <button type="button" class="btn btn-success" (click)="create('/displayCompetence')">Créer Compétence</button>
+      <br/>
+    <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Compétence et créer une nouvelle Compétence</button>
+    <br/>
+    <button type="button" class="btn btn-success" (click)="create('/createRegle')">Créer Compétence et Règle</button>
+  <br/>
+    <button type="button" class="btn btn-success" (click)="create('/createRessourcehascomeptence')">Créer Compétence et Ressource liée</button>
+  </form>
+</div>

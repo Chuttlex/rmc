@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Créer une équipe</h1>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="nom">Nom:</label>
+        <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+      </div>
+      <div class="form-group">
+        <label for="rescible">Nombre de personnes minimum dans l'équipe:</label>
+        <input type="number" class="form-control" value="1" formControlName="rescible" placeholder="Entrer un nombre supérieur à 0" required>
+      </div>
+      <div class="form-group">
+        <label for="dispositif">Associé au Projet:</label>
+        <select class="form-control" id="dispositif" formControlName="dispositif" required>
+          <option *ngFor="let dispositif of dispositifs" [ngValue]="dispositif">{{dispositif.nom}}</option>
+        </select>
+      </div>
+      <button type="button" (click)="create('/displayEquipe')" class="btn btn-success">Créer Equipe</button>
+    <br/>
+      <button type="button" (click)="create('/createEquipe')" class="btn btn-success">Créer Equipe et créer une nouvelle Equipe</button>
+  <br/>
+      <button type="button" (click)="create('/createRessource')" class="btn btn-success">Créer Equipe et Ressource</button>
+    </form>
+  </div>

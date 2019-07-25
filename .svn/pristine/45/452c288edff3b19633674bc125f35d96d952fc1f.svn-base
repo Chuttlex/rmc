@@ -1,0 +1,28 @@
+<a [routerLink]="['/create']" routerLinkActive="router-link-active">Créer Organisme</a>
+<div class="container">
+    <h1>Créer un Organisme</h1>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="nom">Nom:</label>
+        <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+      </div>
+      <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" class="form-control" formControlName="description" placeholder="Entrer une description">
+        </div>
+       <div class="form-group">
+        <label for="niveaux">Echelle:</label>
+        <div class="ui-radiobutton">
+          <input type="radio" value="5" name="echelle" formControlName="echelle">Echelle 5
+          <label class="radio5">(niveaux allant de 0 à 4)</label>
+          <input type="radio" value="10" name="echelle" formControlName="echelle">Echelle 10
+          <label class="radio10">(niveaux allant de 0 à 9)</label>
+        </div>    
+      </div>
+      <button type="button" (click)="create('/displayOrganisme')" class="btn btn-success">Créer Organisme</button>
+      <br/>
+      <button type="button" (click)="create('/createOrganisme')" class="btn btn-success">Créer Organisme et un Organisme</button>
+      <br/>
+      <button type="button" (click)="create('/createDispositif')" class="btn btn-success">Créer Organisme et un Projet</button>
+    </form>
+  </div>

@@ -1,0 +1,120 @@
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { OrganismeService } from '../../service/organisme.service';
+import { DispositifService } from '../../service/dispositif.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Organisme } from '../../classe/organisme';
+import { Dispositif } from '../../classe/dispositif';
+import { Competence } from '../../classe/competence';
+import { CompetenceService } from '../../service/competence.service';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+
+@Component({
+  selector: 'app-create-dispositif',
+  templateUrl: './create-dispositif.component.html',
+  styles: ['./create-dispositif.component.css'],
+  providers: [OrganismeService, DispositifService, CompetenceService]
+})
+export class CreateDispositifComponent implements OnInit {
+
+  organismes: Organisme[];
+  comps: Competence[];
+  competences: string[] = ['Java'];
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  competenceCtrl = new FormControl();
+  filteredCompetences: Observable<string[]>;
+  allCompetences: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+
+  @ViewChild('competenceInput', {static: false}) competenceInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
+
+  form = new FormGroup ({
+    nom: new FormControl(''),
+    description: new FormControl(''),
+    organisme: new FormControl(''),
+  })
+
+  constructor(private orgService: OrganismeService, private dispositifService: DispositifService, private router: Router,
+    private compService: CompetenceService) {
+      this.filteredCompetences = this.competenceCtrl.valueChanges.pipe(
+        startWith(null),
+        map((competence: string | null) => competence ? this._filter(competence) : this.allCompetences.slice()));
+     }
+
+  ngOnInit() {
+    this.orgService.getAll().subscribe((organismes) => {
+      this.organismes = organismes;
+      this.compService.getAll().subscribe(
+        (c) => {
+          this.comps = c;
+          for(let i = 0;i<this.comps.length;i++){
+            this.allCompetences.push(this.comps[i].nom);
+          }
+        })
+    });
+  }
+
+  create(route: string): void {
+    const disp = new Dispositif();
+    disp.nom = this.form.get('nom').value;
+    disp.description = this.form.get('description').value;
+    let org: Organisme;
+    org = this.form.get('organisme').value;
+    disp.organisme = org.organisme;
+    this.dispositifService.create(disp).subscribe(
+      (result) => this.orgService.update(org).subscribe(
+        (result) => this.router.navigate([route])
+      )
+    );
+  }
+
+  add(event: MatChipInputEvent): void {
+    // Add competence only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+      const input = event.input;
+      const value = event.value;
+
+      // Add our competence
+      if ((value || '').trim()) {
+        this.competences.push(value.trim());
+      }
+
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.competenceCtrl.setValue(null);
+    }
+  }
+
+  remove(competence: string): void {
+    const index = this.competences.indexOf(competence);
+
+    if (index >= 0) {
+      this.competences.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.competences.push(event.option.viewValue);
+    this.competenceInput.nativeElement.value = '';
+    this.competenceCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allCompetences.filter(competence => competence.toLowerCase().indexOf(filterValue) === 0);
+  }
+}

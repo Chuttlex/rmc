@@ -1,0 +1,19 @@
+<head>
+    <script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
+</head>
+<form class="form-group">
+    <div [formGroup]="form" class="selection">
+      <select class="dispositif" formControlName="dispositif">
+        <option selected value="">Select</option>
+        <option *ngFor="let dispositif of projets" [ngValue]="dispositif" (change)="updateEquipes($event.target.value)">{{dispositif.nom}}</option>
+      </select>
+      <br/>
+      <select class="equipe" formControlName="equipe">
+        <option selected value="">Select</option>
+        <option *ngFor="let equipe of equipes" [ngValue]="equipe" (change)="updateRegles($event.target.value)">{{equipe.nom}}</option>
+      </select>
+      <br/>
+      <button type="button" class="button" (click)="generateRadar()">Générer Radar</button>
+      </div>
+    </form>
+    <div id="myChart"></div>

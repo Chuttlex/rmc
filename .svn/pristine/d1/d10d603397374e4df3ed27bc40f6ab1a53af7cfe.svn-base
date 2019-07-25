@@ -1,0 +1,4 @@
+<h1>Liste des organismes</h1>
+<li *ngFor="let organisme of organismes" [class.selected]="organisme === selectedOrganisme" (click)="onSelect(organisme)">
+    <app-organisme [organisme]="organisme"></app-organisme>
+</li>

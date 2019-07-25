@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Créer une Compétence</h1>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="nom">Nom:</label>
+      <input type="text" name="nom" class="form-control" id="nom" formControlName="nomForm" 
+      placeholder="Entrer un nom" required>
+    </div>
+    <div class="form-group">
+      <label for="domaine">Domaine:</label>
+      <select class="form-control" id="domaine" formControlName="domaineForm" required>
+        <!--<option *ngFor="let domaine of domaines" [value]="domaine">{{domaine}}</option>-->
+        <option value="Technique">Technique</option>
+        <option value="Fonctionnel">Fonctionnel</option>
+        <option value="Exploitation">Exploitation</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="ressource">Ressource:</label>
+      <select class="form-control" id="ressource" formControlName="ressourceForm" required>
+        <option *ngFor="let ressource of ressources" [ngValue]="ressource">{{ressource.nom}} {{ressource.prenom}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="niveau">Niveau:</label>
+        <input type="number" name="niveau" min="0" max="9" class="form-control" id="niveau" 
+        formControlName="niveauForm" value="0" required>
+      </div>
+      <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="date" class="form-control" id="dateEvol" formControlName="dateEvolForm" required>
+        </div>
+   <button type="button" class="btn btn-success" (click)="create('/displayCompetence')">Créer Compétence</button>
+      <br/>
+    <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Compétence et créer une nouvelle Compétence</button>
+    <br/>
+    <button type="button" class="btn btn-success" (click)="create('/createRegle')">Créer Compétence et Règle</button>
+  <br/>
+    <button type="button" class="btn btn-success" (click)="create('/createRessource')">Créer Compétence et Ressource</button>
+  </form>
+</div>

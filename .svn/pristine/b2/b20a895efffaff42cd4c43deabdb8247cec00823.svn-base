@@ -1,0 +1,15 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { DisplayOrganismeComponent } from './pages/affichage/display-organisme/display-organisme.component';
+import { CreateOrganismeComponent } from './pages/create/create-organisme/create-organisme.component';
+
+const routes: Routes = [
+  { path:'display', component: DisplayOrganismeComponent},
+  { path: 'create', component: CreateOrganismeComponent}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

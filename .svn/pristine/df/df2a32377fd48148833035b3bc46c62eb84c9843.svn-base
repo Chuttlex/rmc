@@ -1,0 +1,76 @@
+import { Component, OnInit } from '@angular/core';
+import { RegleService } from '../../service/regle.service';
+import { CompetenceService } from '../../service/competence.service';
+import { EquipeService } from '../../service/equipe.service';
+import { NiveauService } from '../../service/niveau.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Regle } from '../../classe/regle';
+import { Equipe } from '../../classe/equipe';
+import { Competence } from '../../classe/competence';
+import { Niveau } from '../../classe/niveau';
+
+@Component({
+  selector: 'app-edit-regle',
+  templateUrl: './edit-regle.component.html',
+  styles: [],
+  providers: [RegleService, CompetenceService, EquipeService, NiveauService]
+})
+export class EditRegleComponent implements OnInit {
+  regle: Regle;
+  equipes: Equipe[];
+  competences: Competence[];
+  niveaux: Niveau[];
+
+  form = new FormGroup ({
+    competence: new FormControl(''),
+    equipe: new FormControl(''),
+    niveau: new FormControl(''),
+    pourcentage: new FormControl(''),
+    nombre: new FormControl(''),
+    moyenne: new FormControl(''),
+  })
+
+  constructor(private regleService: RegleService, private compService: CompetenceService, private equipeService: EquipeService,
+    private niveauService: NiveauService, private router: Router) { }
+
+  ngOnInit() {
+    this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
+    this.compService.getAll().subscribe((competences) => this.competences = competences);
+    this.niveauService.getAll().subscribe((niveaux) => this.niveaux = niveaux);
+  }
+
+  passData(regle: Regle): void {
+    this.regle = regle;
+  }
+
+  update(): void {
+    let competence: Competence;
+    competence = this.form.get('competence').value;
+    let equipe: Equipe;
+    equipe = this.form.get('equipe').value;
+    let niveau: Niveau;
+    for (let i = 0 ; i < this.niveaux.length ; i++) {
+      if (this.niveaux[i].organisme === this.regle.organisme && this.niveaux[i].valeur === this.form.get('niveau').value) {
+        niveau = this.niveaux[i];
+      }
+    }
+    this.regle.cnom = competence.nom;
+    this.regle.equipe = equipe.nom;
+    this.regle.niveau = niveau.valeur;
+    this.regle.organisme = niveau.organisme
+    this.regle.moyenne = this.form.get('moyenne').value;
+    this.regle.pourcentage = parseFloat(this.form.get('pourcentage').value);
+    this.regle.nombre = parseInt(this.form.get('nombre').value, 10);
+    this.regleService.update(this.regle).subscribe();
+    this.compService.update(competence).subscribe();
+    this.equipeService.update(equipe).subscribe();
+    this.niveauService.update(niveau).subscribe();
+  }
+
+  edit(): void {
+    this.update();
+    this.router.navigate(['/regles']);
+  }
+
+}

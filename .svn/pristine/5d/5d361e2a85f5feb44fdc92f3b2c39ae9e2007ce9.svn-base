@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Modifier une équipe</h1>
+    <form [formGroup]="form" >
+      <section class="actuel">
+          <div class="form-group">
+              <label for="nom">Nom:</label>
+              <span class="nom">{{equipe.nom}}</span>
+            </div>
+            <div class="form-group">
+              <label for="rescible">Nombre de personnes minimum dans l'équipe:</label>
+              <span class="rescible">{{equipe.rescible}}</span>
+            </div>
+            <div class="form-group">
+              <label for="dispositif">Associé au Projet:</label>
+              <span class="dispositif">{{equipe.dispositif.nom}}</span>
+            </div>
+      </section>
+      <section class="nouveau">
+          <div class="form-group">
+              <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" value="1" formControlName="rescible" placeholder="Entrer un nombre supérieur à 0" required>
+            </div>
+            <div class="form-group">
+              <select class="form-control" id="dispositif" formControlName="dispositif" required>
+                <option *ngFor="let dispositif of dispositifs" [ngValue]="dispositif">{{dispositif.nom}}</option>
+              </select>
+            </div>
+      </section>      
+      <button type="button" class="btn btn-success" (click)="update()">Modifier</button>
+</form>
+  </div>

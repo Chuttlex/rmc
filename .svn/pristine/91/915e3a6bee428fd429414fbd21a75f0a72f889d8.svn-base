@@ -1,0 +1,46 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { OrganismeComponent } from './organisme/organisme.component';
+import { DisplayOrganismeComponent } from './display-organisme/display-organisme.component';
+import { CreateOrganismeComponent } from './create-organisme/create-organisme.component';
+import { OrganismeService } from './organisme.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule, MatListModule} from "@angular/material";
+import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    DisplayOrganismeComponent,
+    OrganismeComponent,
+    CreateOrganismeComponent,
+    NavbarComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    LayoutModule,
+    MatListModule
+  ],
+  providers: [
+    OrganismeService,
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

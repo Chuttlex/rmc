@@ -1,0 +1,4 @@
+<h2>{{organisme.organisme | uppercase}} </h2>
+<h3>Id: {{organisme.id}}</h3>
+<h3>Description: {{organisme.description}}</h3>
+<h3>Dispositif: {{organisme.dispositif}}</h3>

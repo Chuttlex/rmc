@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="'over'"
+      [opened]="(isHandset$ | async) === false">
+      <mat-toolbar class="toolbar" color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item *ngIf="upAffichage === true" (click)="onDropDownMenuAffichage()" class="listTile"> Affichage <mat-icon>keyboard_arrow_up</mat-icon></mat-list-item>
+      <div *ngIf="upAffichage === false" >
+        <mat-list-item (click)="onDropDownMenuAffichage()" class="listTile"> Affichage <mat-icon>keyboard_arrow_down</mat-icon></mat-list-item>
+        <mat-list-item class="listSubtitle"> Compétences </mat-list-item>
+        <mat-list-item class="listSubtitle"> Equipes </mat-list-item>
+        <mat-list-item class="listSubtitle"> <a>Niveaux</a>  </mat-list-item>
+        <mat-list-item class="listSubtitle"> Organismes </mat-list-item>
+        <mat-list-item class="listSubtitle"> Projets </mat-list-item>
+        <mat-list-item class="listSubtitle"> Règles </mat-list-item>
+        <mat-list-item class="listSubtitle"> Ressources Globales</mat-list-item>
+        <mat-list-item class="listSubtitle"> Ressources Liées </mat-list-item>
+
+      </div>
+      <mat-list-item *ngIf="upCreation === true" (click)="onDropDownMenuCreation()" class="listTile"> Création <mat-icon>keyboard_arrow_up</mat-icon></mat-list-item>
+      <div *ngIf="upCreation === false" >
+        <mat-list-item (click)="onDropDownMenuCreation()" class="listTile"> Création <mat-icon>keyboard_arrow_down</mat-icon></mat-list-item>
+        <mat-list-item class="listSubtitle"> Compétence </mat-list-item>
+        <mat-list-item class="listSubtitle"> Equipe </mat-list-item>
+        <mat-list-item class="listSubtitle"> Organisme </mat-list-item>
+        <mat-list-item class="listSubtitle"> Projet </mat-list-item>
+        <mat-list-item class="listSubtitle"> Règle </mat-list-item>
+        <mat-list-item class="listSubtitle"> Ressource </mat-list-item>
+      </div>
+      <a mat-list-item class="listTile">Radar</a>
+      <a mat-list-item class="listTile" >Matrice</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar" color="primary">
+      <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+      <img src="../../assets/image/logo_infotel_blanc.png" id="logo">
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

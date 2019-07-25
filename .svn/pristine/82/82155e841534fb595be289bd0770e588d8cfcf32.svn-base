@@ -1,0 +1,45 @@
+<div class="container">
+    <h1>Modifier </h1>
+    <form [formGroup]="form">
+      <section class="actuel">
+        <div class="form-group">
+          <label for="ressource">Ressource:</label>
+          <span class="ressource">{{rc.ressource.nom}} {{rc.ressource.prenom}}</span>
+        </div>
+        <div class="form-group">
+            <label for="competence">Compétence:</label>
+            <span class="competence">{{rc.competence.nom}}</span>
+          </div>
+          <div class="form-group">
+            <label for="niveau">Niveau:</label>
+            <span class="niveau">{{rc.niveau.valeur}}</span>
+          </div>
+      <div class="form-group">
+          <label for="dateevolcomp">Date d'évaluation:</label>
+          <span class="dateevolcomp">{{rc.dateEvolComp}}</span>
+        </div>
+      </section>
+      <section class="nouveau">
+        <div class="form-group">
+          <select class="form-control" id="ressource" formControlName="ressource" (change)="setNiveaux()" required>
+              <option *ngFor="let ressource of ressources" [ngValue]="ressource">{{ressource.nom}} {{ressource.prenom}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control" id="competence" formControlName="competence" (change)="setNiveaux()" required>
+                <option *ngFor="let competence of competences" [ngValue]="competence">{{competence.nom}}</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <select class="form-control" id="niveau" formControlName="niveau" required>
+                <option *ngFor="let niveau of niveaux" [ngValue]="niveau">{{niveau.valeur}}</option>
+              </select>
+          </div>
+      <div class="form-group">
+          <input type="date" class="form-control" id="dateevolcomp" formControlName="dateevolcomp" required>
+        </div>
+      </section>        
+        <button type="button" class="btn btn-success" (click)="edit()">Modifier</button>
+</form>
+  </div>
+  

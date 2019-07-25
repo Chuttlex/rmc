@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Créer un Projet</h1>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="nom">Nom:</label>
+        <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" formControlName="description" placeholder="Entrer une description">
+      </div>
+      <div class="form-group">
+        <label for="domaine">Organisme:</label>
+        <select class="form-control" id="organisme" formControlName="organisme" required>
+          <option *ngFor="let organisme of organismes" [ngValue]="organisme">{{organisme.organisme}}</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-success" (click)="create('/displayDispositif')">Créer Projet</button>
+    <br/>
+      <button type="button" class="btn btn-success" (click)="create('/createEquipe')">Créer Projet et Equipe</button>
+  <br/>
+      <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Projet et Compétence</button>
+    </form>
+  </div>

@@ -1,0 +1,5 @@
+<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+<h1>Liste des competences</h1>
+<li *ngFor="let competence of competences" [class.selected]="competence === selectedComeptence" (click)="onSelect(competence)">
+    <app-competence [competence]="competence"></app-competence>
+</li>

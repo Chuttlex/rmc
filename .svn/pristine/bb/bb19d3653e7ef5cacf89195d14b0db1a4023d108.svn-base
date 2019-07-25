@@ -1,0 +1,5 @@
+<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+<h1>Liste des regles</h1>
+<li *ngFor="let regle of regles" [class.selected]="regle === selectedRegle" (click)="onSelect(regle)">
+    <app-regle [regle]="regle"></app-regle>
+</li>

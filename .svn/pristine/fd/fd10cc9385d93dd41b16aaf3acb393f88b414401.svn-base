@@ -1,0 +1,5 @@
+<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+<h1>Liste des dispositifs</h1>
+<li *ngFor="let dispositif of dispositifs" [class.selected]="dispositif === selectedDispositif" (click)="onSelect(dispositif)">
+    <app-dispositif [dispositif]="dispositif"></app-dispositif>
+</li>

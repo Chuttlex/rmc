@@ -1,0 +1,10 @@
+export class Regle {
+    id: number;
+    equipe: string;
+    niveau: number;
+    organisme: string;
+    cnom: string;
+    nombre: number;
+    pourcentage: number;
+    moyenne: boolean;
+}
