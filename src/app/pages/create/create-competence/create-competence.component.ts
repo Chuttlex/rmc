@@ -36,13 +36,13 @@ export class CreateCompetenceComponent implements OnInit {
   }
 
   create(route: string): void {
-    const comp = new Competence();
+    let comp = new Competence();
     comp.nom = this.form.get('nomForm').value;
     let domaine: Domaine;
     this.domaineService.getByNom(this.form.get('domaineForm').value).subscribe((dom) => {
       domaine = dom;
       comp.domaine = domaine.valeur;
-      let dc: Dispositifhascompetence;
+      let dc = new Dispositifhascompetence();
           dc.competence = comp.nom;
           dc.dispositif = this.form.get('dispositifForm').value.nom;
           this.compService.create(comp).subscribe(
