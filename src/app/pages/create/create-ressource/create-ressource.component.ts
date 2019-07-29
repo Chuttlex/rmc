@@ -47,6 +47,7 @@ export class CreateRessourceComponent implements OnInit {
     hist.datesortie = this.form.get('datesortie').value;
     hist.rnom = res.nom;
     hist.rprenom = res.prenom;
+    hist.equipe = equipe.nom;
     res.equipe = equipe.nom;
     this.ressourceService.create(res).subscribe(
       (result) => this.histService.create(hist).subscribe(
