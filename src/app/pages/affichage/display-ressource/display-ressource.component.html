@@ -4,9 +4,10 @@
     <th>Id</th>
     <th>Nom</th>
     <th>Prenom</th>
-    <th>Organisme</th>
     <th>Reference Client</th>
     <th>Equipe</th>
+    <th>Organisme</th>
+    <th>Projet</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
   <tr *ngFor="let ressource of ressources" [class.selected]="ressource === selectedRessource" (click)="onSelect(ressource)">
@@ -15,7 +16,9 @@
     <td>{{ressource.prenom}}</td>
     <td>{{ressource.referenceClient}}</td>
     <td>{{ressource.equipe}}</td>
-    <app-ressource [ressource]="ressource"></app-ressource>
+    <td>{{ressource.organisme}}</td>
+    <td>{{ressource.dispositif}}</td>
+    <!--<app-ressource [ressource]="ressource"></app-ressource>-->
   </tr>
 </table>
 
