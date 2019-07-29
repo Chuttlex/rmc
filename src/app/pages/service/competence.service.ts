@@ -18,11 +18,6 @@ const httpOptions = {
         return this.http.post(url, JSON.stringify(competence), httpOptions);
     }
 
-    createSome(competences: Competence[]): Observable<any> {
-        const url = Constantes.url + 'api/infotel/createCompetences';
-        return this.http.post(url, JSON.stringify(competences), httpOptions);
-    }
-
     clear(): Observable<any> {
         return this.http.delete(Constantes.url + `api/infotel/clearCompetences`);
     }
@@ -62,18 +57,23 @@ const httpOptions = {
         return this.http.get<Competence[]>(url);
     }
 
-    getByRessource(nom: string, prenom: string, enom: string): Observable<Competence[]> {
-        const url = Constantes.url + `api/infotel/competence/ByRessource=${nom}&${prenom}&${enom}`;
+    getByRessource(nom: string, prenom: string): Observable<Competence[]> {
+        const url = Constantes.url + `api/infotel/competence/ByRessource=${nom}&${prenom}`;
         return this.http.get<Competence[]>(url);
     }
 
-    getByRessourceAndNiveau(nom: string, prenom: string, equipe: string, niveau: number, orgnom: string): Observable<Competence[]> {
-        const url = Constantes.url + `api/infotel/competence/ByRessourceAndNiveau=${nom}&${prenom}&${equipe}&${niveau}&${orgnom}`;
+    getByRessourceAndNiveau(nom: string, prenom: string, niveau: number, orgnom: string): Observable<Competence[]> {
+        const url = Constantes.url + `api/infotel/competence/ByRessourceAndNiveau=${nom}&${prenom}&${niveau}&${orgnom}`;
         return this.http.get<Competence[]>(url);
     }
 
     getByEquipeAndNiveau(nom: string, niveau: number, orgnom: string): Observable<Competence[]> {
         const url = Constantes.url + `api/infotel/competence/ByEquipeAndNiveau=${nom}&${niveau}&${orgnom}`;
+        return this.http.get<Competence[]>(url);
+    }
+
+    getByDispositif(nom: string): Observable<Competence[]> {
+        const url = Constantes.url + `api/infotel/competence/ByDispositif=${nom}`;
         return this.http.get<Competence[]>(url);
     }
   }

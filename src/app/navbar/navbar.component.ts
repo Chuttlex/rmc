@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +19,7 @@ export class NavbarComponent {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   onDropDownMenuAffichage(){
     this.upAffichage = !this.upAffichage;
@@ -28,9 +27,5 @@ export class NavbarComponent {
 
   onDropDownMenuCreation(){
     this.upCreation = !this.upCreation;
-  }
-
-  navigate(route: string){
-    this.router.navigate([route]);
   }
 }

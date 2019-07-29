@@ -44,8 +44,8 @@ export class HistoriqueresComponent implements OnInit {
     this.histService.getById(id).subscribe((historique) => this.historiques.push(historique));
   }
 
-  getByRessource(nom: string, prenom: string, equipe: string): void {
-    this.histService.getByRessource(nom, prenom, equipe).subscribe((historique) => this.historiques.push(historique));
+  getByRessource(nom: string, prenom: string): void {
+    this.histService.getByRessource(nom, prenom).subscribe((historique) => this.historiques.push(historique));
   }
 
 }

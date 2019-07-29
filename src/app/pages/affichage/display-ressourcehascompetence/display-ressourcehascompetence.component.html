@@ -1,5 +1,22 @@
+<table>
+  <caption>Liste des regles</caption>
+  <tr>
+    <th>Competence</th>
+    <th>Ressource</th>
+    <th>Niveau</th>
+    <th>Date d'Evaluation</th>
+  </tr>
+  <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
+  <tr *ngFor="let ressourcehascompetence of rcs" [class.selected]="ressourcehascompetence === selected" (click)="onSelect(ressourcehascompetence)">
+    <td>{{ressourcehascompetence.cnom}}</td>
+    <td>{{ressourcehascompetence.rnom}}</td>
+    <td>{{ressourcehascompetence.niveau}}</td>
+    <td>{{ressourcehascompetence.dateEvolComp}}</td>
+    <!-- <app-ressourcehascompetence [ressourcehascompetence]="ressourcehascompetence"></app-ressourcehascompetence> -->
+  </tr>
+</table>
+
 <button *ngIf="isSelected" (click)="edit()">Modifier</button>
-<h1>Liste des ressourcehascompetences</h1>
-<li *ngFor="let ressourcehascompetence of rcs" [class.selected]="ressourcehascompetence === selected" (click)="onSelect(ressourcehascompetence)">
-    <app-ressourcehascompetence [ressourcehascompetence]="ressourcehascompetence"></app-ressourcehascompetence>
-</li>
+
+
+

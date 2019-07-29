@@ -63,8 +63,8 @@ const httpOptions = {
         return this.http.get<Niveau[]>(url);
     }
 
-    getByRessourceAndCompetence(nom: string, prenom: string, equipe: string, compNom: string): Observable<Niveau[]> {
-        const url = Constantes.url + `api/infotel/niveau/ByRessourceAndCompetence=${nom}&${prenom}&${equipe}&${compNom}`;
+    getByRessourceAndCompetence(nom: string, prenom: string, compNom: string): Observable<Niveau[]> {
+        const url = Constantes.url + `api/infotel/niveau/ByRessourceAndCompetence=${nom}&${prenom}&${compNom}`;
         return this.http.get<Niveau[]>(url);
     }
 

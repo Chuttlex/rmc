@@ -1,5 +1,30 @@
+<table>
+  <caption>Liste des regles</caption>
+  <tr>
+    <th>Id</th>
+    <th>Nom de l'Equipe</th>
+    <th>Niveau</th>
+    <th>Organisme</th>
+    <th>Nom de la Competence</th>
+    <th>Nombre de Personne</th>
+    <th>Pourcentage de Personne</th>
+    <th>Moyenne Atteinte</th>
+  </tr>
+  <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
+  <tr *ngFor="let regle of regles" [class.selected]="regle === selectedRegle" (click)="onSelect(regle)">
+    <td>{{regle.id}}</td>
+    <td>{{regle.enom}}</td>
+    <td>{{regle.niveau}}</td>
+    <td>{{regle.organisme}}</td>
+    <td>{{regle.cnom}}</td>
+    <td>{{regle.nombre}}</td>
+    <td>{{regle.pourcentage}}</td>
+    <td>{{regle.moyenne}}</td>
+    <!-- <app-regle [regle]="regle"></app-regle> -->
+  </tr>
+</table>
+
 <button *ngIf="isSelected" (click)="edit()">Modifier</button>
-<h1>Liste des regles</h1>
-<li *ngFor="let regle of regles" [class.selected]="regle === selectedRegle" (click)="onSelect(regle)">
-    <app-regle [regle]="regle"></app-regle>
-</li>
+
+
+

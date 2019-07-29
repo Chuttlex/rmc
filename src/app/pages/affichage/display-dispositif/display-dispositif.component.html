@@ -1,5 +1,19 @@
+ <table>
+  <caption>Liste des dispositifs</caption>
+  <tr>
+    <th>Id</th>
+    <th>Nom</th>
+    <th>Organisme</th>
+    <th>Description</th>
+  </tr>
+  <!-- boucle qui parcours tout les attributs du component pour pouvoir les selectionner -->
+  <tr *ngFor="let dispositif of dispositifs" [class.selected]="dispositif === selectedDispositif" (click)="onSelect(dispositif)">
+    <td>{{dispositif.id}}</td>
+    <td>{{dispositif.nom}}</td>
+    <td>{{dispositif.organisme}}</td>
+    <td>{{dispositif.description}}</td>
+    <!-- <app-dispositif [dispositif]="dispositif"></app-dispositif> -->
+  </tr>
+</table>
+
 <button *ngIf="isSelected" (click)="edit()">Modifier</button>
-<h1>Liste des dispositifs</h1>
-<li *ngFor="let dispositif of dispositifs" [class.selected]="dispositif === selectedDispositif" (click)="onSelect(dispositif)">
-    <app-dispositif [dispositif]="dispositif"></app-dispositif>
-</li>

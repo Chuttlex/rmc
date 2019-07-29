@@ -1,4 +1,18 @@
-<h1>Liste des niveaus</h1>
-<li *ngFor="let niveau of niveaux" [class.selected]="niveau === selectedNiveau" (click)="onSelect(niveau)">
-    <app-niveau [niveau]="niveau"></app-niveau>
-</li>
+<table>
+  <caption>Liste des niveaux</caption>
+  <tr>
+    <th>Id</th>
+    <th>Niveau</th>
+    <th>Description</th>
+    <th>Dispositif</th>
+  </tr>
+  <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
+  <tr *ngFor="let niveau of niveaux" [class.selected]="niveau === selectedNiveau" (click)="onSelect(niveau)">
+    <td>{{niveau.id}}</td>
+    <td>{{niveau.valeur}}</td>
+    <td>{{niveau.description}}</td>
+    <td>{{niveau.organisme}}</td>
+    <!-- <app-niveau [niveau]="niveau"></app-niveau> -->
+  </tr>
+</table>
+

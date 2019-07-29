@@ -14,36 +14,36 @@ const httpOptions = {
     constructor( private http: HttpClient) { }
 
     create(hist: Historiqueres): Observable<any> {
-        const url = Constantes.url + 'api/infotel/createHistorique';
+        const url = Constantes.url + 'api/infotel/createHistoriqueres';
         return this.http.post(url, JSON.stringify(hist), httpOptions);
     }
 
     clear(): Observable<any> {
-        return this.http.delete(Constantes.url + 'api/infotel/clearHistoriques');
+        return this.http.delete(Constantes.url + 'api/infotel/clearHistoriqueres');
     }
 
     getAll(): Observable<Historiqueres[]> {
-        const url = Constantes.url + 'api/infotel/getHistorique';
+        const url = Constantes.url + 'api/infotel/getHistoriqueres';
         return this.http.get<Historiqueres[]>(url);
     }
 
     getById(id: number): Observable<Historiqueres> {
-        const url = Constantes.url + `api/infotel/getHistoriqueById=${id}`;
+        const url = Constantes.url + `api/infotel/getHistoriqueresById=${id}`;
         return this.http.get<Historiqueres>(url);
     }
 
     delete(id: number): Observable<Historiqueres> {
-        const url = Constantes.url + `api/infotel/deleteHistorique=${id}`;
+        const url = Constantes.url + `api/infotel/deleteHistoriqueres=${id}`;
         return this.http.delete<Historiqueres>(url, httpOptions);
     }
 
     update(hist: Historiqueres): Observable<any> {
-        const url = Constantes.url + 'api/infotel/updateHistorique';
+        const url = Constantes.url + 'api/infotel/updateHistoriqueres';
         return this.http.put(url, JSON.stringify(hist), httpOptions);
     }
 
-    getByRessource(nom: string, prenom: string, equipe: string): Observable<Historiqueres> {
-        const url = Constantes.url + `api/infotel/historique/ByRessource=${nom}&${prenom}&${equipe}`;
+    getByRessource(nom: string, prenom: string): Observable<Historiqueres> {
+        const url = Constantes.url + `api/infotel/historique/ByRessource=${nom}&${prenom}`;
         return this.http.get<Historiqueres>(url);
     }
   }

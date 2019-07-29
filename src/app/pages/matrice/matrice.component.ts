@@ -7,14 +7,13 @@ import { Dispositif } from '../classe/dispositif';
 import { Equipe } from '../classe/equipe';
 import { Competence } from '../classe/competence';
 import { Ressource } from '../classe/ressource';
-import { DispositifhascompetenceService } from '../service/dispositifhascompetence.service';
-import { Dispositifhascompetence } from '../classe/dispositifhascompetence';
+
 
 @Component({
   selector: 'app-matrice',
   templateUrl: './matrice.component.html',
   styleUrls: ['./matrice.component.css'],
-  providers: [CompetenceService, RessourceService, DispositifService, EquipeService, DispositifhascompetenceService]
+  providers: [CompetenceService, RessourceService, DispositifService, EquipeService]
 })
 export class MatriceComponent implements OnInit {
   dispositifs: Dispositif[];
@@ -23,7 +22,7 @@ export class MatriceComponent implements OnInit {
   competences: Competence[];
 
   constructor(private compService: CompetenceService, private dispService: DispositifService, private resService: RessourceService,
-    private equipeService: EquipeService, private dcService: DispositifhascompetenceService) { }
+    private equipeService: EquipeService) { }
 
   ngOnInit() {
     this.dispService.getAll().subscribe((d) => this.dispositifs = d);
@@ -33,22 +32,5 @@ export class MatriceComponent implements OnInit {
     this.equipeService.getByDispositif(dispositif).subscribe((e) => this.equipes = e);
   }
 
-  updateTab(dispositif: string, equipe: string){
-    let dcs: Dispositifhascompetence[];
-    this.resService.getByEquipe(equipe).subscribe(
-      (r) => {
-        this.ressources = r;
-        this.dcService.getByDispositif(dispositif).subscribe(
-          (d) => {
-            dcs = d;
-            dcs.forEach(dc => {
-              this.compService.getById(dc.idc).subscribe(
-                (c) => this.competences.push(c)
-              )
-            });
-          });
-      }
-    )
-  }
 
 }

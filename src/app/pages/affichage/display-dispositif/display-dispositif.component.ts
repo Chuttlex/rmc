@@ -4,6 +4,10 @@ import { DispositifService } from '../../service/dispositif.service';
 import { Router } from '@angular/router';
 import { EditDispositifComponent } from '../../edit/edit-dispositif/edit-dispositif.component';
 
+const testDispo1: Dispositif = {id: 1, nom: 'Manhattan', organisme: 'les alliés', description:'on va tout faire sauter'};
+const testDispo2: Dispositif = {id: 2, nom: 'Overlord', organisme: 'les alliés', description:'on va débarquer'};
+const testDispo3: Dispositif = {id: 3, nom: 'Enigma', organisme: 'les alliés', description:'on va tout décripter'};
+
 @Component({
   selector: 'app-display-dispositif',
   templateUrl: './display-dispositif.component.html',
@@ -12,7 +16,7 @@ import { EditDispositifComponent } from '../../edit/edit-dispositif/edit-disposi
 })
 export class DisplayDispositifComponent implements OnInit {
 
-  dispositifs: Dispositif[];
+  dispositifs: Dispositif[] = [];
   selectedDispositif: Dispositif;
   isSelected: boolean;
   @ViewChild(EditDispositifComponent, {static: false}) erc: EditDispositifComponent;
@@ -21,6 +25,7 @@ export class DisplayDispositifComponent implements OnInit {
 
   ngOnInit() {
     this.dispService.getAll().subscribe((d) => this.dispositifs = d);
+    this.dispositifs.push(testDispo1,testDispo2,testDispo3);
   }
 
   onSelect(dispositif: Dispositif): void {

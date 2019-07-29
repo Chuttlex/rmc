@@ -52,8 +52,8 @@ const httpOptions = {
         return this.http.get<Equipe[]>(url);
     }
 
-    getByRessource(id: number): Observable<Equipe> {
-        const url = Constantes.url + `api/infotel/equipe/ByRessource=${id}`;
+    getByRessource(nom: string, prenom: string): Observable<Equipe> {
+        const url = Constantes.url + `api/infotel/equipe/ByRessource=${nom}&${prenom}`;
         return this.http.get<Equipe>(url);
     }
 

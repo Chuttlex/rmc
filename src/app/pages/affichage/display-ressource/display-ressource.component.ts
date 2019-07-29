@@ -4,6 +4,10 @@ import { RessourceService } from '../../service/ressource.service';
 import { Router } from '@angular/router';
 import { EditRessourceComponent } from '../../edit/edit-ressource/edit-ressource.component';
 
+const testRessource1: Ressource = {id: 1, nom: 'Martin', prenom: 'Paul', referenceClient: 25631, equipe: 'A Team'};
+const testRessource2: Ressource = {id: 2, nom: 'Michellac', prenom: 'Pierre', referenceClient: 35214, equipe: 'B Team'};
+const testRessource3: Ressource = {id: 3, nom: 'Briard', prenom: 'Jacques', referenceClient: 65231, equipe: 'C Team'};
+
 @Component({
   selector: 'app-display-ressource',
   templateUrl: './display-ressource.component.html',
@@ -12,7 +16,7 @@ import { EditRessourceComponent } from '../../edit/edit-ressource/edit-ressource
 })
 export class DisplayRessourceComponent implements OnInit {
 
-  ressources: Ressource[];
+  ressources: Ressource[] = [];
   selectedR: Ressource;
   isSelected: boolean;
   @ViewChild(EditRessourceComponent, {static: false}) erc: EditRessourceComponent;
@@ -22,6 +26,7 @@ export class DisplayRessourceComponent implements OnInit {
   ngOnInit() {
     this.getRessources();
     this.isSelected = false;
+    this.ressources.push(testRessource1,testRessource2,testRessource3);
   }
 
   onSelect(ressource: Ressource): void {

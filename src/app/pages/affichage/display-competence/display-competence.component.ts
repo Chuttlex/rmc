@@ -4,24 +4,31 @@ import { CompetenceService } from '../../service/competence.service';
 import { Router } from '@angular/router';
 import { EditCompetenceComponent } from '../../edit/edit-competence/edit-competence.component';
 
-@Component({
+const cpt1: Competence = {id: 1, nom: 'Java', domaine: 'Technique'};
+
+const cpt2: Competence = {id: 2, nom: 'C', domaine: 'Technique'};
+
+  @Component({
   selector: 'app-display-competence',
   templateUrl: './display-competence.component.html',
-  styleUrls: ['./display-competence.component.css'],
+  styleUrls: ['../../../../tabStyle.css'],
   providers: [CompetenceService]
 })
 export class DisplayCompetenceComponent implements OnInit {
 
-  competences: Competence[];
+  competences: Competence[] = [];
   selectedCompetence: Competence;
   isSelected: boolean;
   @ViewChild(EditCompetenceComponent, {static: false}) ecc: EditCompetenceComponent;
 
   constructor(private compService: CompetenceService, private router: Router) { }
 
+
   ngOnInit() {
     this.compService.getAll().subscribe((c) => this.competences = c);
+    this.competences.push(cpt1,cpt2)
   }
+
 
   onSelect(competence: Competence): void {
     this.selectedCompetence = competence;
@@ -73,12 +80,12 @@ export class DisplayCompetenceComponent implements OnInit {
     this.compService.getByEquipe(nom).subscribe((competences) => this.competences = competences);
   }
 
-  getByRessource(nom: string, prenom: string, equipe: string): void {
-    this.compService.getByRessource(nom, prenom, equipe).subscribe((competences) => this.competences = competences);
+  getByRessource(nom: string, prenom: string): void {
+    this.compService.getByRessource(nom, prenom).subscribe((competences) => this.competences = competences);
   }
 
-  getByRessourceAndNiveau(nom: string, prenom: string, equipe: string, niveau: number, orgnom: string): void {
-    this.compService.getByRessourceAndNiveau(nom, prenom, equipe, niveau, orgnom).subscribe((competences) => this.competences = competences);
+  getByRessourceAndNiveau(nom: string, prenom: string, niveau: number, orgnom: string): void {
+    this.compService.getByRessourceAndNiveau(nom, prenom, niveau, orgnom).subscribe((competences) => this.competences = competences);
   }
 
   getByEquipeAndNiveau(nom: string, niveau: number, orgnom: string): void {

@@ -24,8 +24,8 @@ export class CreateRegleComponent implements OnInit {
   niveaux: Niveau[];
 
   form = new FormGroup ({
-    equipe: new FormControl(''),
     competence: new FormControl(''),
+    ressource: new FormControl(''),
     niveau: new FormControl(''),
     nombre: new FormControl(''),
     pourcentage: new FormControl(''),

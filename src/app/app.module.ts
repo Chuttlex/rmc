@@ -47,17 +47,24 @@ import { EditRegleComponent } from './pages/edit/edit-regle/edit-regle.component
 import { EditRessourceComponent } from './pages/edit/edit-ressource/edit-ressource.component';
 import { EditRessourcehascompetenceComponent } from './pages/edit/edit-ressourcehascompetence/edit-ressourcehascompetence.component';
 import { CreateRessourceComponent } from './pages/create/create-ressource/create-ressource.component';
-import { AutoCompleteService } from './pages/service/autocomplete.service';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule, MatListModule, MatMenuModule, MatAutocompleteModule, MatFormFieldModule, MatChipsModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AutocompleteComponent } from './autocomplete/autocomplete.component';
-import { MatriceComponent } from './pages/matrice/matrice.component';
-import { CreateRessourcehascompetenceComponent } from './pages/create/create-ressourcehascompetence/create-ressourcehascompetence.component';
-import { DispositifhascompetenceComponent } from './pages/entitée/dispositifhascompetence/dispositifhascompetence.component';
-import { DisplayDispositifhascompetenceComponent } from './pages/affichage/display-dispositifhascompetence/display-dispositifhascompetence.component';
-import { EditDispositifhascompetenceComponent } from './pages/edit/edit-dispositifhascompetence/edit-dispositifhascompetence.component';
 
+
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatListModule,
+  MatMenuModule,
+  MatAutocompleteModule,
+  MatFormFieldModule, MatInputModule, MatTableModule
+} from "@angular/material";
+import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatriceComponent } from './pages/matrice/matrice.component';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { TableauComponent } from './tableau/tableau.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,12 +103,9 @@ import { EditDispositifhascompetenceComponent } from './pages/edit/edit-disposit
     EditRessourceComponent,
     EditRessourcehascompetenceComponent,
     NavbarComponent,
-    AutocompleteComponent,
     MatriceComponent,
-    CreateRessourcehascompetenceComponent,
-    DispositifhascompetenceComponent,
-    DisplayDispositifhascompetenceComponent,
-    EditDispositifhascompetenceComponent,
+    AutocompleteComponent,
+    TableauComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,17 +113,18 @@ import { EditDispositifhascompetenceComponent } from './pages/edit/edit-disposit
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     MatButtonModule,
-    MatIconModule,
     MatSidenavModule,
+    MatIconModule,
     MatToolbarModule,
+    LayoutModule,
     MatListModule,
     MatMenuModule,
-    BrowserAnimationsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatChipsModule,
-    MatIconModule,
+    MatInputModule,
+    MatTableModule
   ],
   providers: [
     OrganismeService,
@@ -131,8 +136,7 @@ import { EditDispositifhascompetenceComponent } from './pages/edit/edit-disposit
     HistoriqueresService,
     RessourcehascompetenceService,
     RegleService,
-    EquipeService,
-    AutoCompleteService,
+    EquipeService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,15 +4,19 @@ import { EquipeService } from '../../service/equipe.service';
 import { Router } from '@angular/router';
 import { EditEquipeComponent } from '../../edit/edit-equipe/edit-equipe.component';
 
+const testEquipe1: Equipe = { id: 1, nom: 'Team A', rescible: 5, dispositif: 'Manhattan'};
+const testEquipe2: Equipe = { id: 2, nom: 'Team B', rescible: 4, dispositif: 'Overlord'};
+const testEquipe3: Equipe = { id: 3, nom: 'Team C', rescible: 8, dispositif: 'Enigma'};
+
 @Component({
   selector: 'app-display-equipe',
   templateUrl: './display-equipe.component.html',
-  styleUrls: ['./display-equipe.component.css'],
+  styleUrls: ['../../../../tabStyle.css'],
   providers: [EquipeService]
 })
 export class DisplayEquipeComponent implements OnInit {
 
-  equipes: Equipe[];
+  equipes: Equipe[] = [];
   selectedEquipe: Equipe;
   isSelected: boolean;
   @ViewChild(EditEquipeComponent, {static: false}) eec: EditEquipeComponent;
@@ -21,6 +25,7 @@ export class DisplayEquipeComponent implements OnInit {
 
   ngOnInit() {
     this.equipeService.getAll().subscribe((e) => this.equipes = e);
+    this.equipes.push(testEquipe1,testEquipe2,testEquipe3);
   }
 
   onSelect(equipe: Equipe): void {
@@ -54,8 +59,8 @@ export class DisplayEquipeComponent implements OnInit {
     this.equipeService.getByDispositif(nom).subscribe((equipes) => this.equipes = equipes);
   }
 
-  getByRessource(id: number): void {
-    this.equipeService.getByRessource(id).subscribe((equipe) => this.equipes.push(equipe));
+  getByRessource(nom: string, prenom: string): void {
+    this.equipeService.getByRessource(nom, prenom).subscribe((equipe) => this.equipes.push(equipe));
   }
 
   getByCompetence(nom: string): void {

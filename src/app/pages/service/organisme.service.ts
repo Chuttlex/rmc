@@ -50,4 +50,9 @@ getByNom(nom: string): Observable<Organisme> {
     const url = Constantes.url + `api/infotel/organisme/byNom=${nom}`;
     return this.http.get<Organisme>(url);
 }
+
+getByDispositif(nom: string): Observable<Organisme> {
+    const url = Constantes.url + `api/infotel/organisme/ByDispositif=${nom}`;
+    return this.http.get<Organisme>(url);
+}
 }

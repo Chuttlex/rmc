@@ -7,5 +7,4 @@ export class Ressourcehascompetence {
     rnom: string;
     rprenom: string;
     dateEvolComp: Date;
-    equipe: string;
 }

@@ -22,12 +22,10 @@ import { EditRessourcehascompetenceComponent } from './pages/edit/edit-ressource
 import { CreateRegleComponent } from './pages/create/create-regle/create-regle.component';
 import { DisplayNiveauComponent } from './pages/affichage/display-niveau/display-niveau.component';
 import { RadarComponent } from './pages/radar/radar.component';
-import { MatriceComponent } from './pages/matrice/matrice.component';
-import { CreateRessourcehascompetenceComponent } from './pages/create/create-ressourcehascompetence/create-ressourcehascompetence.component';
-import { DisplayDispositifhascompetenceComponent } from './pages/affichage/display-dispositifhascompetence/display-dispositifhascompetence.component';
-import { EditDispositifhascompetenceComponent } from './pages/edit/edit-dispositifhascompetence/edit-dispositifhascompetence.component';
+import { MatriceComponent} from "./pages/matrice/matrice.component";
 
 const routes: Routes = [
+  { path: 'matrice', component: MatriceComponent},
   { path: 'displayOrganisme', component: DisplayOrganismeComponent},
   { path: 'createOrganisme', component: CreateOrganismeComponent},
   { path: 'editOrganisme', component: EditOrganismeComponent},
@@ -50,10 +48,6 @@ const routes: Routes = [
   { path: 'editRessourcehascompetence', component: EditRessourcehascompetenceComponent},
   { path: 'displayNiveau', component: DisplayNiveauComponent},
   { path: 'radar', component: RadarComponent},
-  { path: 'matrice', component: MatriceComponent},
-  { path: 'createRessourcehascompetence', component: CreateRessourcehascompetenceComponent},
-  { path: 'displayDispositifhascompetence', component: DisplayDispositifhascompetenceComponent},
-  { path: 'editDispositifhascompetence', component: EditDispositifhascompetenceComponent},
 ];
 
 @NgModule({

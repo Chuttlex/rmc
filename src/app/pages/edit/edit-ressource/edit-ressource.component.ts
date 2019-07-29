@@ -46,7 +46,7 @@ export class EditRessourceComponent implements OnInit {
       (result) => {
         this.ressource.nom = this.form.get('nom').value;
         this.ressource.prenom = this.form.get('prenom').value;
-        this.histService.getByRessource(this.ressource.nom, this.ressource.prenom, this.ressource.equipe).subscribe((h) => {
+        this.histService.getByRessource(this.ressource.nom, this.ressource.prenom).subscribe((h) => {
           hist = h;
           this.ressource.referenceClient = this.form.get('referenceClient').value;
           hist.dateentree = this.form.get('dateentree').value;

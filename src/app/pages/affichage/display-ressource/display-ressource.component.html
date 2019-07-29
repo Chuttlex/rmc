@@ -1,5 +1,22 @@
+<table>
+  <caption>Liste des Ressources</caption>
+  <tr>
+    <th>Id</th>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th>Organisme</th>
+    <th>Reference Client</th>
+    <th>Equipe</th>
+  </tr>
+  <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
+  <tr *ngFor="let ressource of ressources" [class.selected]="ressource === selectedRessource" (click)="onSelect(ressource)">
+    <td>{{ressource.id}}</td>
+    <td>{{ressource.nom}}</td>
+    <td>{{ressource.prenom}}</td>
+    <td>{{ressource.referenceClient}}</td>
+    <td>{{ressource.equipe}}</td>
+    <!--  <app-ressource [ressource]="ressource"></app-ressource> -->
+  </tr>
+</table>
+
 <button *ngIf="isSelected" (click)="edit()">Modifier</button>
-<h1>Liste des ressources</h1>
-<li *ngFor="let ressource of ressources" [class.selected]="ressource === selectedRessource" (click)="onSelect(ressource)">
-    <app-ressource [ressource]="ressource"></app-ressource>
-</li>

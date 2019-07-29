@@ -17,7 +17,10 @@ export class AppComponent implements OnInit {
     domaines = [];
     this.domaineService.getAll().subscribe((d) => domaines = d);
     if (domaines.length !== 3) {
+      // this.domaineService.clear();
+      console.log("Nettoyage terminé");
       this.domaineService.initialize().subscribe();
+      console.log("Initialisation terminée");
     }
   }
   title = 'rmc';
