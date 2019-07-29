@@ -42,8 +42,8 @@ const httpOptions = {
         return this.http.put(url, JSON.stringify(rc), httpOptions);
     }
 
-    getByRessource(nom: string, prenom: string): Observable<Ressourcehascompetence[]> {
-        const url = Constantes.url + `api/infotel/ressourcehascompetence/ByRessource=${nom}&${prenom}`;
+    getByRessource(nom: string, prenom: string, equipe: string): Observable<Ressourcehascompetence[]> {
+        const url = Constantes.url + `api/infotel/ressourcehascompetence/ByRessource=${nom}&${prenom}&${equipe}`;
         return this.http.get<Ressourcehascompetence[]>(url);
     }
 
@@ -57,8 +57,8 @@ const httpOptions = {
         return this.http.get<Ressourcehascompetence[]>(url);
     }
 
-    getByRessourceAndCompetence(nom: string, prenom: string, cnom: string): Observable<Ressourcehascompetence[]> {
-        const url = Constantes.url + `api/infotel/ressourcehascompetence/ByRessourceAndCompetence=${nom}&${prenom}&${cnom}`;
+    getByRessourceAndCompetence(nom: string, prenom: string, equipe: string, cnom: string): Observable<Ressourcehascompetence[]> {
+        const url = Constantes.url + `api/infotel/ressourcehascompetence/ByRessourceAndCompetence=${nom}&${prenom}&${equipe}&${cnom}`;
         return this.http.get<Ressourcehascompetence[]>(url);
     }
 
@@ -67,8 +67,8 @@ const httpOptions = {
         return this.http.get<Ressourcehascompetence[]>(url);
     }
 
-    getByRessourceAndDateEvol(nom: string, prenom: string, date: Date): Observable<Ressourcehascompetence[]> {
-        const url = Constantes.url + `api/infotel/ressourcehascompetence/ByRessourceAndDateEvol=${nom}&${prenom}&${date}`;
+    getByRessourceAndDateEvol(nom: string, prenom: string, equipe: string, date: Date): Observable<Ressourcehascompetence[]> {
+        const url = Constantes.url + `api/infotel/ressourcehascompetence/ByRessourceAndDateEvol=${nom}&${prenom}&${equipe}&${date}`;
         return this.http.get<Ressourcehascompetence[]>(url);
     }
 

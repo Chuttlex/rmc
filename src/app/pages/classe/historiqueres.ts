@@ -1,3 +1,5 @@
+import { Equipe } from './equipe';
+
 export class Historiqueres {
     id: number;
     rnom: string;
@@ -6,4 +8,5 @@ export class Historiqueres {
     datesortie: Date;
     isactif: boolean;
     isactifasbackup: boolean;
+    equipe: string;
 }

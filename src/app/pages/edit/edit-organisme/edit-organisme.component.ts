@@ -69,7 +69,7 @@ export class EditOrganismeComponent implements OnInit {
           niveaux = [];
           for (let j = 0 ; j < this.form.get('echelle').value ; j++) {
             let niveau = new Niveau();
-            niveau.valeur = j;
+            niveau.valeur = j+1;
             if (this.form.get('echelle').value === 5) {
               niveau.description = this.ech5[j];
             }

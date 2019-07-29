@@ -23,20 +23,24 @@ export class EditRessourcehascompetenceComponent implements OnInit {
   niveaux: Niveau[];
 
   form = new FormGroup ({
-    ressource: new FormControl('ressource'),
-    competence: new FormControl('competence'),
-    niveau: new FormControl('niveau'),
-    dateevolcomp: new FormControl('dateevolcomp'),
+    ressource: new FormControl(''),
+    competence: new FormControl(''),
+    niveau: new FormControl(''),
+    dateevolcomp: new FormControl(''),
   })
 
   constructor(private rcService: RessourcehascompetenceService, private resService: RessourceService, private compService: CompetenceService,
     private niveauService: NiveauService, private router: Router) { }
 
   ngOnInit() {
-    this.compService.getAll().subscribe((competences) => this.competences = competences);
-    this.resService.getAll().subscribe((ressources) => this.ressources = ressources);
-    this.niveauService.getByRessourceAndCompetence(this.ressources[0].nom, this.ressources[0].prenom, this.competences[0].nom)
-    .subscribe((niveaux) => this.niveaux = niveaux);
+    this.compService.getAll().subscribe((competences) => {
+      this.competences = competences;
+      this.resService.getAll().subscribe((ressources) => {
+        this.ressources = ressources;
+        this.niveauService.getByRessourceAndCompetence(this.rc.rnom, this.rc.rprenom, this.rc.equipe , this.rc.cnom)
+        .subscribe((niveaux) => this.niveaux = niveaux);
+      });
+    });
   }
 
   passData(rc: Ressourcehascompetence): void {
@@ -45,7 +49,7 @@ export class EditRessourcehascompetenceComponent implements OnInit {
 
   setNiveaux(): void {
     this.niveauService.getByRessourceAndCompetence(this.form.get('ressource').value.nom, this.form.get('ressource').value.nom,
-     this.form.get('competence').value.nom)
+     this.form.get('ressource').value.equipe ,this.form.get('competence').value.nom)
     .subscribe((niveaux) => this.niveaux = niveaux);
   }
 

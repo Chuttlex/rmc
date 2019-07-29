@@ -5,4 +5,6 @@ export class Ressource {
     prenom: string;
     referenceClient: number;
     equipe: string;
+    dispositif: string;
+    organisme: string;
 }

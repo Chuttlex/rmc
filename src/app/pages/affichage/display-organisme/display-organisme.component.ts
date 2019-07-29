@@ -4,9 +4,9 @@ import { Organisme } from '../../classe/organisme';
 import { EditOrganismeComponent } from '../../edit/edit-organisme/edit-organisme.component';
 import { Router } from '@angular/router';
 
-const testOrga1: Organisme = {id: 1, organisme: 'Infotel', description: 'ESN', dispositif: 'Manhattan'};
-const testOrga2: Organisme = {id: 2, organisme: 'Air France', description: 'Compagnie Aerienne', dispositif: 'Overlord'};
-const testOrga3: Organisme = {id: 3, organisme: 'Pro BTP', description: 'Assureur', dispositif: 'Enigma'};
+const testOrga1: Organisme = {id: 1, organisme: 'Infotel', description: 'ESN'};
+const testOrga2: Organisme = {id: 2, organisme: 'Air France', description: 'Compagnie Aerienne'};
+const testOrga3: Organisme = {id: 3, organisme: 'Pro BTP', description: 'Assureur'};
 
 @Component({
   selector: 'app-display-organisme',

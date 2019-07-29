@@ -4,9 +4,9 @@ import { RessourceService } from '../../service/ressource.service';
 import { Router } from '@angular/router';
 import { EditRessourceComponent } from '../../edit/edit-ressource/edit-ressource.component';
 
-const testRessource1: Ressource = {id: 1, nom: 'Martin', prenom: 'Paul', referenceClient: 25631, equipe: 'A Team'};
-const testRessource2: Ressource = {id: 2, nom: 'Michellac', prenom: 'Pierre', referenceClient: 35214, equipe: 'B Team'};
-const testRessource3: Ressource = {id: 3, nom: 'Briard', prenom: 'Jacques', referenceClient: 65231, equipe: 'C Team'};
+const testRessource1: Ressource = {id: 1, nom: 'Martin', prenom: 'Paul', referenceClient: 25631, equipe: 'A Team', organisme: 'Infotel', dispositif: 'Stagiaires'};
+const testRessource2: Ressource = {id: 2, nom: 'Michellac', prenom: 'Pierre', referenceClient: 35214, equipe: 'B Team', organisme: 'Infotel', dispositif: 'Stagiaires'};
+const testRessource3: Ressource = {id: 3, nom: 'Briard', prenom: 'Jacques', referenceClient: 65231, equipe: 'C Team', organisme: 'Air France', dispositif: 'Chocolat'};
 
 @Component({
   selector: 'app-display-ressource',

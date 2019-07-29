@@ -4,7 +4,7 @@ import { Competence } from '../../classe/competence';
 @Component({
   selector: 'app-competence',
   templateUrl: './competence.component.html',
-  styleUrls: ['./competence.component.css']
+  styles: []
 })
 export class CompetenceComponent implements OnInit {
   

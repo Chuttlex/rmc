@@ -47,24 +47,19 @@ import { EditRegleComponent } from './pages/edit/edit-regle/edit-regle.component
 import { EditRessourceComponent } from './pages/edit/edit-ressource/edit-ressource.component';
 import { EditRessourcehascompetenceComponent } from './pages/edit/edit-ressourcehascompetence/edit-ressourcehascompetence.component';
 import { CreateRessourceComponent } from './pages/create/create-ressource/create-ressource.component';
-
-
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {
-  MatButtonModule,
-  MatIconModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatListModule,
-  MatMenuModule,
-  MatAutocompleteModule,
-  MatFormFieldModule, MatInputModule, MatTableModule
-} from "@angular/material";
+import { AutoCompleteService } from './pages/service/autocomplete.service';
 import { NavbarComponent } from './navbar/navbar.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatriceComponent } from './pages/matrice/matrice.component';
+import { MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule, MatListModule, MatMenuModule, MatAutocompleteModule, MatFormFieldModule, MatChipsModule, MatInputModule, MatTableModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { MatriceComponent } from './pages/matrice/matrice.component';
+import { CreateRessourcehascompetenceComponent } from './pages/create/create-ressourcehascompetence/create-ressourcehascompetence.component';
+import { DispositifhascompetenceComponent } from './pages/entitée/dispositifhascompetence/dispositifhascompetence.component';
+import { DisplayDispositifhascompetenceComponent } from './pages/affichage/display-dispositifhascompetence/display-dispositifhascompetence.component';
+import { EditDispositifhascompetenceComponent } from './pages/edit/edit-dispositifhascompetence/edit-dispositifhascompetence.component';
 import { TableauComponent } from './tableau/tableau.component';
+import { LayoutModule } from '@angular/cdk/layout';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,9 +98,13 @@ import { TableauComponent } from './tableau/tableau.component';
     EditRessourceComponent,
     EditRessourcehascompetenceComponent,
     NavbarComponent,
-    MatriceComponent,
     AutocompleteComponent,
-    TableauComponent,
+    MatriceComponent,
+    CreateRessourcehascompetenceComponent,
+    DispositifhascompetenceComponent,
+    DisplayDispositifhascompetenceComponent,
+    EditDispositifhascompetenceComponent,
+	TableauComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,17 +112,18 @@ import { TableauComponent } from './tableau/tableau.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     MatButtonModule,
-    MatSidenavModule,
     MatIconModule,
+    MatSidenavModule,
     MatToolbarModule,
-    LayoutModule,
     MatListModule,
     MatMenuModule,
+    BrowserAnimationsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatChipsModule,
+    MatIconModule,
+	  MatInputModule,
     MatTableModule
   ],
   providers: [
@@ -136,7 +136,8 @@ import { TableauComponent } from './tableau/tableau.component';
     HistoriqueresService,
     RessourcehascompetenceService,
     RegleService,
-    EquipeService
+    EquipeService,
+    AutoCompleteService,
   ],
   bootstrap: [AppComponent]
 })

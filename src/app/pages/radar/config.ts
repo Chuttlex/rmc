@@ -61,14 +61,4 @@ export class RadarConfig {
           }
         },`;
     }
-
-    public static get configPart3(): string {
-        return `};
-        zingchart.render({
-            id : 'myChart',
-            data : myConfig,
-            height: '100%',
-            width: '100%'
-        });`;
-    }
 }

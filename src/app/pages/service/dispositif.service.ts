@@ -46,4 +46,9 @@ const httpOptions = {
         const url = Constantes.url + `api/infotel/dispositif/ByNom=${nom}`;
         return this.http.get<Dispositif>(url);
     }
+
+    getByOrganisme(nom: string): Observable<Dispositif[]> {
+        const url = Constantes.url + `api/infotel/dispositif/ByOrganisme=${nom}`;
+        return this.http.get<Dispositif[]>(url);
+    }
   }
