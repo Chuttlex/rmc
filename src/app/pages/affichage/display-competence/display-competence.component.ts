@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Competence } from '../../classe/competence';
 import { CompetenceService } from '../../service/competence.service';
 import { Router } from '@angular/router';
-import { EditCompetenceComponent } from '../../edit/edit-competence/edit-competence.component';
 
 @Component({
   selector: 'app-display-competence',
@@ -15,7 +14,6 @@ export class DisplayCompetenceComponent implements OnInit {
   competences: Competence[];
   selectedCompetence: Competence;
   isSelected: boolean;
-  @ViewChild(EditCompetenceComponent, {static: false}) ecc: EditCompetenceComponent;
 
   constructor(private compService: CompetenceService, private router: Router) { }
 
@@ -29,8 +27,7 @@ export class DisplayCompetenceComponent implements OnInit {
   }
 
   edit(): void {
-    this.ecc.passData(this.selectedCompetence);
-    this.router.navigate(['/editCompetence']);
+    this.router.navigate(['/editCompetence'], {state: {competence: this.selectedCompetence}});
   }
 
   clear(): void {

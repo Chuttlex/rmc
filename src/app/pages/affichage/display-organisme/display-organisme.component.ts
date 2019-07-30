@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrganismeService } from '../../service/organisme.service';
 import { Organisme } from '../../classe/organisme';
-import { EditOrganismeComponent } from '../../edit/edit-organisme/edit-organisme.component';
 import { Router } from '@angular/router';
 
 const testOrga1: Organisme = {id: 1, organisme: 'Infotel', description: 'ESN'};
@@ -19,7 +18,6 @@ export class DisplayOrganismeComponent implements OnInit {
   organismes: Organisme[] = [];
   selectedOrganisme: Organisme;
   isSelected: boolean;
-  @ViewChild(EditOrganismeComponent, {static: false}) eoc: EditOrganismeComponent;
 
   constructor(private orgService: OrganismeService, private router: Router) { }
 
@@ -35,8 +33,7 @@ export class DisplayOrganismeComponent implements OnInit {
   }
 
   edit(): void {
-    this.eoc.passData(this.selectedOrganisme);
-    this.router.navigate(['/editOrganisme']);
+    this.router.navigate(['/editOrganisme'], {state: {org: this.selectedOrganisme}});
   }
 
 }

@@ -47,10 +47,7 @@ export class EditOrganismeComponent implements OnInit {
   constructor(private orgService: OrganismeService, private niveauService: NiveauService, private router: Router) { }
 
   ngOnInit() {
-  }
-
-  passData(organisme: Organisme): void {
-    this.organisme = organisme;
+    this.organisme = history.state.organisme;
   }
 
   update(): void {

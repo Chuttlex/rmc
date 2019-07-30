@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Dispositif } from '../../classe/dispositif';
 import { DispositifService } from '../../service/dispositif.service';
 import { Router } from '@angular/router';
-import { EditDispositifComponent } from '../../edit/edit-dispositif/edit-dispositif.component';
 
 const testDispo1: Dispositif = {id: 1, nom: 'Manhattan', organisme: 'les alliés', description:'on va tout faire sauter'};
 const testDispo2: Dispositif = {id: 2, nom: 'Overlord', organisme: 'les alliés', description:'on va débarquer'};
@@ -19,13 +18,14 @@ export class DisplayDispositifComponent implements OnInit {
   dispositifs: Dispositif[] = [];
   selectedDispositif: Dispositif;
   isSelected: boolean;
-  @ViewChild(EditDispositifComponent, {static: false}) erc: EditDispositifComponent;
 
   constructor(private dispService: DispositifService, private router: Router) { }
 
   ngOnInit() {
-    this.dispService.getAll().subscribe((d) => this.dispositifs = d);
-    this.dispositifs.push(testDispo1,testDispo2,testDispo3);
+    this.dispService.getAll().subscribe((d) => {
+      this.dispositifs = d;
+      this.dispositifs.push(testDispo1,testDispo2,testDispo3);
+    });    
   }
 
   onSelect(dispositif: Dispositif): void {
@@ -34,8 +34,7 @@ export class DisplayDispositifComponent implements OnInit {
   }
 
   edit(): void {
-    this.erc.passData(this.selectedDispositif);
-    this.router.navigate(['/editDispositif']);
+    this.router.navigate(['/editDispositif'], {state: {dispositif: this.selectedDispositif}});
   }
 
   clear(): void {

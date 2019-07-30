@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Equipe } from '../../classe/equipe';
 import { EquipeService } from '../../service/equipe.service';
 import { Router } from '@angular/router';
-import { EditEquipeComponent } from '../../edit/edit-equipe/edit-equipe.component';
 
 @Component({
   selector: 'app-display-equipe',
@@ -15,7 +14,6 @@ export class DisplayEquipeComponent implements OnInit {
   equipes: Equipe[];
   selectedEquipe: Equipe;
   isSelected: boolean;
-  @ViewChild(EditEquipeComponent, {static: false}) eec: EditEquipeComponent;
 
   constructor(private equipeService: EquipeService, private router: Router) { }
 
@@ -29,8 +27,7 @@ export class DisplayEquipeComponent implements OnInit {
   }
 
   edit(): void {
-    this.eec.passData(this.selectedEquipe);
-    this.router.navigate(['/editEquipe']);
+    this.router.navigate(['/editEquipe'], {state: {equipe: this.selectedEquipe}});
   }
 
   clear(): void {
