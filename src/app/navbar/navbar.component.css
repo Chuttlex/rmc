@@ -5,7 +5,9 @@
 .sidenav {
   width: 200px;
 }
-
+#toolbarColor{
+  background-color: #316195;
+}
 
 .mat-toolbar.mat-primary {
   position: sticky;

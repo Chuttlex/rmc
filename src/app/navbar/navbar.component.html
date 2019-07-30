@@ -3,7 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="'over'"
       [opened]="(isHandset$ | async) === false">
-      <mat-toolbar color="primary">Menu</mat-toolbar>
+      <mat-toolbar color="primary" id="toolbarColor">Menu</mat-toolbar>
     <mat-nav-list>
       <mat-list-item *ngIf="upAffichage === true" (click)="onDropDownMenuAffichage()" class="listTile"> Affichage <mat-icon>keyboard_arrow_up</mat-icon></mat-list-item>
       <div *ngIf="upAffichage === false" >
@@ -34,7 +34,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" id="toolbarColor">
       <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
       <img src="../../assets/image/logo_infotel_blanc.png" id="logo">
     </mat-toolbar>
