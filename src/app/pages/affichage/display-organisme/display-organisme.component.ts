@@ -29,7 +29,7 @@ export class DisplayOrganismeComponent implements OnInit {
   ngOnInit() {
     this.orgService.getAll().subscribe(orgs => this.organismes = orgs);
     this.isSelected = false;
-    this.organismes.push(testOrga1,testOrga2,testOrga3);
+    this.organismes.push(testOrga1, testOrga2, testOrga3);
   }
 
   edit(): void {

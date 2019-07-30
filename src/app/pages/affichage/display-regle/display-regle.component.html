@@ -1,5 +1,7 @@
+<button *ngIf="isSelected" (click)="edit()" tabindex="0" mat-button id="boutonColor">Modifier</button>
+
 <table>
-  <caption>Liste des regles</caption>
+  <caption>Liste des Regles</caption>
   <tr>
     <th>Id</th>
     <th>Nom de l'Equipe</th>
@@ -11,7 +13,7 @@
     <th>Moyenne Atteinte</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
-  <tr *ngFor="let regle of regles" [class.selected]="regle === selectedRegle" (click)="onSelect(regle)">
+  <tr *ngFor="let regle of regles" [class.selected]="regle === selectedRegle" (click)="onSelect(regle)" tabindex="0">
     <td>{{regle.id}}</td>
     <td>{{regle.enom}}</td>
     <td>{{regle.niveau}}</td>
@@ -24,7 +26,7 @@
   </tr>
 </table>
 
-<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+
 
 
 

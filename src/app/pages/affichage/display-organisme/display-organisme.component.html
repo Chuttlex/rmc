@@ -1,13 +1,12 @@
 <table>
-  <caption>Liste des organismes</caption>
+  <caption>Liste des Organismes</caption>
   <tr>
     <th>Id</th>
-    <th>Nom</th>
+    <th>Organisme</th>
     <th>Description</th>
-    <th>Dispositif</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
-  <tr *ngFor="let organisme of organismes" [class.selected]="organisme === selectedOrganisme" (click)="onSelect(organisme)">
+  <tr *ngFor="let organisme of organismes" [class.selected]="organisme === selectedOrganisme" (click)="onSelect(organisme)" tabindex="0">
     <td>{{organisme.id}}</td>
     <td>{{organisme.organisme}}</td>
     <td>{{organisme.description}}</td>
@@ -15,7 +14,7 @@
   </tr>
 </table>
 
-<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+<button mat-button *ngIf="isSelected" (click)="edit()" id="boutonColor">Modifier</button>
 
 
 

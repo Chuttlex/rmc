@@ -10,7 +10,7 @@
     <th>Projet</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
-  <tr *ngFor="let ressource of ressources" [class.selected]="ressource === selectedRessource" (click)="onSelect(ressource)">
+  <tr *ngFor="let ressource of ressources" [class.selected]="ressource === selectedRessource" (click)="onSelect(ressource)" tabindex="0">
     <td>{{ressource.id}}</td>
     <td>{{ressource.nom}}</td>
     <td>{{ressource.prenom}}</td>
@@ -22,4 +22,4 @@
   </tr>
 </table>
 
-<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+<button mat-button *ngIf="isSelected" (click)="edit()" id="boutonColor">Modifier</button>

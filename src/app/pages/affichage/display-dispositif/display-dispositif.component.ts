@@ -3,9 +3,9 @@ import { Dispositif } from '../../classe/dispositif';
 import { DispositifService } from '../../service/dispositif.service';
 import { Router } from '@angular/router';
 
-const testDispo1: Dispositif = {id: 1, nom: 'Manhattan', organisme: 'les alliés', description:'on va tout faire sauter'};
-const testDispo2: Dispositif = {id: 2, nom: 'Overlord', organisme: 'les alliés', description:'on va débarquer'};
-const testDispo3: Dispositif = {id: 3, nom: 'Enigma', organisme: 'les alliés', description:'on va tout décripter'};
+const testDispo1: Dispositif = {id: 1, nom: 'Manhattan', organisme: 'les alliés', description: 'on va tout faire sauter'};
+const testDispo2: Dispositif = {id: 2, nom: 'Overlord', organisme: 'les alliés', description: 'on va débarquer'};
+const testDispo3: Dispositif = {id: 3, nom: 'Enigma', organisme: 'les alliés', description: 'on va tout décripter'};
 
 @Component({
   selector: 'app-display-dispositif',
@@ -24,8 +24,8 @@ export class DisplayDispositifComponent implements OnInit {
   ngOnInit() {
     this.dispService.getAll().subscribe((d) => {
       this.dispositifs = d;
-      this.dispositifs.push(testDispo1,testDispo2,testDispo3);
-    });    
+      this.dispositifs.push(testDispo1, testDispo2, testDispo3);
+    });
   }
 
   onSelect(dispositif: Dispositif): void {

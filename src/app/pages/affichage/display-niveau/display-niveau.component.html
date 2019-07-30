@@ -1,13 +1,13 @@
 <table>
-  <caption>Liste des niveaux</caption>
+  <caption>Liste des Niveaux</caption>
   <tr>
-    <th>Id</th>
-    <th>Niveau</th>
+    <th>Id Dispositif</th>
+    <th></th>
     <th>Description</th>
     <th>Dispositif</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
-  <tr *ngFor="let niveau of niveaux" [class.selected]="niveau === selectedNiveau" (click)="onSelect(niveau)">
+  <tr *ngFor="let niveau of niveaux" [class.selected]="niveau === selectedNiveau" (click)="onSelect(niveau)" tabindex="0">
     <td>{{niveau.id}}</td>
     <td>{{niveau.valeur}}</td>
     <td>{{niveau.description}}</td>

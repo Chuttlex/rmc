@@ -1,5 +1,7 @@
+<button *ngIf="isSelected" (click)="edit()" mat-button id="boutonColor">Modifier</button>
+
 <table>
-  <caption>Liste des regles</caption>
+  <caption>Liste des Ressources Liées</caption>
   <tr>
     <th>Competence</th>
     <th>Ressource</th>
@@ -7,7 +9,7 @@
     <th>Date d'Evaluation</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
-  <tr *ngFor="let ressourcehascompetence of rcs" [class.selected]="ressourcehascompetence === selected" (click)="onSelect(ressourcehascompetence)">
+  <tr *ngFor="let ressourcehascompetence of rcs" [class.selected]="ressourcehascompetence === selected" (click)="onSelect(ressourcehascompetence)" tabindex="0">
     <td>{{ressourcehascompetence.cnom}}</td>
     <td>{{ressourcehascompetence.rnom}}</td>
     <td>{{ressourcehascompetence.niveau}}</td>
@@ -16,7 +18,7 @@
   </tr>
 </table>
 
-<button *ngIf="isSelected" (click)="edit()">Modifier</button>
+
 
 
 

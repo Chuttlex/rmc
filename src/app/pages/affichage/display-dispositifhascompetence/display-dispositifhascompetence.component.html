@@ -1,5 +1,20 @@
-<button *ngIf="isSelected" (click)="edit()">Modifier</button>
-<h1>Liste des liens entre dispositifs et compétences</h1>
-<li *ngFor="let dispositifhascompetence of dispositifhascompetences" [class.selected]="dispositifhascompetence === selectedDispositifhascompetence" (click)="onSelect(dispositifhascompetence)">
-    <app-dispositifhascompetence [dispositifhascompetence]="dispositifhascompetence"></app-dispositifhascompetence>
-</li>
+<button mat-button *ngIf="isSelected" (click)="edit()" id="boutonColor">Modifier</button>
+
+<table>
+  <caption>Liste des liens entre dispositifs et compétences</caption>
+  <tr>
+    <th>Id Dispositif</th>
+    <th>Dispositif</th>
+    <th>Id Competence</th>
+    <th>Competence</th>
+  </tr>
+  <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
+  <tr *ngFor="let dispositifhascompetence of dispositifhascompetences" [class.selected]="dispositifhascompetence === selectedDispositifhascompetence"
+      (click)="onSelect(dispositifhascompetence)" tabindex="0">
+    <td>{{dispositifhascompetence.idd}}</td>
+    <td>{{equipe.nom}}</td>
+    <td>{{equipe.rescible}}</td>
+    <td>{{equipe.dispositif}}</td>
+  </tr>
+</table>
+

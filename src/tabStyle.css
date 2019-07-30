@@ -30,3 +30,15 @@ caption {
   margin-bottom: 15px;
   margin-top: 20px;
 }
+
+
+tr:focus {
+  background-color: lightgray;
+}
+
+#boutonColor{
+  background-color: #316195;
+  color: white;
+  margin-top: 10px;
+  font-family: Verdana, serif;
+}
