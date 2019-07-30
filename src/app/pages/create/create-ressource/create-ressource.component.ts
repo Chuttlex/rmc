@@ -25,6 +25,7 @@ export class CreateRessourceComponent implements OnInit {
     actif: new FormControl(''),
     dateentree: new FormControl(''),
     datesortie: new FormControl(''),
+    equipe: new FormControl(''),
   })
 
   constructor(private equipeService: EquipeService, private ressourceService: RessourceService,
@@ -41,11 +42,12 @@ export class CreateRessourceComponent implements OnInit {
     res.nom = this.form.get('nom').value;
     res.prenom = this.form.get('prenom').value;
     res.referenceClient = this.form.get('referenceClient').value;
-    hist.isactif = this.form.get('actif').value;
+    hist.actif = this.form.get('actif').value;
     hist.dateentree = this.form.get('dateentree').value;
     hist.datesortie = this.form.get('datesortie').value;
     hist.rnom = res.nom;
     hist.rprenom = res.prenom;
+    hist.equipe = equipe.nom;
     res.equipe = equipe.nom;
     this.ressourceService.create(res).subscribe(
       (result) => this.histService.create(hist).subscribe(

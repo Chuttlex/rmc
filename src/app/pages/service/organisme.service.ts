@@ -47,7 +47,7 @@ update(organisme: Organisme): Observable<any> {
 }
 
 getByNom(nom: string): Observable<Organisme> {
-    const url = Constantes.url + `api/infotel/organisme/byNom=${nom}`;
+    const url = Constantes.url + `api/infotel/organisme/ByNom=${nom}`;
     return this.http.get<Organisme>(url);
 }
 }

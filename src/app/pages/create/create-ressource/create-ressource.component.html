@@ -17,7 +17,7 @@
     </div>
     <div class="form-group">
       <label for="referenceClient">Référence:</label>
-      <input type="number" class="form-control" id="referenceClient" formControlName="reference" placeholder="Entrer le nombre référencent la ressource" required>
+      <input type="number" class="form-control" id="referenceClient" formControlName="referenceClient" placeholder="Entrer le nombre référencent la ressource" required>
     </div>
     <div class="form-group">
         <label for="actif">Est actif:</label>
@@ -36,8 +36,8 @@
           </div>
           <button type="button" class="btn btn-success" (click)="create('/displayRessource')">Créer Ressource</button>
         <br/>
-          <button type="button" class="btn btn-success" (click)="createAndAgain('/createRessource')">Créer Ressource et une nouvelle Ressource</button>
+          <button type="button" class="btn btn-success" (click)="create('/createRessource')">Créer Ressource et une nouvelle Ressource</button>
       <br/>
-          <button type="button" class="btn btn-success" (click)="createAndCompetence('/createCompetence')">Créer Ressource et Compétence</button>
+          <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Ressource et Compétence</button>
   </form>
 </div>

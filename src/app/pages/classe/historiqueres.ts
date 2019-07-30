@@ -6,7 +6,7 @@ export class Historiqueres {
     rprenom: string;
     dateentree: Date;
     datesortie: Date;
-    isactif: boolean;
-    isactifasbackup: boolean;
+    actif: boolean;
+    actifasbackup: boolean;
     equipe: string;
 }

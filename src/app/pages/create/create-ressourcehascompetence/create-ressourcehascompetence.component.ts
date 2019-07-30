@@ -56,6 +56,7 @@ export class CreateRessourcehascompetenceComponent implements OnInit {
       this.dispService.getByNom(equipe.dispositif).subscribe((d) => {
       dispositif = d;
       this.orgService.getByNom(dispositif.organisme).subscribe((o) => {
+        organisme = o;
         rc.niveau = parseInt(this.form.get('niveauForm').value, 10);
         rc.organisme = organisme.organisme;
         rc.rnom = res.nom;

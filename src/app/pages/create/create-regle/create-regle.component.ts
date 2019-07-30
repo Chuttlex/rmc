@@ -10,22 +10,23 @@ import { Competence } from '../../classe/competence';
 import { Niveau } from '../../classe/niveau';
 import { Regle } from '../../classe/regle';
 import { Organisme } from '../../classe/organisme';
+import { DispositifService } from '../../service/dispositif.service';
+import { OrganismeService } from '../../service/organisme.service';
 
 @Component({
   selector: 'app-regle-form',
   templateUrl: './create-regle.component.html',
   styles: [],
-  providers: [RegleService, CompetenceService, EquipeService, NiveauService]
+  providers: [RegleService, CompetenceService, EquipeService, NiveauService, DispositifService, OrganismeService]
 })
 export class CreateRegleComponent implements OnInit {
 
   equipes: Equipe[];
   competences: Competence[];
-  niveaux: Niveau[];
 
   form = new FormGroup ({
+    equipe: new FormControl(''),
     competence: new FormControl(''),
-    ressource: new FormControl(''),
     niveau: new FormControl(''),
     nombre: new FormControl(''),
     pourcentage: new FormControl(''),
@@ -33,12 +34,11 @@ export class CreateRegleComponent implements OnInit {
   })
 
   constructor(private regleService: RegleService, private compService: CompetenceService, private equipeService: EquipeService,
-    private niveauService: NiveauService, private router: Router) { }
+    private niveauService: NiveauService, private router: Router, private dispService: DispositifService, private orgService: OrganismeService) { }
 
   ngOnInit() {
     this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
     this.compService.getAll().subscribe((competences) => this.competences = competences);
-    this.niveauService.getAll().subscribe((niveaux) => this.niveaux = niveaux);
   }
 
   create(route: string): void {
@@ -49,20 +49,27 @@ export class CreateRegleComponent implements OnInit {
     equipe = this.form.get('equipe').value;
     regle.cnom = competence.nom;
     regle.enom = equipe.nom;
-    let niveau: Niveau;
-    niveau.valeur = this.form.get('niveau').value;
-    regle.niveau = niveau.valeur;
-    regle.moyenne = this.form.get('moyenne').value;
-    regle.pourcentage = parseFloat(this.form.get('pourcentage').value);
-    regle.nombre = parseInt(this.form.get('nombre').value, 10);
-    this.regleService.create(regle).subscribe(
-      (result) => this.compService.update(competence).subscribe(
-        (result) => this.equipeService.update(equipe).subscribe(
-          (result) =>this.niveauService.update(niveau).subscribe(
-            (result) => this.router.navigate([route])
+    this.dispService.getByNom(equipe.dispositif).subscribe((d) => {
+      this.orgService.getByNom((d.organisme)).subscribe((o) => {
+        this.niveauService.getByOrganisme(d.organisme).subscribe((niveaux) => {
+          let niveau = niveaux[this.form.get('niveau').value -1];
+          regle.niveau = niveau.valeur;
+          regle.moyenne = this.form.get('moyenne').value;
+          regle.pourcentage = parseFloat(this.form.get('pourcentage').value);
+          regle.nombre = parseInt(this.form.get('nombre').value, 10);
+          regle.organisme = o.organisme;
+          this.regleService.create(regle).subscribe(
+            (result) => this.compService.update(competence).subscribe(
+             (result) => this.equipeService.update(equipe).subscribe(
+                (result) =>this.niveauService.update(niveau).subscribe(
+                  (result) => this.router.navigate([route])
+              )
+            )
           )
-        )
-      )
-    );
+         );
+        })        
+      })
+    })
+    
   }
 }

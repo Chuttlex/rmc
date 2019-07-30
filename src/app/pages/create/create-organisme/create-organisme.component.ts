@@ -57,7 +57,7 @@ export class CreateOrganismeComponent implements OnInit {
     niveaux = [];
     for (let i = 0 ; i < parseInt(this.form.get('echelle').value, 10) ; i++) {
       let niveau = new Niveau();
-      niveau.valeur = i;
+      niveau.valeur = i+1;
       if (parseInt(this.form.get('echelle').value, 10) === 5) {
         niveau.description = this.ech5[i];
       }

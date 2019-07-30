@@ -1,71 +1,55 @@
 import { Component, OnInit} from '@angular/core';
 import { CompetenceService } from '../../service/competence.service';
-import { RessourceService } from '../../service/ressource.service';
-import { NgForm, FormGroup, FormControl } from '@angular/forms';
-import { RessourcehascompetenceService } from '../../service/ressourcehascompetence.service';
-import { NiveauService } from '../../service/niveau.service';
+import { FormGroup, FormControl } from '@angular/forms';
 import { DomaineService } from '../../service/domaine.service';
 import { Router } from '@angular/router';
-import { Ressource } from '../../classe/ressource';
 import { Domaine } from '../../classe/domaine';
 import { Competence } from '../../classe/competence';
-import { Ressourcehascompetence } from '../../classe/ressourcehascompetence';
-import { Organisme } from '../../classe/organisme';
-import { Niveau } from '../../classe/niveau';
+import { Dispositifhascompetence } from '../../classe/dispositifhascompetence';
+import { DispositifhascompetenceService } from '../../service/dispositifhascompetence.service';
+import { DispositifService } from '../../service/dispositif.service';
+import { Dispositif } from '../../classe/dispositif';
 
 @Component({
   selector: 'app-create-competence',
   templateUrl: './create-competence.component.html',
   styles: [],
-  providers: [CompetenceService, RessourceService, RessourcehascompetenceService, NiveauService, DomaineService]
+  providers: [CompetenceService, DispositifService, DispositifhascompetenceService, DomaineService]
 })
 export class CreateCompetenceComponent implements OnInit {
 
-  ressources: Ressource[];
+  dispositifs: Dispositif[];
   domaines: Domaine[];
 
   form = new FormGroup ({
     nomForm: new FormControl(''),
     domaineForm: new FormControl(''),
-    ressourceForm: new FormControl(''),
-    niveauForm: new FormControl(''),
-    dateEvolForm: new FormControl(''),
+    dispositifForm: new FormControl(''),
   })
 
-  constructor(private compService: CompetenceService, private resService: RessourceService, private rcService: RessourcehascompetenceService
-    , private niveauService: NiveauService, private domaineService: DomaineService, private router: Router) { }
+  constructor(private compService: CompetenceService, private dispService: DispositifService, private dcService: DispositifhascompetenceService
+    , private domaineService: DomaineService, private router: Router) { }
 
   ngOnInit() {
-    this.resService.getAll().subscribe((ressources) => this.ressources = ressources);
+    this.dispService.getAll().subscribe((dispositifs) => this.dispositifs = dispositifs);
     this.domaineService.getAll().subscribe((domaines) => this.domaines = domaines);
   }
 
   create(route: string): void {
-    const comp = new Competence();
-    const rc = new Ressourcehascompetence();
+    let comp = new Competence();
     comp.nom = this.form.get('nomForm').value;
     let domaine: Domaine;
     this.domaineService.getByNom(this.form.get('domaineForm').value).subscribe((dom) => {
       domaine = dom;
       comp.domaine = domaine.valeur;
-      let ressource: Ressource;
-      for (let i = 0 ; i < this.ressources.length ; i++) {
-        if (this.ressources[i].referenceClient === this.form.get('ressourceForm').value.referenceClient) {
-          ressource = this.ressources[i];
-          rc.idr = ressource.id;
-          rc.idc = comp.id;
-          rc.dateEvolComp = this.form.get('dateEvolForm').value;
-          rc.rnom = ressource.nom;
-          rc.rprenom = ressource.prenom;
-          rc.cnom = comp.nom;
-        }
-      }
-      rc.niveau = parseInt(this.form.get('niveauForm').value, 10);
-      this.compService.create(comp).subscribe(
-        (result) => this.rcService.create(rc).subscribe(
-          (result) => this.router.navigate([route])
-        )
-      );
-    });
+      let dc = new Dispositifhascompetence();
+          dc.competence = comp.nom;
+          dc.dispositif = this.form.get('dispositifForm').value.nom;
+          this.compService.create(comp).subscribe(
+            (result) => this.dcService.create(dc).subscribe(
+              (result) => this.router.navigate([route])
+            )
+          );
+        })
   }
 }

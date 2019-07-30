@@ -15,6 +15,99 @@
           <option *ngFor="let organisme of organismes" [ngValue]="organisme">{{organisme.organisme}}</option>
         </select>
       </div>
+      <div class="form-group">
+        <label for="competence">Entrez les Compétences à créer</label>
+        <br/>
+        <div id="technique">
+            <h2>Entrez les compétences techniques</h2>
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList aria-label="Competence selection">
+            <mat-chip
+              *ngFor="let competence of competencesT"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="removeT(competence)">
+              {{competence}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Nouvelle compétence"
+              #competenceInputT
+              [formControl]="competenceTCtrl"
+              [matAutocomplete]="autoT"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addT($event)">
+          </mat-chip-list>
+          <mat-autocomplete #autoT="matAutocomplete" (optionSelected)="selectedT($event)">
+            <mat-option *ngFor="let competence of filteredCompetencesT | async" [value]="competence">
+              {{competence}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <br/>
+      <div id="fonctionnel">
+          <h2>Entrez les compétences fonctionelles</h2>
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList aria-label="Competence selection">
+            <mat-chip
+              *ngFor="let competence of competencesF"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="removeF(competence)">
+              {{competence}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Nouvelle compétence"
+              #competenceInputF
+              [formControl]="competenceFCtrl"
+              [matAutocomplete]="autoF"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addF($event)">
+          </mat-chip-list>
+          <mat-autocomplete #autoF="matAutocomplete" (optionSelected)="selectedF($event)">
+            <mat-option *ngFor="let competence of filteredCompetencesF | async" [value]="competence">
+              {{competence}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <br/>
+      <div id="exploitation">
+        <h2>Entrez les compétences d'exploitation</h2>
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList aria-label="Competence selection">
+            <mat-chip
+              *ngFor="let competence of competencesE"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="removeE(competence)">
+              {{competence}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Nouvelle compétence"
+              #competenceInputE
+              [formControl]="competenceECtrl"
+              [matAutocomplete]="autoE"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addE($event)">
+          </mat-chip-list>
+          <mat-autocomplete #autoE="matAutocomplete" (optionSelected)="selectedE($event)">
+            <mat-option *ngFor="let competence of filteredCompetencesE | async" [value]="competence">
+              {{competence}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      </div>
       <button type="button" class="btn btn-success" (click)="create('/displayDispositif')">Créer Projet</button>
     <br/>
       <button type="button" class="btn btn-success" (click)="create('/createEquipe')">Créer Projet et Equipe</button>
