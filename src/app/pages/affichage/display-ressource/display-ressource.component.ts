@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Ressource } from '../../classe/ressource';
 import { RessourceService } from '../../service/ressource.service';
 import { Router } from '@angular/router';
-import { EditRessourceComponent } from '../../edit/edit-ressource/edit-ressource.component';
 
 const testRessource1: Ressource = {id: 1, nom: 'Martin', prenom: 'Paul', referenceClient: 25631, equipe: 'A Team', organisme: 'Infotel', dispositif: 'Stagiaires'};
 const testRessource2: Ressource = {id: 2, nom: 'Michellac', prenom: 'Pierre', referenceClient: 35214, equipe: 'B Team', organisme: 'Infotel', dispositif: 'Stagiaires'};
@@ -19,7 +18,6 @@ export class DisplayRessourceComponent implements OnInit {
   ressources: Ressource[] = [];
   selectedR: Ressource;
   isSelected: boolean;
-  @ViewChild(EditRessourceComponent, {static: false}) erc: EditRessourceComponent;
 
   constructor(private resService: RessourceService, private router: Router) { }
 
@@ -35,8 +33,7 @@ export class DisplayRessourceComponent implements OnInit {
   }
 
   edit(): void {
-    this.erc.passData(this.selectedR);
-    this.router.navigate(['/editRessource']);
+    this.router.navigate(['/editRessource'], {state: {ressource: this.selectedR}});
   }
 
   clear(): void {

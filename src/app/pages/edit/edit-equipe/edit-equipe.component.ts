@@ -26,10 +26,7 @@ export class EditEquipeComponent implements OnInit {
 
   ngOnInit() {
     this.dispService.getAll().subscribe((dispositifs) => this.dispositifs = dispositifs);
-  }
-
-  passData(equipe: Equipe): void {
-    this.equipe = equipe;
+    this.equipe = history.state.equipe;
   }
 
   update(): void {

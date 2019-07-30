@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Regle } from '../../classe/regle';
 import { RegleService } from '../../service/regle.service';
 import { Router } from '@angular/router';
-import { EditRegleComponent } from '../../edit/edit-regle/edit-regle.component';
 
 const testRegle1: Regle = {id: 1, enom: 'A Team', niveau: 3, organisme: 'Air France', cnom: 'Java', nombre: 4, pourcentage: 50, moyenne: true};
 const testRegle2: Regle = {id: 2, enom: 'B Team', niveau: 4, organisme: 'Amadeus', cnom: 'C', nombre: 8, pourcentage: 35, moyenne: false};
@@ -18,7 +17,6 @@ export class DisplayRegleComponent implements OnInit {
   regles: Regle[] = [];
   selectedRegle: Regle;
   isSelected: boolean;
-  @ViewChild(EditRegleComponent, {static: false}) erc: EditRegleComponent;
 
   constructor(private regleService: RegleService, private router: Router) { }
 
@@ -33,8 +31,7 @@ export class DisplayRegleComponent implements OnInit {
   }
 
   edit(): void {
-    this.erc.passData(this.selectedRegle);
-    this.router.navigate(['/editRegle']);
+    this.router.navigate(['/editRegle'], {state: {regle: this.selectedRegle}});
   }
 
   clear(): void {

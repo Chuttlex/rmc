@@ -26,10 +26,7 @@ export class EditDispositifComponent implements OnInit {
 
   ngOnInit() {
     this.orgService.getAll().subscribe((organismes) => this.organismes = organismes);
-  }
-
-  passData(dispositif: Dispositif): void {
-    this.dispositif = dispositif;
+    this.dispositif = history.state.dispositif;
   }
 
   update(): void {

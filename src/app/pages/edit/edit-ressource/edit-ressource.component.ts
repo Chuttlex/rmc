@@ -33,10 +33,7 @@ export class EditRessourceComponent implements OnInit {
 
   ngOnInit() {
     this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
-  }
-
-  passData(ressource: Ressource): void {
-    this.ressource  = ressource;
+    this.ressource = history.state.ressource;
   }
 
   update(): void {

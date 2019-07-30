@@ -38,10 +38,7 @@ export class EditRegleComponent implements OnInit {
     this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
     this.compService.getAll().subscribe((competences) => this.competences = competences);
     this.niveauService.getAll().subscribe((niveaux) => this.niveaux = niveaux);
-  }
-
-  passData(regle: Regle): void {
-    this.regle = regle;
+    this.regle = history.state.regle;
   }
 
   update(): void {

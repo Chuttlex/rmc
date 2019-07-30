@@ -41,10 +41,7 @@ export class EditRessourcehascompetenceComponent implements OnInit {
         .subscribe((niveaux) => this.niveaux = niveaux);
       });
     });
-  }
-
-  passData(rc: Ressourcehascompetence): void {
-    this.rc = rc;
+    this.rc = history.state.rc;
   }
 
   setNiveaux(): void {

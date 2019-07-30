@@ -32,10 +32,7 @@ export class EditDispositifhascompetenceComponent implements OnInit {
       this.dispositifs = d;
       this.compService.getAll().subscribe((c) => this.competences = c);
     })
-  }
-
-  passData(dispositifhascompetence: Dispositifhascompetence) {
-    this.dispositifhascompetence=dispositifhascompetence;
+    this.dispositifhascompetence = history.state.dc;
   }
 
   update(): void {

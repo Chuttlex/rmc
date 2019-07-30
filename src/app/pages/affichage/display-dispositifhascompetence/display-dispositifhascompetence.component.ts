@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Dispositifhascompetence } from '../../classe/dispositifhascompetence';
 import { Router } from '@angular/router';
 import { DispositifhascompetenceService } from '../../service/dispositifhascompetence.service';
-import { EditDispositifhascompetenceComponent } from '../../edit/edit-dispositifhascompetence/edit-dispositifhascompetence.component';
 
 @Component({
   selector: 'app-display-dispositifhascompetence',
@@ -14,7 +13,6 @@ export class DisplayDispositifhascompetenceComponent implements OnInit {
   dispositifhascompetence: Dispositifhascompetence[];
   selectedDispositifhascompetence: Dispositifhascompetence;
   isSelected: boolean;
-  @ViewChild(EditDispositifhascompetenceComponent, {static: false}) edc: EditDispositifhascompetenceComponent;
 
   constructor(private dcService: DispositifhascompetenceService, private router: Router) { }
 
@@ -28,8 +26,7 @@ export class DisplayDispositifhascompetenceComponent implements OnInit {
   }
 
   edit(): void {
-    this.edc.passData(this.selectedDispositifhascompetence);
-    this.router.navigate(['/editDispositifhascompetence']);
+    this.router.navigate(['/editDispositifhascompetence'], {state: {dc: this.selectedDispositifhascompetence}});
   }
 
 }

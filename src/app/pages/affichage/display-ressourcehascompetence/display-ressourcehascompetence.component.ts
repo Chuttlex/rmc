@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RessourcehascompetenceService } from '../../service/ressourcehascompetence.service';
 import { Router } from '@angular/router';
 import { Ressourcehascompetence } from '../../classe/ressourcehascompetence';
-import { EditRessourcehascompetenceComponent } from '../../edit/edit-ressourcehascompetence/edit-ressourcehascompetence.component';
 
 @Component({
   selector: 'app-display-ressourcehascompetence',
@@ -15,7 +14,6 @@ export class DisplayRessourcehascompetenceComponent implements OnInit {
   rcs: Ressourcehascompetence[];
   selected: Ressourcehascompetence;
   isSelected: boolean;
-  @ViewChild(EditRessourcehascompetenceComponent, {static: false}) ercc: EditRessourcehascompetenceComponent;
 
   constructor(private rcService: RessourcehascompetenceService, private router: Router) { }
 
@@ -29,8 +27,7 @@ export class DisplayRessourcehascompetenceComponent implements OnInit {
   }
 
   edit(): void {
-    this.ercc.passData(this.selected);
-    this.router.navigate(['/editRessourcehascompetence']);
+    this.router.navigate(['/editRessourcehascompetence'], {state: {rc: this.selected}});
   }
 
   clear(): void {

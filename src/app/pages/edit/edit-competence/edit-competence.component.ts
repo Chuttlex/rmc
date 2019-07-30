@@ -25,10 +25,7 @@ export class EditCompetenceComponent implements OnInit {
 
   ngOnInit() {
     this.domaineService.getAll().subscribe((domaines) => this.domaines = domaines);
-  }
-
-  passData(competence: Competence): void {
-    this.competence = competence;
+    this.competence = history.state.competence;
   }
 
   update(): void {
