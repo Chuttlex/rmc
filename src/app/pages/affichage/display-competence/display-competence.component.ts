@@ -7,7 +7,7 @@ import { EditCompetenceComponent } from '../../edit/edit-competence/edit-compete
 @Component({
   selector: 'app-display-competence',
   templateUrl: './display-competence.component.html',
-  styleUrls: ['./display-competence.component.css'],
+  styleUrls: [ '../../../../tabStyle.css'],
   providers: [CompetenceService]
 })
 export class DisplayCompetenceComponent implements OnInit {
