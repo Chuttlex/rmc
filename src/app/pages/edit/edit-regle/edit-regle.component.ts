@@ -35,10 +35,10 @@ export class EditRegleComponent implements OnInit {
     private niveauService: NiveauService, private router: Router) { }
 
   ngOnInit() {
+    this.regle = history.state.regle;
     this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
     this.compService.getAll().subscribe((competences) => this.competences = competences);
     this.niveauService.getAll().subscribe((niveaux) => this.niveaux = niveaux);
-    this.regle = history.state.regle;
   }
 
   update(): void {

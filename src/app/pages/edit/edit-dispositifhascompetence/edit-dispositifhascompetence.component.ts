@@ -28,11 +28,13 @@ export class EditDispositifhascompetenceComponent implements OnInit {
     private dcService: DispositifhascompetenceService) { }
 
   ngOnInit() {
+    this.dispositifhascompetence = history.state.dc;
     this.dispService.getAll().subscribe((d) => {
       this.dispositifs = d;
-      this.compService.getAll().subscribe((c) => this.competences = c);
+      this.compService.getAll().subscribe((c) => {
+        this.competences = c;
+      });
     })
-    this.dispositifhascompetence = history.state.dc;
   }
 
   update(): void {
@@ -45,7 +47,7 @@ export class EditDispositifhascompetenceComponent implements OnInit {
     dc.dispositif = dispositif.nom;
     this.dcService.update(dc).subscribe(
       (result) => this.router.navigate(['/displayDispositifhascompetence'])
-      )
+    )
   }
 
 }
