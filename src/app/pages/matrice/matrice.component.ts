@@ -20,6 +20,7 @@ export class MatriceComponent implements OnInit {
   equipes: Equipe[];
   ressources: Ressource[];
   competences: Competence[];
+  selectedDispositif: Dispositif;
 
   constructor(private compService: CompetenceService, private dispService: DispositifService, private resService: RessourceService,
     private equipeService: EquipeService) { }
@@ -28,9 +29,23 @@ export class MatriceComponent implements OnInit {
     this.dispService.getAll().subscribe((d) => this.dispositifs = d);
   }
 
-  updateEquipes(dispositif: string){
-    this.equipeService.getByDispositif(dispositif).subscribe((e) => this.equipes = e);
+  updateEquipes(dispositif: Dispositif){
+    this.equipeService.getByDispositif(dispositif.nom).subscribe((e) => this.equipes = e);
+    this.selectedDispositif = dispositif;
   }
 
+  getRessourcesAndCompetences(equipe: Equipe) {
+    this.resService.getByEquipe(equipe.nom).subscribe((res) => {
+      this.ressources = res;
+      this.compService.getByDispositif(this.selectedDispositif.nom).subscribe((comps) => {
+        this.competences = comps;
+        this.generateTable();
+      })
+    })
+  }
 
+  // Génère ou envoie les données pour le tableau
+  generateTable() {
+    throw new Error("Method not implemented.");
+  }
 }
