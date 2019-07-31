@@ -5,6 +5,7 @@ import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Competence } from '../../classe/competence';
 import { Domaine } from '../../classe/domaine';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-edit-competence',
@@ -18,14 +19,17 @@ export class EditCompetenceComponent implements OnInit {
 
   form = new FormGroup ({
     nom: new FormControl(''),
-    description: new FormControl(''),
+    domaine: new FormControl(''),
   })
 
   constructor(private compService: CompetenceService, private domaineService: DomaineService, private router: Router) { }
 
   ngOnInit() {
-    this.domaineService.getAll().subscribe((domaines) => this.domaines = domaines);
     this.competence = history.state.competence;
+    this.domaineService.getAll().subscribe((domaines) => {
+      this.domaines = domaines;
+    });
+    
   }
 
   update(): void {

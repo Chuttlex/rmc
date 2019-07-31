@@ -33,6 +33,7 @@ export class EditRessourcehascompetenceComponent implements OnInit {
     private niveauService: NiveauService, private router: Router) { }
 
   ngOnInit() {
+    this.rc = history.state.rc;
     this.compService.getAll().subscribe((competences) => {
       this.competences = competences;
       this.resService.getAll().subscribe((ressources) => {
@@ -41,7 +42,6 @@ export class EditRessourcehascompetenceComponent implements OnInit {
         .subscribe((niveaux) => this.niveaux = niveaux);
       });
     });
-    this.rc = history.state.rc;
   }
 
   setNiveaux(): void {

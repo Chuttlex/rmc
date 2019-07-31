@@ -33,9 +33,9 @@ export class EditRessourceComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.ressource = history.state.ressource;
     this.equipeService.getAll().subscribe((equipes) => {
       this.equipes = equipes;
-      this.ressource = history.state.ressource;
       this.histService.getByRessource(this.ressource.nom,this.ressource.prenom,this.ressource.equipe).subscribe((hist) => {
         this.historique = hist;
       })

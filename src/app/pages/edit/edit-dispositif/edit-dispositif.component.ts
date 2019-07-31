@@ -20,13 +20,15 @@ export class EditDispositifComponent implements OnInit {
     nom: new FormControl(''),
     description: new FormControl(''),
     organisme: new FormControl(''),
-  })
+  });
 
   constructor(private dispositifService: DispositifService, private orgService: OrganismeService, private router: Router) { }
 
   ngOnInit() {
-    this.orgService.getAll().subscribe((organismes) => this.organismes = organismes);
     this.dispositif = history.state.dispositif;
+    this.orgService.getAll().subscribe((organismes) => {
+      this.organismes = organismes;
+    });
   }
 
   update(): void {

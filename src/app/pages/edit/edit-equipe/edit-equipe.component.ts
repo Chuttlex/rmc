@@ -25,8 +25,8 @@ export class EditEquipeComponent implements OnInit {
   constructor(private dispService: DispositifService, private equipeService: EquipeService, private router: Router) { }
 
   ngOnInit() {
-    this.dispService.getAll().subscribe((dispositifs) => this.dispositifs = dispositifs);
     this.equipe = history.state.equipe;
+    this.dispService.getAll().subscribe((dispositifs) => this.dispositifs = dispositifs);
   }
 
   update(): void {
