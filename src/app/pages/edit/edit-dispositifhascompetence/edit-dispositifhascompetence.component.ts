@@ -41,10 +41,10 @@ export class EditDispositifhascompetenceComponent implements OnInit {
     let dc: Dispositifhascompetence;
     let competence: Competence = this.form.get('competenceForm').value;
     let dispositif: Dispositif = this.form.get('dispositifForm').value;
-    dc.idc = competence.id;
-    dc.competence = competence.nom;
-    dc.idd = dispositif.id;
-    dc.dispositif = dispositif.nom;
+      dc.idc = competence.id;
+      dc.competence = competence.nom;
+      dc.idd = dispositif.id;
+      dc.dispositif = dispositif.nom;
     this.dcService.update(dc).subscribe(
       (result) => this.router.navigate(['/displayDispositifhascompetence'])
     )

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { DispositifService } from '../../service/dispositif.service';
 import { OrganismeService } from '../../service/organisme.service';
 import { Router } from '@angular/router';
@@ -33,11 +33,9 @@ export class EditDispositifComponent implements OnInit {
 
   update(): void {
     const org = this.form.get('organisme').value;
-    this.dispositif.organisme = org;
-    this.dispositif.nom = this.form.get('nom').value;
-    this.dispositif.description = this.form.get('description').value;
-    org.dispositif = this.dispositif;
-    this.dispositif.organisme = org;
+      this.dispositif.organisme = org;
+      this.dispositif.nom = this.form.get('nom').value;
+      this.dispositif.description = this.form.get('description').value;
     this.dispositifService.update(this.dispositif).subscribe(
       (result) => this.orgService.update(org).subscribe(
         (result) => this.router.navigate(['/displayDispositif'])
