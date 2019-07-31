@@ -188,5 +188,12 @@ export class RadarComponent implements OnInit, AfterViewInit {
        text : 'Règles'
      }
    ]`;
+   // regénération du radar
+   zing.render({ 
+    id : 'myChart', 
+    data : this.chart, 
+    height: '90%', 
+    width: '90%' 
+  });
   }
 }
