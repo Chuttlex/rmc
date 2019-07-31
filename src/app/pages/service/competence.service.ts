@@ -76,4 +76,9 @@ const httpOptions = {
         const url = Constantes.url + `api/infotel/competence/ByEquipeAndNiveau=${nom}&${niveau}&${orgnom}`;
         return this.http.get<Competence[]>(url);
     }
+
+    getByDispositif(nom: string): Observable<Competence[]> {
+        const url = Constantes.url + `api/infotel/competence/ByDispositif=${nom}`;
+        return this.http.get<Competence[]>(url);
+    }
   }

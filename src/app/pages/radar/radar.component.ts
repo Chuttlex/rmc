@@ -22,8 +22,8 @@ export class RadarComponent implements OnInit, AfterViewInit {
   regles: Regle[];
 
   form = new FormGroup ({
-    dispositif: new FormControl('dispositif'),
-    equipe: new FormControl('equipe'),
+    dispositif: new FormControl(''),
+    equipe: new FormControl(''),
   });
   selectedEquipe: Equipe;
 
