@@ -10,7 +10,7 @@ const testRegle3: Regle = {id: 3, enom: 'C Team', niveau: 2, organisme: 'ProBTP'
 @Component({
   selector: 'app-display-regle',
   templateUrl: './display-regle.component.html',
-  styleUrls: ['./display-regle.component.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [RegleService]
 })
 export class DisplayRegleComponent implements OnInit {
@@ -32,6 +32,10 @@ export class DisplayRegleComponent implements OnInit {
 
   edit(): void {
     this.router.navigate(['/editRegle'], {state: {regle: this.selectedRegle}});
+  }
+
+  add(): void {
+    this.router.navigate(['/createRegle'], {state: {regle: this.selectedRegle}});
   }
 
   clear(): void {

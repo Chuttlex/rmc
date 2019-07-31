@@ -6,7 +6,7 @@ import { Ressourcehascompetence } from '../../classe/ressourcehascompetence';
 @Component({
   selector: 'app-display-ressourcehascompetence',
   templateUrl: './display-ressourcehascompetence.component.html',
-  styleUrls: ['./display-ressourcehascompetence.component.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [RessourcehascompetenceService]
 })
 export class DisplayRessourcehascompetenceComponent implements OnInit {
@@ -28,6 +28,10 @@ export class DisplayRessourcehascompetenceComponent implements OnInit {
 
   edit(): void {
     this.router.navigate(['/editRessourcehascompetence'], {state: {rc: this.selected}});
+  }
+
+  add(): void {
+    this.router.navigate(['/createRessourcehascompetence'], {state: {rc: this.selected}});
   }
 
   clear(): void {

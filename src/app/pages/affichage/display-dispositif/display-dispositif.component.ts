@@ -10,7 +10,7 @@ const testDispo3: Dispositif = {id: 3, nom: 'Enigma', organisme: 'les alliés', 
 @Component({
   selector: 'app-display-dispositif',
   templateUrl: './display-dispositif.component.html',
-  styleUrls: ['./display-dispositif.component.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [DispositifService]
 })
 export class DisplayDispositifComponent implements OnInit {
@@ -36,6 +36,11 @@ export class DisplayDispositifComponent implements OnInit {
   edit(): void {
     this.router.navigate(['/editDispositif'], {state: {dispositif: this.selectedDispositif}});
   }
+
+  add(): void {
+    this.router.navigate(['/createDispositif'], {state: {dispositif: this.selectedDispositif}});
+  }
+
 
   clear(): void {
     this.dispService.clear().subscribe();

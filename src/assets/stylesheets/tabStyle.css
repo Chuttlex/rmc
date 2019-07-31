@@ -36,10 +36,17 @@ tr:focus {
   background-color: lightgray;
 }
 
-#boutonColor{
+#boutonModif{
   background-color: #316195;
   color: white;
-  margin-top: 10px;
   font-family: Verdana, serif;
-  margin-left: 75%;
+}
+
+#boutonAjout{
+  background-color: #316195;
+  color: white;
+  font-family: Verdana, serif;
+  margin-left: 12%;
+  margin-top: 6px;
+  margin-right: 6px;
 }

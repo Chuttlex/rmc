@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-display-equipe',
   templateUrl: './display-equipe.component.html',
-  styleUrls: ['./display-equipe.component.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [EquipeService]
 })
 export class DisplayEquipeComponent implements OnInit {
@@ -28,6 +28,10 @@ export class DisplayEquipeComponent implements OnInit {
 
   edit(): void {
     this.router.navigate(['/editEquipe'], {state: {equipe: this.selectedEquipe}});
+  }
+
+  add(): void {
+    this.router.navigate(['/createEquipe'], {state: {equipe: this.selectedEquipe}});
   }
 
   clear(): void {

@@ -10,7 +10,7 @@ const testRessource3: Ressource = {id: 3, nom: 'Briard', prenom: 'Jacques', refe
 @Component({
   selector: 'app-display-ressource',
   templateUrl: './display-ressource.component.html',
-  styleUrls: ['./display-ressource.component.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [RessourceService]
 })
 export class DisplayRessourceComponent implements OnInit {
@@ -36,6 +36,10 @@ export class DisplayRessourceComponent implements OnInit {
 
   edit(): void {
     this.router.navigate(['/editRessource'], {state: {ressource: this.selectedR}});
+  }
+
+  add(): void {
+    this.router.navigate(['/createRessource'], {state: {ressource: this.selectedR}});
   }
 
   clear(): void {

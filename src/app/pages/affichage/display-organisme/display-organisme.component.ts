@@ -10,7 +10,7 @@ const testOrga3: Organisme = {id: 3, organisme: 'Pro BTP', description: 'Assureu
 @Component({
   selector: 'app-display-organisme',
   templateUrl: './display-organisme.component.html',
-  styleUrls: ['./display-organisme.component.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [OrganismeService]
 })
 export class DisplayOrganismeComponent implements OnInit {
@@ -34,6 +34,10 @@ export class DisplayOrganismeComponent implements OnInit {
 
   edit(): void {
     this.router.navigate(['/editOrganisme'], {state: {org: this.selectedOrganisme}});
+  }
+
+  add(): void {
+    this.router.navigate(['/createOrganisme'], {state: {org: this.selectedOrganisme}});
   }
 
 }

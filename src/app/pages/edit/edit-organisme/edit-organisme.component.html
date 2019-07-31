@@ -5,32 +5,17 @@
         <fieldset>
           <legend>Informations</legend>
           <div class="form-group">
-<<<<<<< HEAD
-            <label for="nom">Nom:</label>
-            <span class="nom">{{organisme.organisme}}</span>
-          </div>
-          <div class="form-group">
-            <label for="description">Description:</label>
-            <span class="description">{{organisme.description}}</span>
-          </div>
-          <div class="form-group">
-            <label for="niveaux">Echelle:</label>
-            <div class="ui-radiobutton">
-              <span class="niveau">{{niveaux.length}}</span>
-=======
-              <label for="nom">Nom:</label>
-              <span class="nom">{{organisme?.organisme}}</span>
-            </div>
+            <label>Nom:</label>
+            <span class="nom">{{organisme?.organisme}}</span>
             <div class="form-group">
-                <label for="description">Description:</label>
+                <label>Description:</label>
                 <span class="description">{{organisme?.description}}</span>
               </div>
             <div class="form-group">
-              <label for="niveaux">Echelle:</label>
+              <label>Echelle:</label>
               <div class="ui-radiobutton">
-                <span class="niveau">{{niveaux.length}}</span>
-              </div>        
->>>>>>> b77c2c19b39fd173340b34e994d91e007a03624d
+                <span class="niveau">{{niveaux?.length}}</span>
+              </div>
             </div>
           </div>
         </fieldset>
@@ -39,8 +24,10 @@
         <legend>Modification</legend>
         <section class="nouveau">
           <div class="form-group">
+            <mat-form-field>
             <label>Nom</label>
-            <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+            <input matInput type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+            </mat-form-field>
           </div>
           <div class="form-group">
             <label>Description</label>
@@ -56,7 +43,7 @@
             </div>
           </div>
       </section>
-      <button type="button" class="btn btn-success" (click)="edit()">Modifier</button>
+      <button type="button" class="btn btn-success" (click)="update()">Modifier</button>
       </fieldset>
    </form>
   </div>

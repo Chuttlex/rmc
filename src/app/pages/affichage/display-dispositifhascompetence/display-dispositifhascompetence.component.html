@@ -17,4 +17,5 @@
     <td>{{dispositifhascompetence.competence}}</td>
   </tr>
 </table>
-<button mat-button *ngIf="isSelected" (click)="edit()" id="boutonColor">Modifier</button>
+
+<button mat-button [disabled]="!isSelected" (click)="edit()" id="boutonAjout">Modifier</button>

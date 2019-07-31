@@ -14,7 +14,9 @@
   </tr>
 </table>
 
-<button mat-button *ngIf="isSelected" (click)="edit()" id="boutonColor">Modifier</button>
+<button mat-button (click)="add()" id="boutonAjout">Ajouter</button>
+<button mat-button [disabled]="!isSelected" (click)="edit()" id="boutonModif">Modifier</button>
+
 
 
 

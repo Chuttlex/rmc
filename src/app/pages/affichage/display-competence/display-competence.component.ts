@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-display-competence',
   templateUrl: './display-competence.component.html',
-  styleUrls: [ '../../../../tabStyle.css'],
+  styleUrls: [ '../../../../assets/stylesheets/tabStyle.css'],
   providers: [CompetenceService]
 })
 export class DisplayCompetenceComponent implements OnInit {
@@ -29,6 +29,11 @@ export class DisplayCompetenceComponent implements OnInit {
   edit(): void {
     this.router.navigate(['/editCompetence'], {state: {competence: this.selectedCompetence}});
   }
+
+  add(): void {
+    this.router.navigate(['/createCompetence'], {state: {competence: this.selectedCompetence}});
+  }
+
 
   clear(): void {
     this.compService.clear().subscribe();

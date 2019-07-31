@@ -18,8 +18,8 @@
     <td>{{ressource.equipe}}</td>
     <td>{{ressource.organisme}}</td>
     <td>{{ressource.dispositif}}</td>
-    <!--<app-ressource [ressource]="ressource"></app-ressource>-->
   </tr>
 </table>
 
-<button mat-button *ngIf="isSelected" (click)="edit()" id="boutonColor">Modifier</button>
+<button mat-button (click)="add()" id="boutonAjout">Ajouter</button>
+<button mat-button [disabled]="!isSelected" (click)="edit()" id="boutonModif">Modifier</button>

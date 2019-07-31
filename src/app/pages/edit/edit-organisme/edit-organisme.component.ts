@@ -10,7 +10,7 @@ import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-edit-organisme',
   templateUrl: './edit-organisme.component.html',
-  styles: [],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [OrganismeService, NiveauService]
 })
 export class EditOrganismeComponent implements OnInit {
