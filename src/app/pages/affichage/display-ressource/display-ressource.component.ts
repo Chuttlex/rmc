@@ -22,9 +22,11 @@ export class DisplayRessourceComponent implements OnInit {
   constructor(private resService: RessourceService, private router: Router) { }
 
   ngOnInit() {
-    this.getRessources();
-    this.isSelected = false;
-    this.ressources.push(testRessource1,testRessource2,testRessource3);
+    this.resService.getAll().subscribe((res) => {
+      this.ressources = res;
+      this.isSelected = false;
+      this.ressources.push(testRessource1,testRessource2,testRessource3);
+    });
   }
 
   onSelect(ressource: Ressource): void {

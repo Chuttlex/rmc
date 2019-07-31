@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipeService } from '../../service/equipe.service';
 import { DispositifService } from '../../service/dispositif.service';
-import { NgForm, FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Equipe } from '../../classe/equipe';
 import { Dispositif } from '../../classe/dispositif';

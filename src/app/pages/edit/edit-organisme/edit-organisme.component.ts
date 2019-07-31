@@ -15,6 +15,7 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class EditOrganismeComponent implements OnInit {
   organisme: Organisme;
+  niveaux: Niveau[];
 
   private ech5 = ['Ne connaît pas',
   'Connaissance / Exécute les tâches confiées sous le contrôle d’un référent ',
@@ -48,6 +49,7 @@ export class EditOrganismeComponent implements OnInit {
 
   ngOnInit() {
     this.organisme = history.state.organisme;
+    this.niveauService.getByOrganisme(this.organisme.organisme).subscribe((n) => this.niveaux = n);
   }
 
   update(): void {

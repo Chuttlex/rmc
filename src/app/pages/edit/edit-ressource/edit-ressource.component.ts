@@ -16,6 +16,7 @@ import { Historiqueres } from '../../classe/historiqueres';
 })
 export class EditRessourceComponent implements OnInit {
   ressource: Ressource;
+  historique: Historiqueres;
   equipes: Equipe[];
 
   form = new FormGroup ({
@@ -32,33 +33,35 @@ export class EditRessourceComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
-    this.ressource = history.state.ressource;
+    this.equipeService.getAll().subscribe((equipes) => {
+      this.equipes = equipes;
+      this.ressource = history.state.ressource;
+      this.histService.getByRessource(this.ressource.nom,this.ressource.prenom,this.ressource.equipe).subscribe((hist) => {
+        this.historique = hist;
+      })
+    });
+    
   }
 
   update(): void {
     let equipe = new Equipe();
-    let hist = new Historiqueres();
     this.equipeService.getByNom(this.form.get('equipe').value).subscribe((e) => {equipe = e;
       (result) => {
         this.ressource.nom = this.form.get('nom').value;
         this.ressource.prenom = this.form.get('prenom').value;
-        this.histService.getByRessource(this.ressource.nom, this.ressource.prenom, this.ressource.equipe).subscribe((h) => {
-          hist = h;
           this.ressource.referenceClient = this.form.get('referenceClient').value;
-          hist.dateentree = this.form.get('dateentree').value;
-          hist.datesortie = this.form.get('datesortie').value;
-          hist.actif = this.form.get('actif').value;
-          hist.rnom = this.ressource.nom;
-          hist.rprenom = this.ressource.prenom;
+          this.historique.dateentree = this.form.get('dateentree').value;
+          this.historique.datesortie = this.form.get('datesortie').value;
+          this.historique.actif = this.form.get('actif').value;
+          this.historique.rnom = this.ressource.nom;
+          this.historique.rprenom = this.ressource.prenom;
           this.resService.update(this.ressource).subscribe(
-            (result) => this.histService.update(hist).subscribe(
+            (result) => this.histService.update(this.historique).subscribe(
               (result) => this.equipeService.update(equipe).subscribe(
                 (result) => this.router.navigate(['/displayRessource'])
               )
             )
           )
-        })
       }
     });
   }
