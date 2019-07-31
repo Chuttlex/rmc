@@ -18,7 +18,7 @@ export class EditCompetenceComponent implements OnInit {
 
   form = new FormGroup ({
     nom: new FormControl(''),
-    domaine: new FormControl(''),
+    domaine: new FormControl('Technique'),
   })
 
   constructor(private compService: CompetenceService, private domaineService: DomaineService, private router: Router) { }
