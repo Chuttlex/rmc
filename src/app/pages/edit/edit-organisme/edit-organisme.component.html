@@ -25,22 +25,18 @@
         <section class="nouveau">
           <div class="form-group">
             <mat-form-field>
-            <label>Nom</label>
-            <input matInput type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+            <input matInput type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" value="{{organisme?.organisme}}" required>
             </mat-form-field>
           </div>
           <div class="form-group">
             <label>Description</label>
-            <input type="text" class="form-control" formControlName="description" placeholder="Entrer une description">
+            <input matInput type="text" class="form-control" formControlName="description" placeholder="Entrer une description">
           </div>
           <div class="form-group">
-            <div class="ui-radiobutton">
-              <label>Echelle</label>
-              <input type="radio" value=5 name="echelle" formControlName="echelle">5
-              <label class="radio5">(niveaux allant de 1 à 5)</label>
-              <input type="radio" value=10 name="echelle" formControlName="echelle">10
-              <label class="radio10">(niveaux allant de 1 à 10)</label>
-            </div>
+            <mat-radio-group aria-label="Echelle">
+              <mat-radio-button value="5" name="echelle" formControlName="echelle">5</mat-radio-button>
+              <mat-radio-button value="10" name="echelle" formControlName="echelle">10</mat-radio-button>
+            </mat-radio-group>
           </div>
       </section>
       <button type="button" class="btn btn-success" (click)="update()">Modifier</button>
