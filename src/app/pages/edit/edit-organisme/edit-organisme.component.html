@@ -2,37 +2,46 @@
     <h1>Modifier un Organisme</h1>
     <form [formGroup]="form">
       <section class="actuel">
+        <fieldset>
+          <legend>Informations</legend>
           <div class="form-group">
-              <label for="nom">Nom:</label>
-              <span class="nom">{{organisme.organisme}}</span>
+            <label for="nom">Nom:</label>
+            <span class="nom">{{organisme.organisme}}</span>
+          </div>
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <span class="description">{{organisme.description}}</span>
+          </div>
+          <div class="form-group">
+            <label for="niveaux">Echelle:</label>
+            <div class="ui-radiobutton">
+              <span class="niveau">{{niveaux.length}}</span>
             </div>
-            <div class="form-group">
-                <label for="description">Description:</label>
-                <span class="description">{{organisme.description}}</span>
-              </div>
-            <div class="form-group">
-              <label for="niveaux">Echelle:</label>
-              <div class="ui-radiobutton">
-                <span class="niveau">{{niveaux.length}}</span>
-              </div>        
-            </div>
+          </div>
+        </fieldset>
       </section>
-      <section class="nouveau">
+      <fieldset>
+        <legend>Modification</legend>
+        <section class="nouveau">
           <div class="form-group">
-              <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+            <label>Nom</label>
+            <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" formControlName="description" placeholder="Entrer une description">
+          </div>
+          <div class="form-group">
+            <div class="ui-radiobutton">
+              <label>Echelle</label>
+              <input type="radio" value=5 name="echelle" formControlName="echelle">5
+              <label class="radio5">(niveaux allant de 1 à 5)</label>
+              <input type="radio" value=10 name="echelle" formControlName="echelle">10
+              <label class="radio10">(niveaux allant de 1 à 10)</label>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control" formControlName="description" placeholder="Entrer une description">
-              </div>
-            <div class="form-group">
-              <div class="ui-radiobutton">
-                <input type="radio" value=5 name="echelle" formControlName="echelle">Echelle 5
-                <label class="radio5">(niveaux allant de 1 à 5)</label>
-                <input type="radio" value=10 name="echelle" formControlName="echelle">Echelle 10
-                <label class="radio10">(niveaux allant de 1 à 10)</label>
-              </div>        
-            </div>
-      </section>      
+          </div>
+      </section>
       <button type="button" class="btn btn-success" (click)="edit()">Modifier</button>
+      </fieldset>
    </form>
   </div>

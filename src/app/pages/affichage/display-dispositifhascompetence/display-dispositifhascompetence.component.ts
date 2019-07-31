@@ -14,15 +14,15 @@ const testDispHasCpt3: Dispositifhascompetence = {idd: 1, dispositif: 'Manhattan
   providers: [DispositifhascompetenceService]
 })
 export class DisplayDispositifhascompetenceComponent implements OnInit {
-  dispositifhascompetence: Dispositifhascompetence[] = [];
+  dispositifhascompetences: Dispositifhascompetence[] = [];
   selectedDispositifhascompetence: Dispositifhascompetence;
   isSelected: boolean;
 
   constructor(private dcService: DispositifhascompetenceService, private router: Router) { }
 
   ngOnInit() {
-    this.dcService.getAll().subscribe((d) => this.dispositifhascompetence = d);
-    this.dispositifhascompetence.push(testDispHasCpt1, testDispHasCpt2, testDispHasCpt3);
+    this.dcService.getAll().subscribe((d) => this.dispositifhascompetences = d);
+    this.dispositifhascompetences.push(testDispHasCpt1, testDispHasCpt2, testDispHasCpt3);
   }
 
   onSelect(dispositifhascompetence: Dispositifhascompetence): void {
