@@ -20,7 +20,6 @@ export class EditRegleComponent implements OnInit {
   regle: Regle;
   equipes: Equipe[];
   competences: Competence[];
-  niveaux: Niveau[];
 
   form = new FormGroup ({
     competence: new FormControl(''),
@@ -38,7 +37,6 @@ export class EditRegleComponent implements OnInit {
     this.regle = history.state.regle;
     this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
     this.compService.getAll().subscribe((competences) => this.competences = competences);
-    this.niveauService.getAll().subscribe((niveaux) => this.niveaux = niveaux);
   }
 
   update(): void {
@@ -46,25 +44,16 @@ export class EditRegleComponent implements OnInit {
     competence = this.form.get('competence').value;
     let equipe: Equipe;
     equipe = this.form.get('equipe').value;
-    let niveau: Niveau;
-    for (let i = 0 ; i < this.niveaux.length ; i++) {
-      if (this.niveaux[i].organisme === this.regle.organisme && this.niveaux[i].valeur === this.form.get('niveau').value) {
-        niveau = this.niveaux[i];
-      }
-    }
     this.regle.cnom = competence.nom;
     this.regle.enom = equipe.nom;
-    this.regle.niveau = niveau.valeur;
-    this.regle.organisme = niveau.organisme
+    this.regle.niveau = this.form.get('niveau').value;
     this.regle.moyenne = this.form.get('moyenne').value;
     this.regle.pourcentage = parseFloat(this.form.get('pourcentage').value);
     this.regle.nombre = parseInt(this.form.get('nombre').value, 10);
     this.regleService.update(this.regle).subscribe(
       (result) => this.compService.update(competence).subscribe(
         (result) => this.equipeService.update(equipe).subscribe(
-          (result) => this.niveauService.update(niveau).subscribe(
             (result) => this.router.navigate(['/displayRegle'])
-          )
         )
       )
     );
