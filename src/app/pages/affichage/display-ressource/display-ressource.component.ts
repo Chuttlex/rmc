@@ -10,7 +10,7 @@ const testRessource3: Ressource = {id: 3, nom: 'Briard', prenom: 'Jacques', refe
 @Component({
   selector: 'app-display-ressource',
   templateUrl: './display-ressource.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/tabStyle.css'],
   providers: [RessourceService]
 })
 export class DisplayRessourceComponent implements OnInit {

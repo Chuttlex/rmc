@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-display-equipe',
   templateUrl: './display-equipe.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/tabStyle.css'],
   providers: [EquipeService]
 })
 export class DisplayEquipeComponent implements OnInit {

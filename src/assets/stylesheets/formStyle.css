@@ -31,6 +31,7 @@ label {
   width: 150px;
 }
 
-.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
-  background-color: #316195 !important;
+.spaceTab{
+  border: none;
 }
+

@@ -6,7 +6,7 @@ import { Ressourcehascompetence } from '../../classe/ressourcehascompetence';
 @Component({
   selector: 'app-display-ressourcehascompetence',
   templateUrl: './display-ressourcehascompetence.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/tabStyle.css'],
   providers: [RessourcehascompetenceService]
 })
 export class DisplayRessourcehascompetenceComponent implements OnInit {

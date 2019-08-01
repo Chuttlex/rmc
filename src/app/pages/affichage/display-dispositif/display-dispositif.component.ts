@@ -10,7 +10,7 @@ const testDispo3: Dispositif = {id: 3, nom: 'Enigma', organisme: 'les alliés', 
 @Component({
   selector: 'app-display-dispositif',
   templateUrl: './display-dispositif.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/tabStyle.css'],
   providers: [DispositifService]
 })
 export class DisplayDispositifComponent implements OnInit {

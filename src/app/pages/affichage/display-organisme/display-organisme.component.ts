@@ -10,7 +10,7 @@ const testOrga3: Organisme = {id: 3, organisme: 'Pro BTP', description: 'Assureu
 @Component({
   selector: 'app-display-organisme',
   templateUrl: './display-organisme.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/tabStyle.css'],
   providers: [OrganismeService]
 })
 export class DisplayOrganismeComponent implements OnInit {

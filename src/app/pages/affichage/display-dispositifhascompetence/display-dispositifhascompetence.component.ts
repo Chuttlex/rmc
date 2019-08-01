@@ -10,7 +10,7 @@ const testDispHasCpt3: Dispositifhascompetence = {idd: 1, dispositif: 'Manhattan
 @Component({
   selector: 'app-display-dispositifhascompetence',
   templateUrl: './display-dispositifhascompetence.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/tabStyle.css'],
   providers: [DispositifhascompetenceService]
 })
 export class DisplayDispositifhascompetenceComponent implements OnInit {

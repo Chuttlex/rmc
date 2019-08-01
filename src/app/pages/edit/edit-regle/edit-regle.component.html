@@ -1,70 +1,57 @@
 <div class="container">
     <h1>Modifier une Règle</h1>
     <form [formGroup]="form">
-      <section class="actuel">
-          <div class="form-group">
-              <label for="competence">Competence:</label>
-              <span class="competence">{{regle?.cnom}}</span>
-            </div>
-            <div class="form-group">
-              <label for="Equipe">Equipe:</label>
-              <span class="equipe">{{regle?.enom}}</span>
-            </div>
-            <div class="form-group">
-                <label for="niveau">Niveau:</label>
-                <span class="niveau">{{regle?.niveau}}</span>
-              </div>
-            <div class="form-group">
-              <label for="moyenne">Moyenne:</label>
-              <span class="moyenne">{{regle?.moyenne}}</span>
-            </div>
-            <div class="form-group">
-                <label for="pourcentage">Pourcentage:</label>
-                <span class="pourcentage">{{regle?.pourcentage}}</span>
-                <label for="pourcentage">%</label>
-              </div>
-              <div class="form-group">
-                  <label for="nombre">Nombre de ressources pour la règle:</label>
-                  <span class="nombre">{{regle?.nombre}}</span>
-                </div>
-      </section>
-      <section class="nouveau">
-        <mat-form-field class="form-group">
-          <mat-label>Competence</mat-label>
-          <mat-select class="form-control" id="competence" formControlName="competence">
-            <mat-option *ngFor="let competence of competences">{{competence.nom}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form-group">
-          <mat-label>Equipe</mat-label>
-          <mat-select class="form-control" id="equipe" formControlName="equipe" required>
-            <mat-option *ngFor="let equipe of equipes">{{equipe.nom}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form-group">
-          <mat-label>Niveau</mat-label>
-          <mat-select class="form-control" formControlName="niveau" required>
-            <mat-option [value]="1">1</mat-option>
-            <mat-option [value]="2">2</mat-option>
-            <mat-option [value]="3">3</mat-option>
-            <mat-option [value]="4">4</mat-option>
-            <mat-option [value]="5">5</mat-option>
-          </mat-select>
-        </mat-form-field>
-            <div class="ui-radiobutton">
-              <input type="radio" class="form-control" id="moyenneOui" formControlName="moyenne" value=true>Oui
-              <input type="radio" class="form-control" id="moyenneNon" formControlName="moyenne" value=false>Non
-            </div>
-            <div class="form-group">
-                <input type="number" min="0" max="100" class="form-control" formControlName="pourcentage" 
-                placeholder="Entrer un pourcentage correspondant au nombre de ressources devant respecter la règle" required>
-                <label for="pourcentage">%</label>
-              </div>
-              <div class="form-group">
-                  <input type="number" min="0" class="form-control" id="nombre" formControlName="nombre" 
-                  placeholder="Entrer le nombre de ressources devant respecter la règle">
-                </div>
-      </section>      
-          <button type="button" class="btn btn-success" (click)="update()">Modifier</button>
+      <fieldset>
+        <legend>Modification</legend>
+        <section class="nouveau">
+
+          <table class="spaceTab"><tr>
+            <td><mat-form-field class="form-group">
+              <mat-label>Competence</mat-label>
+              <mat-select class="form-control" id="competence" formControlName="competence">
+                <mat-option *ngFor="let competence of competences">{{competence.nom}}</mat-option>
+              </mat-select>
+            </mat-form-field></td>
+            <td><mat-form-field class="form-group">
+              <mat-label>Equipe</mat-label>
+              <mat-select class="form-control" id="equipe" formControlName="equipe" required>
+                <mat-option *ngFor="let equipe of equipes">{{equipe.nom}}</mat-option>
+              </mat-select>
+            </mat-form-field></td>
+            <td><mat-form-field class="form-group">
+              <mat-label>Niveau</mat-label>
+              <mat-select class="form-control" formControlName="niveau" required>
+                <mat-option [value]="1">1</mat-option>
+                <mat-option [value]="2">2</mat-option>
+                <mat-option [value]="3">3</mat-option>
+                <mat-option [value]="4">4</mat-option>
+                <mat-option [value]="5">5</mat-option>
+              </mat-select>
+            </mat-form-field></td>
+          </tr></table>
+
+          <p>
+            <mat-radio-group class="ui-radiobutton">
+              <label> En rapport avec une moyenne: </label>
+              <mat-radio-button class="form-control" id="moyenneOui" formControlName="moyenne" value=true>Oui</mat-radio-button>
+              <mat-radio-button class="form-control" id="moyenneNon" formControlName="moyenne" value=false>Non</mat-radio-button>
+            </mat-radio-group>
+          </p>
+
+          <table>
+            <tr><mat-form-field class="form-group">
+              <textarea matInput class="form-control" formControlName="pourcentage" maxlength="2" value="50"
+                     placeholder="Pourcentage du nombre de ressources pour respecter la règle" required></textarea>
+            </mat-form-field></tr>
+
+            <tr><td><mat-form-field class="form-group">
+              <textarea matInput class="form-control" id="nombre" formControlName="nombre"
+                        placeholder="Nombre de ressources devant respecter la règle"></textarea>
+            </mat-form-field></td></tr>
+          </table>
+
+        </section>
+        <button mat-button class="bouton" (click)="update()" id="boutonValider">Valider</button>
+      </fieldset>
     </form>
   </div>

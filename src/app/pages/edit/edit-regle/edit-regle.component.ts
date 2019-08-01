@@ -9,12 +9,16 @@ import { Regle } from '../../classe/regle';
 import { Equipe } from '../../classe/equipe';
 import { Competence } from '../../classe/competence';
 import { Niveau } from '../../classe/niveau';
+import {MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material';
 
 @Component({
   selector: 'app-edit-regle',
   templateUrl: './edit-regle.component.html',
-  styles: [],
-  providers: [RegleService, CompetenceService, EquipeService, NiveauService]
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  providers: [RegleService, CompetenceService, EquipeService, NiveauService, {
+    provide: MAT_RADIO_DEFAULT_OPTIONS,
+    useValue: { color: 'primary' },
+  }]
 })
 export class EditRegleComponent implements OnInit {
   regle: Regle;

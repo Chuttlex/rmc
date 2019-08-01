@@ -9,7 +9,7 @@ const testNiveau3: Niveau = {id: 3, description: 'expert', valeur: 5, organisme:
 @Component({
   selector: 'app-display-niveau',
   templateUrl: './display-niveau.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/tabStyle.css'],
   providers: [NiveauService]
 })
 export class DisplayNiveauComponent implements OnInit {

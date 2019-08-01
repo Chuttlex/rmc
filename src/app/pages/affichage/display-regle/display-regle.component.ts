@@ -10,7 +10,7 @@ const testRegle3: Regle = {id: 3, enom: 'C Team', niveau: 2, organisme: 'ProBTP'
 @Component({
   selector: 'app-display-regle',
   templateUrl: './display-regle.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/tabStyle.css'],
   providers: [RegleService]
 })
 export class DisplayRegleComponent implements OnInit {
