@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { OrganismeService } from '../../service/organisme.service';
 import { NiveauService } from '../../service/niveau.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Organisme } from '../../classe/organisme';
 import { Niveau } from '../../classe/niveau';
 import { ThrowStmt } from '@angular/compiler';
+import {MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material';
 
 @Component({
   selector: 'app-edit-organisme',
   templateUrl: './edit-organisme.component.html',
   styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
-  providers: [OrganismeService, NiveauService]
+  providers: [OrganismeService, NiveauService, {
+    provide: MAT_RADIO_DEFAULT_OPTIONS,
+    useValue: { color: 'primary' },
+  }]
 })
+
+
+
+
 export class EditOrganismeComponent implements OnInit {
   organisme: Organisme;
   niveaux: Niveau[];
@@ -39,13 +47,13 @@ export class EditOrganismeComponent implements OnInit {
   + 'Capable d’organiser des formations et des transferts de compétences '
   ];
 
-  form = new FormGroup ({
-    nom: new FormControl(''),
-    description: new FormControl(''),
-    echelle: new FormControl(''),
-  })
+  form = new FormGroup ({
+    nom: new FormControl(),
+    description: new FormControl(),
+    echelle: new FormControl()
+  });
 
-  constructor(private orgService: OrganismeService, private niveauService: NiveauService, private router: Router) { }
+  constructor(private orgService: OrganismeService, private niveauService: NiveauService, private router: Router) {}
 
   ngOnInit() {
     this.organisme = history.state.organisme;
@@ -53,38 +61,39 @@ export class EditOrganismeComponent implements OnInit {
   }
 
   update(): void {
-    let orgNiveaux : Niveau[];
+   let orgNiveaux: Niveau[];
     this.niveauService.getByOrganisme(this.organisme.organisme).subscribe((n) => {
-      orgNiveaux = n;
-      let idNiv: number[];
-      for (let i = 0 ; i < orgNiveaux.length ; i++) {
-        idNiv.push(orgNiveaux[i].id);
-      }
-      this.niveauService.deleteSome(idNiv).subscribe(
-        (result) => {
-          this.organisme.organisme = this.form.get('nom').value;
-          this.organisme.description = this.form.get('description').value;
-          let niveaux: Niveau[];
-          niveaux = [];
-          for (let j = 0 ; j < this.form.get('echelle').value ; j++) {
-            let niveau = new Niveau();
-            niveau.valeur = j+1;
-            if (this.form.get('echelle').value === 5) {
-              niveau.description = this.ech5[j];
-            }
-            if (this.form.get('echelle').value === 10) {
-              niveau.description = this.ech10[j];
-            }
-            niveau.organisme = this.organisme.organisme;
-            niveaux.push(niveau);
-          }
-          this.niveauService.create(niveaux).subscribe(
-            (result) => this.orgService.update(this.organisme).subscribe(
-              (result) => this.router.navigate(['/displayOrganisme'])
-            )
-          );
-        }
-      );
-    }); 
+   //   this.form.controls['nom'].setValue('test4');
+         orgNiveaux = n;
+       let idNiv: number[];
+       for (let i = 0 ; i < orgNiveaux.length ; i++) {
+         idNiv.push(orgNiveaux[i].id);
+       }
+       this.niveauService.deleteSome(idNiv).subscribe(
+         (result) => {
+           this.organisme.organisme = this.form.get('nom').value;
+           this.organisme.description = this.form.get('description').value;
+           let niveaux: Niveau[];
+           niveaux = [];
+           for (let j = 0 ; j < this.form.get('echelle').value ; j++) {
+             let niveau = new Niveau();
+             niveau.valeur = j+1;
+             if (this.form.get('echelle').value === 5) {
+               niveau.description = this.ech5[j];
+             }
+             if (this.form.get('echelle').value === 10) {
+               niveau.description = this.ech10[j];
+             }
+             niveau.organisme = this.organisme.organisme;
+             niveaux.push(niveau);
+           }
+           this.niveauService.create(niveaux).subscribe(
+             (result) => this.orgService.update(this.organisme).subscribe(
+               (result) => this.router.navigate(['/displayOrganisme'])
+             )
+           );
+         }
+       );
+     });
   }
 }

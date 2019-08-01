@@ -17,3 +17,20 @@ label {
   margin: 6px;
 }
 
+.mat-formPerso {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+#boutonValider{
+  background-color: #316195;
+  color: white;
+  font-family: Verdana, serif;
+  margin-top: 6px;
+  width: 150px;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  background-color: #316195 !important;
+}

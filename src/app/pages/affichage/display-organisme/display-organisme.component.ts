@@ -34,7 +34,7 @@ export class DisplayOrganismeComponent implements OnInit {
   }
 
   edit(): void {
-    this.router.navigate(['/editOrganisme'], {state: {org: this.selectedOrganisme}});
+    this.router.navigate(['/editOrganisme'], {state: {organisme: this.selectedOrganisme}});
   }
 
   add(): void {

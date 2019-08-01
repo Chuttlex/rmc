@@ -1,45 +1,28 @@
 <div class="container">
     <h1>Modifier un Organisme</h1>
     <form [formGroup]="form">
-      <section class="actuel">
-        <fieldset>
-          <legend>Informations</legend>
-          <div class="form-group">
-            <label>Nom:</label>
-            <span class="nom">{{organisme?.organisme}}</span>
-            <div class="form-group">
-                <label>Description:</label>
-                <span class="description">{{organisme?.description}}</span>
-              </div>
-            <div class="form-group">
-              <label>Echelle:</label>
-              <div class="ui-radiobutton">
-                <span class="niveau">{{niveaux?.length}}</span>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-      </section>
       <fieldset>
         <legend>Modification</legend>
         <section class="nouveau">
           <div class="form-group">
-            <mat-form-field>
-            <input matInput type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" value="{{organisme?.organisme}}" required>
+            <mat-form-field class="mat-formPerso">
+            <input matInput type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer le nom de l'organisme" [value]="organisme?.organisme"required>
             </mat-form-field>
           </div>
           <div class="form-group">
-            <label>Description</label>
-            <input matInput type="text" class="form-control" formControlName="description" placeholder="Entrer une description">
+            <mat-form-field class="mat-formPerso">
+              <input matInput type="text" class="form-control" formControlName="description" placeholder="Entrer une description" [value]="organisme?.description">
+            </mat-form-field>
           </div>
           <div class="form-group">
-            <mat-radio-group aria-label="Echelle">
-              <mat-radio-button value="5" name="echelle" formControlName="echelle">5</mat-radio-button>
-              <mat-radio-button value="10" name="echelle" formControlName="echelle">10</mat-radio-button>
+            <label>Echelle :</label>
+            <mat-radio-group aria-label="Echelle" id="matRadioButton" formControlName="echelle">
+              <mat-radio-button value="5" name="echelle" >5</mat-radio-button>
+              <mat-radio-button value="10" name="echelle" >10</mat-radio-button>
             </mat-radio-group>
           </div>
       </section>
-      <button type="button" class="btn btn-success" (click)="update()">Modifier</button>
+      <button mat-button class="bouton" (click)="update()" id="boutonValider">Valider</button>
       </fieldset>
    </form>
   </div>
