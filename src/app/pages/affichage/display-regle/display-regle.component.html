@@ -8,6 +8,8 @@
     <th>Organisme</th>
     <th>Nom de la Competence</th>
     <th>Nombre de Personne</th>
+    <th>Pourcentage de l'équipe</th>
+    <th>Est-ce une moyenne?</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
   <tr *ngFor="let regle of regles" [class.selected]="regle === selectedRegle" (click)="onSelect(regle)" tabindex="0">
@@ -17,6 +19,8 @@
     <td>{{regle.organisme}}</td>
     <td>{{regle.cnom}}</td>
     <td>{{regle.nombre}}</td>
+    <td>{{regle.pourcentage}}</td>
+    <td>{{regle.moyenne}}</td>
   </tr>
 </table>
 
