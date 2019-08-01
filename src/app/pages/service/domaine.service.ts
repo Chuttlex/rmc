@@ -37,7 +37,7 @@ const httpOptions = {
     }
 
     update(domaine: Domaine): Observable<any> {
-        const url = Constantes.url + `api/infotel/domaine/updateDomaine`;
+        const url = Constantes.url + `api/infotel/updateDomaine`;
         return this.http.put(url, JSON.stringify(domaine), httpOptions);
     }
   }

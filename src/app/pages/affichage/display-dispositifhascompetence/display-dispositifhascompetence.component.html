@@ -11,10 +11,10 @@
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
   <tr *ngFor="let dispositifhascompetence of dispositifhascompetences" [class.selected]="dispositifhascompetence === selectedDispositifhascompetence"
       (click)="onSelect(dispositifhascompetence)" tabindex="0">
-    <td>{{dispositifhascompetence.idd}}</td>
-    <td>{{dispositifhascompetence.dispositif}}</td>
-    <td>{{dispositifhascompetence.idc}}</td>
-    <td>{{dispositifhascompetence.competence}}</td>
+    <td>{{dispositifhascompetence?.idd}}</td>
+    <td>{{dispositifhascompetence?.dispositif}}</td>
+    <td>{{dispositifhascompetence?.idc}}</td>
+    <td>{{dispositifhascompetence?.competence}}</td>
   </tr>
 </table>
 

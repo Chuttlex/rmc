@@ -21,19 +21,19 @@
       </section>
       <section class="nouveau">
         <div class="form-group">
-          <select class="form-control" id="ressource" formControlName="ressource" (change)="setNiveaux()" required>
-              <option *ngFor="let ressource of ressources" [ngValue]="ressource">{{ressource.nom}} {{ressource.prenom}}</option>
+          <select class="form-control" id="ressource" formControlName="ressource" required>
+              <option *ngFor="let ressource of ressources" [ngValue]="ressource">{{ressource?.nom}} {{ressource?.prenom}}</option>
             </select>
         </div>
         <div class="form-group">
-            <select class="form-control" id="competence" formControlName="competence" (change)="setNiveaux()" required>
-                <option *ngFor="let competence of competences" [ngValue]="competence">{{competence.nom}}</option>
+            <select class="form-control" id="competence" formControlName="competence" required>
+                <option *ngFor="let competence of competences" [ngValue]="competence">{{competence?.nom}}</option>
               </select>
           </div>
           <div class="form-group">
-            <select class="form-control" id="niveau" formControlName="niveau" required>
-                <option *ngFor="let niveau of niveaux" [ngValue]="niveau">{{niveau.valeur}}</option>
-              </select>
+            <label for="niveau">Niveau:</label>
+            <input type="number" name="niveau" min="1" max="10" class="form-control" id="niveau" 
+            formControlName="niveau" placeholder="1" required>
           </div>
       <div class="form-group">
           <input type="date" class="form-control" id="dateevolcomp" formControlName="dateevolcomp" required>
