@@ -9,12 +9,13 @@ import { Ressourcehascompetence } from '../../classe/ressourcehascompetence';
 import { Ressource } from '../../classe/ressource';
 import { Competence } from '../../classe/competence';
 import { Niveau } from '../../classe/niveau';
+import { EquipeService } from '../../service/equipe.service';
 
 @Component({
   selector: 'app-edit-ressourcehascompetence',
   templateUrl: './edit-ressourcehascompetence.component.html',
   styles: [],
-  providers: [RessourcehascompetenceService, RessourceService, CompetenceService, NiveauService]
+  providers: [RessourcehascompetenceService, RessourceService, CompetenceService, NiveauService, EquipeService]
 })
 export class EditRessourcehascompetenceComponent implements OnInit {
   rc: Ressourcehascompetence;
@@ -30,7 +31,7 @@ export class EditRessourcehascompetenceComponent implements OnInit {
   })
 
   constructor(private rcService: RessourcehascompetenceService, private resService: RessourceService, private compService: CompetenceService,
-    private niveauService: NiveauService, private router: Router) { }
+    private niveauService: NiveauService, private router: Router, private equipeService: EquipeService) { }
 
   ngOnInit() {
     this.rc = history.state.rc;
@@ -44,35 +45,25 @@ export class EditRessourcehascompetenceComponent implements OnInit {
     });
   }
 
-  setNiveaux(): void {
-    this.niveauService.getByRessourceAndCompetence(this.form.get('ressource').value.nom, this.form.get('ressource').value.nom,
-     this.form.get('ressource').value.equipe ,this.form.get('competence').value.nom)
-    .subscribe((niveaux) => this.niveaux = niveaux);
-  }
-
   update(): void {
     let ressource: Ressource;
     let competence: Competence;
-    let niveau: Niveau;
+    this.niveauService.getByOrganisme
     ressource = this.form.get('ressource').value;
     competence = this.form.get('competence').value;
-    niveau = this.form.get('niveau').value;
     let date: Date;
     date = this.form.get('dateevolcomp').value;
-    this.rc.niveau = niveau.valeur;
-    this.rc.organisme = niveau.organisme;
+    this.rc.niveau = this.form.get('niveau').value;
     this.rc.rnom = ressource.nom;
     this.rc.rprenom = ressource.prenom;
     this.rc.cnom = competence.nom;
     this.rc.dateEvolComp = date;
-    this.niveauService.update(niveau).subscribe(
-      (result) => this.resService.update(ressource).subscribe(
+    this.resService.update(ressource).subscribe(
         (result) => this.compService.update(competence).subscribe(
           (result) => this.rcService.update(this.rc).subscribe(
             (result) => this.router.navigate(['/displayRessourcehascompetence'])
           )
         )
       )
-    );
   }
 }

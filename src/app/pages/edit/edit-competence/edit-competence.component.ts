@@ -35,13 +35,11 @@ export class EditCompetenceComponent implements OnInit {
     let domaine = new Domaine();
     this.domaineService.getByNom(this.form.get('domaine').value).subscribe((d) => {
       domaine = d;
-        this.competence.nom = this.form.get('nom').value;
+      this.competence.nom = this.form.get('nom').value;
       this.competence.domaine = domaine.valeur;
       this.compService.update(this.competence).subscribe(
-        (result) => this.domaineService.update(domaine).subscribe(
           (result) => this.router.navigate(['/displayCompetence'])
         )
-      );
     });   
   }
 }

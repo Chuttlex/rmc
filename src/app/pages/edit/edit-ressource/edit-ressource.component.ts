@@ -45,8 +45,7 @@ export class EditRessourceComponent implements OnInit {
 
   update(): void {
     let equipe = new Equipe();
-    this.equipeService.getByNom(this.form.get('equipe').value).subscribe((e) => {equipe = e;
-      (result) => {
+      equipe = this.form.get('equipe').value;
         this.ressource.nom = this.form.get('nom').value;
         this.ressource.prenom = this.form.get('prenom').value;
           this.ressource.referenceClient = this.form.get('referenceClient').value;
@@ -63,6 +62,4 @@ export class EditRessourceComponent implements OnInit {
             )
           )
       }
-    });
-  }
 }
