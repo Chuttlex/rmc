@@ -40,9 +40,9 @@ export class EditOrganismeComponent implements OnInit {
   ];
 
   form = new FormGroup ({
-    nom: new FormControl(''),
-    description: new FormControl(''),
-    echelle: new FormControl(''),
+    nom: new FormControl(),
+    description: new FormControl(),
+    echelle: new FormControl()
   })
 
   constructor(private orgService: OrganismeService, private niveauService: NiveauService, private router: Router) { }
