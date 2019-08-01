@@ -1,6 +1,9 @@
+
+
+<app-tableau></app-tableau>
+
+<button mat-button [matMenuTriggerFor]="afterMenu" id="boutonAjout">Liste des équipes</button>
 <mat-menu #afterMenu="matMenu" xPosition="after">
   <button mat-menu-item>Team 1</button>
   <button mat-menu-item>Team 2</button>
 </mat-menu>
-<app-tableau></app-tableau>
-<button mat-button [matMenuTriggerFor]="afterMenu" id="boutonAjout">Liste des équipes</button>
