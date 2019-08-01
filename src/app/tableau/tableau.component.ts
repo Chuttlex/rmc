@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Competence } from '../pages/classe/competence';
+import { Ressource } from '../pages/classe/ressource';
 
 export interface TestTeam {
   competence: string;
@@ -21,6 +23,9 @@ const TEAM_VALUE: TestTeam[] = [
   styleUrls: ['../../assets/stylesheets/tabStyle.css', './tableau.component.css']
 })
 export class TableauComponent implements OnInit {
+
+  @Input() competentes: Competence[];
+  @Input() ressources: Ressource[];
 
   displayedColumns: string[] = ['competence', 'ressourceNiveau1', 'ressourceNiveau2', 'ressourceNiveau3', 'ressourceNiveau4'];
   dataSource = TEAM_VALUE;

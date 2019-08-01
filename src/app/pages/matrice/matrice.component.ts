@@ -18,8 +18,8 @@ import { Ressource } from '../classe/ressource';
 export class MatriceComponent implements OnInit {
   dispositifs: Dispositif[];
   equipes: Equipe[];
-  ressources: Ressource[];
-  competences: Competence[];
+  ressources: Ressource[] = [];
+  competences: Competence[] = [];
   selectedDispositif: Dispositif;
 
   constructor(private compService: CompetenceService, private dispService: DispositifService, private resService: RessourceService,
