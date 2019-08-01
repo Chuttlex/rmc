@@ -37,15 +37,9 @@ const httpOptions = {
         return this.http.delete<Niveau>(url, httpOptions);
     }
 
-    deleteSome(ids: number[]): Observable<Niveau> {
-        let j = 0;
-        for(let i = 0; i < ids.length-1; i++){
-            let url = Constantes.url + `api/infotel/deleteNiveau=${ids[i]}`;
-            this.http.delete<Niveau>(url, httpOptions);
-            j = i;
-        }
-        let url = Constantes.url + `api/infotel/deleteNiveau=${ids[j+1]}`;
-        return this.http.delete<Niveau>(url, httpOptions);
+    deleteSome(organisme: string): Observable<Niveau[]> {
+        let url = Constantes.url + `api/infotel/deleteNiveaux=${organisme}`;
+        return this.http.delete<Niveau[]>(url, httpOptions);
     }
 
     update(niveau: Niveau): Observable<any> {

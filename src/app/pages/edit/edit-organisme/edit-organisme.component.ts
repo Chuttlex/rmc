@@ -53,19 +53,11 @@ export class EditOrganismeComponent implements OnInit {
   }
 
   update(): void {
-    let orgNiveaux : Niveau[];
-    this.niveauService.getByOrganisme(this.organisme.organisme).subscribe((n) => {
-      orgNiveaux = n;
-      let idNiv: number[];
-      for (let i = 0 ; i < orgNiveaux.length ; i++) {
-        idNiv.push(orgNiveaux[i].id);
-      }
-      this.niveauService.deleteSome(idNiv).subscribe(
+      this.niveauService.deleteSome(this.organisme.organisme).subscribe(
         (result) => {
           this.organisme.organisme = this.form.get('nom').value;
           this.organisme.description = this.form.get('description').value;
-          let niveaux: Niveau[];
-          niveaux = [];
+          let niveaux: Niveau[] = [];
           for (let j = 0 ; j < this.form.get('echelle').value ; j++) {
             let niveau = new Niveau();
             niveau.valeur = j+1;
@@ -78,13 +70,13 @@ export class EditOrganismeComponent implements OnInit {
             niveau.organisme = this.organisme.organisme;
             niveaux.push(niveau);
           }
-          this.niveauService.create(niveaux).subscribe(
-            (result) => this.orgService.update(this.organisme).subscribe(
+          console.log(niveaux);
+          this.orgService.update(this.organisme).subscribe(
+            (result) => this.niveauService.create(niveaux).subscribe(
               (result) => this.router.navigate(['/displayOrganisme'])
             )
           );
         }
       );
-    }); 
   }
 }
