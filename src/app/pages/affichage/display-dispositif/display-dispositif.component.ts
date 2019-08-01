@@ -73,4 +73,10 @@ export class DisplayDispositifComponent implements OnInit {
     this.dispService.getByNom(nom).subscribe((dispositif) => this.dispositifs.push(dispositif));
   }
 
+  getColorButton(): string {
+    if (!this.isSelected) {
+      return 'red';
+    }
+  }
+
 }

@@ -22,7 +22,7 @@ export class DisplayRegleComponent implements OnInit {
 
   ngOnInit() {
     this.getRegles();
-    this.regles.push(testRegle1,testRegle2,testRegle3);
+    this.regles.push(testRegle1, testRegle2, testRegle3);
   }
 
   onSelect(regle: Regle): void {
@@ -147,4 +147,9 @@ export class DisplayRegleComponent implements OnInit {
     this.regleService.getByEquipeAndCompetenceAndMoyenne(enom, cnom, moyenne).subscribe((regles) => this.regles = regles);
   }
 
+  getColorButton(): string {
+    if (!this.isSelected) {
+      return 'red';
+    }
+  }
 }

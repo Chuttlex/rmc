@@ -18,7 +18,7 @@ const TEAM_VALUE: TestTeam[] = [
 @Component({
   selector: 'app-tableau',
   templateUrl: './tableau.component.html',
-  styleUrls: ['./tableau.component.css']
+  styleUrls: ['../../assets/stylesheets/tabStyle.css']
 })
 export class TableauComponent implements OnInit {
 
