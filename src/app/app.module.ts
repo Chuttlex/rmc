@@ -49,7 +49,20 @@ import { EditRessourcehascompetenceComponent } from './pages/edit/edit-ressource
 import { CreateRessourceComponent } from './pages/create/create-ressource/create-ressource.component';
 import { AutoCompleteService } from './pages/service/autocomplete.service';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule, MatListModule, MatMenuModule, MatAutocompleteModule, MatFormFieldModule, MatChipsModule, MatInputModule, MatTableModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatListModule,
+  MatMenuModule,
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatChipsModule,
+  MatInputModule,
+  MatTableModule,
+  MatRadioModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { MatriceComponent } from './pages/matrice/matrice.component';
@@ -123,8 +136,9 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatFormFieldModule,
     MatChipsModule,
     MatIconModule,
-	  MatInputModule,
-    MatTableModule
+    MatInputModule,
+    MatTableModule,
+    MatRadioModule
   ],
   providers: [
     OrganismeService,

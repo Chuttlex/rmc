@@ -89,4 +89,10 @@ this.rcService.getByCompetence(nom).subscribe((rcs) => this.rcs = rcs);
     this.rcService.getByCompetenceAndDateEvol(nom, date).subscribe((rcs) => this.rcs = rcs);
   }
 
+  getColorButton(): string {
+    if (!this.isSelected) {
+      return 'red';
+    }
+  }
+
 }

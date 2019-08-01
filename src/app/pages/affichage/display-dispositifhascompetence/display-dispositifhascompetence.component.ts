@@ -34,4 +34,9 @@ export class DisplayDispositifhascompetenceComponent implements OnInit {
     this.router.navigate(['/editDispositifhascompetence'], {state: {dc: this.selectedDispositifhascompetence}});
   }
 
+  getColorButton(): string {
+    if (!this.isSelected) {
+      return 'red';
+    }
+  }
 }

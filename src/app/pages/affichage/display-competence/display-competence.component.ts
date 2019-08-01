@@ -87,4 +87,10 @@ export class DisplayCompetenceComponent implements OnInit {
     this.compService.getByEquipeAndNiveau(nom, niveau, orgnom).subscribe((competences) => this.competences = competences);
   }
 
+  getColorButton(): string {
+    if (!this.isSelected) {
+      return 'red';
+    }
+  }
+
 }

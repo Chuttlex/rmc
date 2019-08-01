@@ -105,4 +105,10 @@ export class DisplayRessourceComponent implements OnInit {
     this.resService.getByDateSortie(date).subscribe((ressources) => this.ressources = ressources);
   }
 
+  getColorButton(): string {
+    if (!this.isSelected) {
+      return 'red';
+    }
+  }
+
 }

@@ -18,4 +18,5 @@
   </tr>
 </table>
 
-<button mat-button [disabled]="!isSelected" (click)="edit()" id="boutonAjout">Modifier</button>
+<button mat-button [ngStyle]="{backgroundColor: getColorButton()}" [disabled]="!isSelected" (click)="edit()" id="boutonAjout">Modifier</button>
+

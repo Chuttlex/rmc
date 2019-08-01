@@ -19,7 +19,8 @@ export class DisplayOrganismeComponent implements OnInit {
   selectedOrganisme: Organisme;
   isSelected: boolean;
 
-  constructor(private orgService: OrganismeService, private router: Router) { }
+  constructor(private orgService: OrganismeService, private router: Router) {
+  }
 
   onSelect(organisme: Organisme): void {
     this.selectedOrganisme = organisme;
@@ -40,4 +41,9 @@ export class DisplayOrganismeComponent implements OnInit {
     this.router.navigate(['/createOrganisme'], {state: {org: this.selectedOrganisme}});
   }
 
+  getColorButton(): string {
+    if (!this.isSelected) {
+      return 'red';
+    }
+  }
 }

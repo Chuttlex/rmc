@@ -67,4 +67,10 @@ export class DisplayEquipeComponent implements OnInit {
     this.equipeService.getByNiveau(niveau, orgnom).subscribe((equipes) => this.equipes = equipes);
   }
 
+  getColorButton(): string {
+    if (!this.isSelected) {
+      return 'red';
+    }
+  }
+
 }
