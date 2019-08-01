@@ -38,7 +38,7 @@ export class DisplayOrganismeComponent implements OnInit {
   }
 
   add(): void {
-    this.router.navigate(['/createOrganisme'], {state: {org: this.selectedOrganisme}});
+    this.router.navigate(['/createOrganisme']);
   }
 
   getColorButton(): string {

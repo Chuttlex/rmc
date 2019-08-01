@@ -33,10 +33,11 @@ export class EditDispositifComponent implements OnInit {
 
   update(): void {
     const org = this.form.get('organisme').value;
-      this.dispositif.organisme = org;
+      this.dispositif.organisme = org.organisme;
       this.dispositif.nom = this.form.get('nom').value;
       this.dispositif.description = this.form.get('description').value;
-    this.dispositifService.update(this.dispositif).subscribe(
+      console.log(this.dispositif);
+      this.dispositifService.update(this.dispositif).subscribe(
       (result) => this.orgService.update(org).subscribe(
         (result) => this.router.navigate(['/displayDispositif'])
       )

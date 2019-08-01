@@ -61,39 +61,31 @@ export class EditOrganismeComponent implements OnInit {
   }
 
   update(): void {
-   let orgNiveaux: Niveau[];
-    this.niveauService.getByOrganisme(this.organisme.organisme).subscribe((n) => {
-   //   this.form.controls['nom'].setValue('test4');
-         orgNiveaux = n;
-       let idNiv: number[];
-       for (let i = 0 ; i < orgNiveaux.length ; i++) {
-         idNiv.push(orgNiveaux[i].id);
-       }
-       this.niveauService.deleteSome(idNiv).subscribe(
-         (result) => {
-           this.organisme.organisme = this.form.get('nom').value;
-           this.organisme.description = this.form.get('description').value;
-           let niveaux: Niveau[];
-           niveaux = [];
-           for (let j = 0 ; j < this.form.get('echelle').value ; j++) {
-             let niveau = new Niveau();
-             niveau.valeur = j+1;
-             if (this.form.get('echelle').value === 5) {
-               niveau.description = this.ech5[j];
-             }
-             if (this.form.get('echelle').value === 10) {
-               niveau.description = this.ech10[j];
-             }
-             niveau.organisme = this.organisme.organisme;
-             niveaux.push(niveau);
-           }
-           this.niveauService.create(niveaux).subscribe(
-             (result) => this.orgService.update(this.organisme).subscribe(
-               (result) => this.router.navigate(['/displayOrganisme'])
-             )
-           );
-         }
-       );
-     });
+
+      this.niveauService.deleteSome(this.organisme.organisme).subscribe(
+        (result) => {
+          this.organisme.organisme = this.form.get('nom').value;
+          this.organisme.description = this.form.get('description').value;
+          let niveaux: Niveau[] = [];
+          for (let j = 0 ; j < this.form.get('echelle').value ; j++) {
+            let niveau = new Niveau();
+            niveau.valeur = j+1;
+            if (this.form.get('echelle').value === 5) {
+              niveau.description = this.ech5[j];
+            }
+            if (this.form.get('echelle').value === 10) {
+              niveau.description = this.ech10[j];
+            }
+            niveau.organisme = this.organisme.organisme;
+            niveaux.push(niveau);
+          }
+          console.log(niveaux);
+          this.orgService.update(this.organisme).subscribe(
+            (result) => this.niveauService.create(niveaux).subscribe(
+              (result) => this.router.navigate(['/displayOrganisme'])
+            )
+          );
+        }
+      );
   }
 }
