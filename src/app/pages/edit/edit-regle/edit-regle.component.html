@@ -29,19 +29,28 @@
                 </div>
       </section>
       <section class="nouveau">
-          <div class="form-group">
-              <select class="form-control" id="competence" formControlName="competence">
-                <option *ngFor="let competence of competences" [ngValue]="competence">{{competence.nom}}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <select class="form-control" id="equipe" formControlName="equipe" required>
-                <option *ngFor="let equipe of equipes" [ngValue]="equipe">{{equipe.nom}}</option>
-              </select>
-            </div>
-            <div class="form-group">
-                <input type="number" min="0" max="9" class="form-control" formControlName="niveau" placeholder="Entrer le niveau qui doit être atteint pour cette règle (0 à 4 ou 9 selon l'échelle)" required>
-              </div>
+        <mat-form-field class="form-group">
+          <mat-label>Competence</mat-label>
+          <mat-select class="form-control" id="competence" formControlName="competence">
+            <mat-option *ngFor="let competence of competences">{{competence.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-group">
+          <mat-label>Equipe</mat-label>
+          <mat-select class="form-control" id="equipe" formControlName="equipe" required>
+            <mat-option *ngFor="let equipe of equipes">{{equipe.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-group">
+          <mat-label>Niveau</mat-label>
+          <mat-select class="form-control" formControlName="niveau" required>
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+            <mat-option [value]="4">4</mat-option>
+            <mat-option [value]="5">5</mat-option>
+          </mat-select>
+        </mat-form-field>
             <div class="ui-radiobutton">
               <input type="radio" class="form-control" id="moyenneOui" formControlName="moyenne" value=true>Oui
               <input type="radio" class="form-control" id="moyenneNon" formControlName="moyenne" value=false>Non

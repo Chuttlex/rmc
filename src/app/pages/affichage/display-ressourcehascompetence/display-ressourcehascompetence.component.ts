@@ -91,7 +91,7 @@ this.rcService.getByCompetence(nom).subscribe((rcs) => this.rcs = rcs);
 
   getColorButton(): string {
     if (!this.isSelected) {
-      return 'red';
+      return '#6d071a';
     }
   }
 

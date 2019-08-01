@@ -61,7 +61,7 @@ import {
   MatChipsModule,
   MatInputModule,
   MatTableModule,
-  MatRadioModule
+  MatRadioModule, MatSelectModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
@@ -138,7 +138,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatIconModule,
     MatInputModule,
     MatTableModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule
   ],
   providers: [
     OrganismeService,

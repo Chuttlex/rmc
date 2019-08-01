@@ -89,7 +89,7 @@ export class DisplayCompetenceComponent implements OnInit {
 
   getColorButton(): string {
     if (!this.isSelected) {
-      return 'red';
+      return '#6d071a';
     }
   }
 

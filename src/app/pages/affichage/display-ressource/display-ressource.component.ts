@@ -107,7 +107,7 @@ export class DisplayRessourceComponent implements OnInit {
 
   getColorButton(): string {
     if (!this.isSelected) {
-      return 'red';
+      return '#6d071a';
     }
   }
 
