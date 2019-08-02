@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Ressourcehascompetence } from '../../classe/ressourcehascompetence';
 
 @Component({
