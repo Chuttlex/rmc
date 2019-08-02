@@ -1,17 +1,2 @@
 <div>
-    <button class="edit" *ngIf="isSelected==true" (click)="edit()">Modifier</button>
-    <div class="legende">
-      <h1 class="legendeCompetence">Competence</h1>
-      <h1 class="legendeRessource">Ressource</h1>
-      <h1 class="legendeNiveau">Niveau</h1>
-      <h1 class="legendeDate">Date d'évaluation</h1>
-    </div>
-    <div class="ressourcehascompetences" *ngFor="let ressourcehascompetence of rcs">
-      <div class="ressourcehascompetence">
-        <h2 class="ressourcehascompetenceCompetence">{{ressourcehascompetence.competence.nom}}</h2>
-        <h2 class="ressourcehascompetenceRessource">{{ressourcehascompetence.ressource.nom+" "+ressourcehascompetence.ressource.prenom}}</h2>
-        <h2 class="ressourcehascompetenceNiveau">{{ressourcehascompetence.niveau.valeur}}</h2>
-        <h2 class="ressourcehascompetenceDate">{{ressourcehascompetence.dateEvolComp}}</h2>
-      </div>
-    </div>
   </div>
