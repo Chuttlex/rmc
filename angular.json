@@ -28,7 +28,9 @@
               "src/styles.css",
               "src/infotel_style.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/zingchart/client/zingchart.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -91,7 +93,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/zingchart/client/zingchart.min.js"]
           }
         },
         "lint": {
