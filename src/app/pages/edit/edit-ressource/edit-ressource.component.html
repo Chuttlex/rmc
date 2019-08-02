@@ -1,64 +1,55 @@
 <div class="container">
   <h1>Modifier une Ressource</h1>
   <form [formGroup]="form">
-    <section class="actuel">
-      <div class="form-group">
-          <label for="equipe">Equipe:</label>
-          <span class="equipe">{{ressource?.equipe}}</span>
-        </div>
-    <div class="form-group">
-      <label for="nom">Nom:</label>
-      <span class="nom">{{ressource?.nom}}</span>
-    </div>
-    <div class="form-group">
-      <label for="prenom">Prénom:</label>
-      <span class="prenom">{{ressource?.prenom}}</span>
-    </div>
-    <div class="form-group">
-      <label for="referenceClient">Référence:</label>
-      <span class="referenceClient">{{ressource?.referenceClient}}</span>
-    </div>
-    <div class="form-group">
-        <label for="actif">Est actif:</label>
-        <span class="actif">{{historique?.actif}}</span>
-      </div>
-      <div class="form-group">
-          <label for="DateEntree">Date d'entrée:</label>
-          <span class="dateentree">{{historique?.dateentree}}</span>
-        </div>
-        <div class="form-group">
-            <label for="DateSortie">Date de sortie:</label>
-            <span class="datesortie">{{historique?.datesortie}}</span>
-          </div>
-        </section>
-        <section class="nouveau">
-            <div class="form-group">
-                <select class="form-control" id="equipe" formControlName="equipe" required>
-                    <option *ngFor="let equipe of equipes" [ngValue]="equipe">{{equipe.nom}}</option>
-                  </select>
-              </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="prenom" formControlName="prenom" placeholder="Entrer un prénom" required>
-          </div>
-          <div class="form-group">
-            <input type="number" class="form-control" id="referenceClient" formControlName="referenceClient" placeholder="Entrer le nombre référencent la ressource" required>
-          </div>
-          <div class="form-group">
-              <select class="form-control" id="actif" formControlName="actif" required>
-                <option value="true">Vrai</option>
-                <option value="false">Faux</option>
-              </select>
-            </div>
-            <div class="form-group">
-                <input type="date" class="form-control" id="dateentree" formControlName="dateentree" placeholder="Entrer la date à laquelle la ressource entre dans l'équipe" required>
-              </div>
-              <div class="form-group">
-                  <input type="date" class="form-control" id="datesortie" formControlName="datesortie" placeholder="Entrer la date à laquelle la ressource quitte l'équipe">
-                </div>
-        </section>
-          <button type="button" class="btn btn-success" (click)="update()">Modifier Ressource</button>
-      </form>
+    <fieldset>
+      <legend>Modification</legend>
+
+      <mat-form-field class="form-group">
+        <mat-select class="form-control" id="equipe" formControlName="equipe" placeholder="Equipe" required>
+          <mat-option *ngFor="let equipe of equipes" [value]="equipe?.nom"></mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="formField">
+        <input matInput class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+      </mat-form-field>
+      <mat-form-field class="formField">
+        <input matInput class="form-control" id="prenom" formControlName="prenom" placeholder="Entrer un prénom" required>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="form-group">
+        <input matInput class="form-control" id="referenceClient" formControlName="referenceClient" placeholder="Entrer le nombre référencent la ressource" required>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="form-group">
+        <mat-select class="form-control" id="actif" formControlName="actif" required>
+          <mat-option value="true">Vrai</mat-option>
+          <mat-option value="false">Faux</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="formField">
+        <input matInput [matDatepicker]="piker1" class="form-control"  formControlName="datesortie" placeholder="Entrée de l'Equipe" required>
+        <mat-datepicker-toggle matSuffix [for]="piker1"></mat-datepicker-toggle>
+        <mat-datepicker #piker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="formField">
+        <input matInput [matDatepicker]="piker" class="form-control" id="datesortie" formControlName="datesortie" placeholder="Sortie de l'Equipe">
+        <mat-datepicker-toggle matSuffix [for]="piker"></mat-datepicker-toggle>
+        <mat-datepicker #piker></mat-datepicker>
+      </mat-form-field>
+
+      <br>
+      <button mat-button class="btn btn-success" id="boutonValider" (click)="update()">Valider</button>
+    </fieldset>
+  </form>
 </div>

@@ -14,7 +14,7 @@ import { EquipeService } from '../../service/equipe.service';
 @Component({
   selector: 'app-edit-ressourcehascompetence',
   templateUrl: './edit-ressourcehascompetence.component.html',
-  styles: [],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [RessourcehascompetenceService, RessourceService, CompetenceService, NiveauService, EquipeService]
 })
 export class EditRessourcehascompetenceComponent implements OnInit {

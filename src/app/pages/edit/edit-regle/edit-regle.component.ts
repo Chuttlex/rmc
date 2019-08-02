@@ -24,6 +24,7 @@ export class EditRegleComponent implements OnInit {
   regle: Regle;
   equipes: Equipe[];
   competences: Competence[];
+  selectedCompetence: string;
 
   form = new FormGroup ({
     competence: new FormControl(''),
@@ -40,7 +41,7 @@ export class EditRegleComponent implements OnInit {
   ngOnInit() {
     this.regle = history.state.regle;
     this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
-    this.compService.getAll().subscribe((competences) => this.competences = competences);
+    this.compService.getAll().subscribe((competences) => {this.competences = competences; console.log(this.competences); });
   }
 
   update(): void {
@@ -49,6 +50,7 @@ export class EditRegleComponent implements OnInit {
     let equipe: Equipe;
     equipe = this.form.get('equipe').value;
     this.regle.cnom = competence.nom;
+    this.selectedCompetence = competence.nom;
     this.regle.enom = equipe.nom;
     this.regle.niveau = this.form.get('niveau').value;
     this.regle.moyenne = this.form.get('moyenne').value;

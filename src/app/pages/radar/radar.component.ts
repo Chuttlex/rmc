@@ -13,7 +13,7 @@ import * as zing from 'zingchart';
 @Component({
   selector: 'app-radar',
   templateUrl: './radar.component.html',
-  styles: ['./radar.component.css'],
+  styleUrls: ['../../../assets/stylesheets/formStyle.css'],
   providers: [RegleService, EquipeService, DispositifService, CalcService]
 })
 export class RadarComponent implements OnInit, AfterViewInit {

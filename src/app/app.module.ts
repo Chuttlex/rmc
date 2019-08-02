@@ -61,7 +61,7 @@ import {
   MatChipsModule,
   MatInputModule,
   MatTableModule,
-  MatRadioModule, MatSelectModule
+  MatRadioModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
@@ -71,6 +71,8 @@ import { DispositifhascompetenceComponent } from './pages/entitée/dispositifhas
 import { DisplayDispositifhascompetenceComponent } from './pages/affichage/display-dispositifhascompetence/display-dispositifhascompetence.component';
 import { EditDispositifhascompetenceComponent } from './pages/edit/edit-dispositifhascompetence/edit-dispositifhascompetence.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -137,7 +139,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatInputModule,
     MatTableModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     OrganismeService,

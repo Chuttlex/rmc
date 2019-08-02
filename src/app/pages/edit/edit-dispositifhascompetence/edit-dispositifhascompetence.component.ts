@@ -11,7 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-edit-dispositifhascompetence',
   templateUrl: './edit-dispositifhascompetence.component.html',
-  styleUrls: ['./edit-dispositifhascompetence.component.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [DispositifService, CompetenceService, DispositifhascompetenceService]
 })
 export class EditDispositifhascompetenceComponent implements OnInit {

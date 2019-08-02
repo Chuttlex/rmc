@@ -11,7 +11,7 @@ import { Historiqueres } from '../../classe/historiqueres';
 @Component({
   selector: 'app-edit-ressource',
   templateUrl: './edit-ressource.component.html',
-  styles: [],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [EquipeService, RessourceService, HistoriqueresService]
 })
 export class EditRessourceComponent implements OnInit {

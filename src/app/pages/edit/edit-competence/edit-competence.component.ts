@@ -9,7 +9,7 @@ import { Domaine } from '../../classe/domaine';
 @Component({
   selector: 'app-edit-competence',
   templateUrl: './edit-competence.component.html',
-  styles: [],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [CompetenceService, DomaineService]
 })
 export class EditCompetenceComponent implements OnInit {

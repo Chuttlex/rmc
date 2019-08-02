@@ -14,15 +14,14 @@ export interface TestTeam {
   ressourceNom2: number;
   ressourceNom3: number;
   ressourceNom4: number;
-  ressourceNom5: number;
+
 }
 
 const TEAM_VALUE: TestTeam[] = [
-  {competence: 'Java', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
-  {competence: 'C', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
-  {competence: '.Net', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
-  {competence: 'Js', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
-  {competence: 'C#', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
+  {competence: 'Java', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4},
+  {competence: 'C', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4},
+  {competence: '.Net', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4},
+  {competence: 'Js', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4},
 ];
 
 @Component({
@@ -37,7 +36,7 @@ export class MatriceComponent implements OnInit {
   ressources: Ressource[] = [];
   competences: Competence[] = [];
   selectedDispositif: Dispositif;
-  displayedColumns: string[] = ['competence', 'ressourceNom1', 'ressourceNom2', 'ressourceNom3', 'ressourceNom4', 'ressourceNom5'];
+  displayedColumns: string[] = ['competence', 'ressourceNom1', 'ressourceNom2', 'ressourceNom3', 'ressourceNom4'];
   columnToDisplay: string[] = this.displayedColumns.slice();
   dataSource: TestTeam[] = TEAM_VALUE;
 

@@ -9,7 +9,7 @@ import { Organisme } from '../../classe/organisme';
 @Component({
   selector: 'app-edit-dispositif',
   templateUrl: './edit-dispositif.component.html',
-  styles: [],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [DispositifService, OrganismeService]
 })
 export class EditDispositifComponent implements OnInit {

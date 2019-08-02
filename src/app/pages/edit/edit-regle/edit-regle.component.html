@@ -7,8 +7,8 @@
 
           <mat-form-field class="formField">
             <mat-label>Competence</mat-label>
-            <mat-select class="form-control" id="competence" formControlName="competence">
-              <mat-option *ngFor="let competence of competences" value="test">{{competence.nom}}</mat-option>
+            <mat-select class="form-control" id="competence" formControlName="competence" [(value)]="selectedCompetence">
+              <mat-option *ngFor="let competence of competences">{{competence.nom}}</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="formField">
@@ -19,7 +19,7 @@
           </mat-form-field>
           <mat-form-field class="formField">
             <mat-label>Niveau</mat-label>
-            <mat-select class="form-control" formControlName="niveau"  [value]="regle?.niveau" required>
+            <mat-select class="form-control" formControlName="niveau"  ([value])="regle?.niveau" required>
               <mat-option [value]="1">1</mat-option>
               <mat-option [value]="2">2</mat-option>
               <mat-option [value]="3">3</mat-option>
@@ -30,21 +30,21 @@
 
           <p>
             <label>En rapport avec une moyenne:</label>
-            <mat-radio-group class="ui-radiobutton">
-              <mat-radio-button class="form-control" id="moyenneOui" formControlName="moyenne" value=true>Oui</mat-radio-button>
-              <mat-radio-button class="form-control" id="moyenneNon" formControlName="moyenne" value=false>Non</mat-radio-button>
+            <mat-radio-group class="ui-radiobutton" formControlName="moyenne">
+              <mat-radio-button class="form-control" id="moyenneOui"  value=true>Oui</mat-radio-button>
+              <mat-radio-button class="form-control" id="moyenneNon"  value=false>Non</mat-radio-button>
             </mat-radio-group>
           </p>
 
           <table>
             <tr><mat-form-field>
-              <input matInput class="form-control" formControlName="pourcentage" maxlength="2"
+              <input matInput class="form-control" formControlName="pourcentage" maxlength="2" [value]="regle?.pourcentage"
                      placeholder="Pourcentage de ressources pour respecter la règle" required>
               <mat-icon [inline]="true" matSuffix>%</mat-icon>
             </mat-form-field></tr>
 
             <tr><td><mat-form-field id="formFieldLength">
-              <input matInput class="form-control" id="nombre" formControlName="nombre"
+              <input matInput class="form-control" id="nombre" formControlName="nombre" [value]="regle?.nombre"
                         placeholder="Nombre de ressources devant respecter la règle">
             </mat-form-field></td></tr>
           </table>
