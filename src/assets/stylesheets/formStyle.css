@@ -35,3 +35,13 @@ label {
   border: none;
 }
 
+.mat-radio-button {
+  margin-left: 16px;
+}
+ #formFieldLength {
+   width: 100%;
+ }
+
+ .formField{
+   margin-left: 6px;
+ }

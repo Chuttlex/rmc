@@ -5,48 +5,47 @@
         <legend>Modification</legend>
         <section class="nouveau">
 
-          <table class="spaceTab"><tr>
-            <td><mat-form-field class="form-group">
-              <mat-label>Competence</mat-label>
-              <mat-select class="form-control" id="competence" formControlName="competence">
-                <mat-option *ngFor="let competence of competences">{{competence.nom}}</mat-option>
-              </mat-select>
-            </mat-form-field></td>
-            <td><mat-form-field class="form-group">
-              <mat-label>Equipe</mat-label>
-              <mat-select class="form-control" id="equipe" formControlName="equipe" required>
-                <mat-option *ngFor="let equipe of equipes">{{equipe.nom}}</mat-option>
-              </mat-select>
-            </mat-form-field></td>
-            <td><mat-form-field class="form-group">
-              <mat-label>Niveau</mat-label>
-              <mat-select class="form-control" formControlName="niveau" required>
-                <mat-option [value]="1">1</mat-option>
-                <mat-option [value]="2">2</mat-option>
-                <mat-option [value]="3">3</mat-option>
-                <mat-option [value]="4">4</mat-option>
-                <mat-option [value]="5">5</mat-option>
-              </mat-select>
-            </mat-form-field></td>
-          </tr></table>
+          <mat-form-field class="formField">
+            <mat-label>Competence</mat-label>
+            <mat-select class="form-control" id="competence" formControlName="competence">
+              <mat-option *ngFor="let competence of competences" value="test">{{competence.nom}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="formField">
+            <mat-label>Equipe</mat-label>
+            <mat-select class="form-control" id="equipe" formControlName="equipe" required>
+              <mat-option *ngFor="let equipe of equipes">{{equipe.nom}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="formField">
+            <mat-label>Niveau</mat-label>
+            <mat-select class="form-control" formControlName="niveau"  [value]="regle?.niveau" required>
+              <mat-option [value]="1">1</mat-option>
+              <mat-option [value]="2">2</mat-option>
+              <mat-option [value]="3">3</mat-option>
+              <mat-option [value]="4">4</mat-option>
+              <mat-option [value]="5">5</mat-option>
+            </mat-select>
+          </mat-form-field>
 
           <p>
+            <label>En rapport avec une moyenne:</label>
             <mat-radio-group class="ui-radiobutton">
-              <label> En rapport avec une moyenne: </label>
               <mat-radio-button class="form-control" id="moyenneOui" formControlName="moyenne" value=true>Oui</mat-radio-button>
               <mat-radio-button class="form-control" id="moyenneNon" formControlName="moyenne" value=false>Non</mat-radio-button>
             </mat-radio-group>
           </p>
 
           <table>
-            <tr><mat-form-field class="form-group">
-              <textarea matInput class="form-control" formControlName="pourcentage" maxlength="2" value="50"
-                     placeholder="Pourcentage du nombre de ressources pour respecter la règle" required></textarea>
+            <tr><mat-form-field>
+              <input matInput class="form-control" formControlName="pourcentage" maxlength="2"
+                     placeholder="Pourcentage de ressources pour respecter la règle" required>
+              <mat-icon [inline]="true" matSuffix>%</mat-icon>
             </mat-form-field></tr>
 
-            <tr><td><mat-form-field class="form-group">
-              <textarea matInput class="form-control" id="nombre" formControlName="nombre"
-                        placeholder="Nombre de ressources devant respecter la règle"></textarea>
+            <tr><td><mat-form-field id="formFieldLength">
+              <input matInput class="form-control" id="nombre" formControlName="nombre"
+                        placeholder="Nombre de ressources devant respecter la règle">
             </mat-form-field></td></tr>
           </table>
 

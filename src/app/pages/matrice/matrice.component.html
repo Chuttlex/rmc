@@ -1,6 +1,36 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <caption>Matrice</caption>
 
+  <ng-container matColumnDef="competence">
+    <th mat-header-cell *matHeaderCellDef> Competences </th>
+    <td mat-cell *matCellDef="let element"> {{ element.competence }}</td>
+  </ng-container>
 
-<app-tableau [competences]="competences" [ressources]="ressources"></app-tableau>
+  <ng-container matColumnDef="ressourceNiveau1">
+    <th mat-header-cell *matHeaderCellDef> Pierre </th>
+    <td mat-cell *matCellDef="let element"> {{ element.ressourceNiveau1 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="ressourceNiveau2">
+    <th mat-header-cell *matHeaderCellDef> Paul </th>
+    <td mat-cell *matCellDef="let element"> {{ element.ressourceNiveau2 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="ressourceNiveau3">
+    <th mat-header-cell *matHeaderCellDef> Jacques </th>
+    <td mat-cell *matCellDef="let element"> {{ element.ressourceNiveau3 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="ressourceNiveau4">
+    <th mat-header-cell *matHeaderCellDef> Victor </th>
+    <td mat-cell *matCellDef="let element"> {{ element.ressourceNiveau4 }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
 
 <button mat-button [matMenuTriggerFor]="afterMenu" id="boutonAjout">Liste des équipes</button>
 <mat-menu #afterMenu="matMenu" xPosition="after">
