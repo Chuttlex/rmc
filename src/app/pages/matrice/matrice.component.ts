@@ -10,17 +10,19 @@ import { Ressource } from '../classe/ressource';
 
 export interface TestTeam {
   competence: string;
-  ressourceNiveau1: number;
-  ressourceNiveau2: number;
-  ressourceNiveau3: number;
-  ressourceNiveau4: number;
+  ressourceNom1: number;
+  ressourceNom2: number;
+  ressourceNom3: number;
+  ressourceNom4: number;
+  ressourceNom5: number;
 }
 
 const TEAM_VALUE: TestTeam[] = [
-  {competence: 'Java', ressourceNiveau1: 1, ressourceNiveau2: 1, ressourceNiveau3: 1, ressourceNiveau4: 1},
-  {competence: 'C', ressourceNiveau1: 2, ressourceNiveau2: 2, ressourceNiveau3: 2, ressourceNiveau4: 2},
-  {competence: '.Net', ressourceNiveau1: 3, ressourceNiveau2: 3, ressourceNiveau3: 3, ressourceNiveau4: 3},
-  {competence: 'Js', ressourceNiveau1: 4, ressourceNiveau2: 4, ressourceNiveau3: 4, ressourceNiveau4: 4},
+  {competence: 'Java', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
+  {competence: 'C', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
+  {competence: '.Net', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
+  {competence: 'Js', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
+  {competence: 'C#', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4, ressourceNom5: 5},
 ];
 
 @Component({
@@ -35,8 +37,9 @@ export class MatriceComponent implements OnInit {
   ressources: Ressource[] = [];
   competences: Competence[] = [];
   selectedDispositif: Dispositif;
-  displayedColumns: string[] = ['competence', 'ressourceNiveau1', 'ressourceNiveau2', 'ressourceNiveau3', 'ressourceNiveau4'];
-  dataSource = TEAM_VALUE;
+  displayedColumns: string[] = ['competence', 'ressourceNom1', 'ressourceNom2', 'ressourceNom3', 'ressourceNom4', 'ressourceNom5'];
+  columnToDisplay: string[] = this.displayedColumns.slice();
+  dataSource: TestTeam[] = TEAM_VALUE;
 
 
   constructor(private compService: CompetenceService, private dispService: DispositifService,
