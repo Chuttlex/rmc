@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Ressource } from '../../classe/ressource';
 import { RessourceService } from '../../service/ressource.service';
 import { Router } from '@angular/router';
+import { Historiqueres } from '../../classe/historiqueres';
+import { HistoriqueresService } from '../../service/historique.service';
 
 const testRessource1: Ressource = {id: 1, nom: 'Martin', prenom: 'Paul', referenceClient: 25631, equipe: 'A Team', organisme: 'Infotel', dispositif: 'Stagiaires'};
 const testRessource2: Ressource = {id: 2, nom: 'Michellac', prenom: 'Pierre', referenceClient: 35214, equipe: 'B Team', organisme: 'Infotel', dispositif: 'Stagiaires'};
@@ -11,21 +13,23 @@ const testRessource3: Ressource = {id: 3, nom: 'Briard', prenom: 'Jacques', refe
   selector: 'app-display-ressource',
   templateUrl: './display-ressource.component.html',
   styleUrls: ['../../../../assets/stylesheets/tabStyle.css'],
-  providers: [RessourceService]
+  providers: [RessourceService, HistoriqueresService]
 })
 export class DisplayRessourceComponent implements OnInit {
 
   ressources: Ressource[] = [];
+  historiques: Historiqueres[] = [];
   selectedR: Ressource;
   isSelected: boolean;
 
-  constructor(private resService: RessourceService, private router: Router) { }
+  constructor(private resService: RessourceService, private router: Router, private hitService: HistoriqueresService) { }
 
   ngOnInit() {
     this.resService.getAll().subscribe((res) => {
       this.ressources = res;
       this.isSelected = false;
       this.ressources.push(testRessource1,testRessource2,testRessource3);
+      this.hitService.getAll().subscribe((hist) => this.historiques = hist);
     });
   }
 

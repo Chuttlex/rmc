@@ -4,7 +4,7 @@
     <th>Id</th>
     <th>Nom</th>
     <th>Ressources Cibles</th>
-    <th>Dispositif</th>
+    <th>Projets</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
   <tr *ngFor="let equipe of equipes" [class.selected]="equipe === selectedEquipe" (click)="onSelect(equipe)" tabindex="0">

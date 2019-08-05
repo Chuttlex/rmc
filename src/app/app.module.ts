@@ -70,7 +70,6 @@ import { CreateRessourcehascompetenceComponent } from './pages/create/create-res
 import { DispositifhascompetenceComponent } from './pages/entitée/dispositifhascompetence/dispositifhascompetence.component';
 import { DisplayDispositifhascompetenceComponent } from './pages/affichage/display-dispositifhascompetence/display-dispositifhascompetence.component';
 import { EditDispositifhascompetenceComponent } from './pages/edit/edit-dispositifhascompetence/edit-dispositifhascompetence.component';
-import { LayoutModule } from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 

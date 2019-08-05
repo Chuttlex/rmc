@@ -5,7 +5,8 @@
   <mat-form-field [formGroup]="form" class="formField">
     <mat-select class="dispositif" formControlName="dispositif">
       <mat-option selected value="">Select</mat-option>
-      <mat-option *ngFor="let dispositif of projets" [value]="dispositif" (change)="updateEquipes($event.target.value)">{{dispositif.nom}}</mat-option>
+      <mat-option *ngFor="let dispositif of projets" [value]="dispositif" (change)="updateEquipes($event.target.value)">
+        {{dispositif.nom}}, {{dispositif.organisme}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field [formGroup]="form" class="formField">

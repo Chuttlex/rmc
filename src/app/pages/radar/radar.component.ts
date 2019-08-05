@@ -4,7 +4,6 @@ import { EquipeService } from '../service/equipe.service';
 import { DispositifService } from '../service/dispositif.service';
 import { CalcService } from '../service/calc.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { RadarConfig } from './config';
 import { Equipe } from '../classe/equipe';
 import { Dispositif } from '../classe/dispositif';
 import { Regle } from '../classe/regle';
@@ -98,7 +97,8 @@ export class RadarComponent implements OnInit, AfterViewInit {
         text : 'Equipe 2'
       },
       // added by thomas
-      {values : [70, 60, 5, 62, 21, 45],
+      {
+        values : [70, 60, 5, 62, 21, 45],
       //lineColor : '#4F57FC',
       //backgroundColor: '#333CFF',
       text : 'Equipe 3'
@@ -188,6 +188,7 @@ export class RadarComponent implements OnInit, AfterViewInit {
        text : 'Règles'
      }
    ]`;
+   this.chart.series = series;
    // regénération du radar
    zing.render({ 
     id : 'myChart', 

@@ -12,7 +12,7 @@
       <div class="form-group">
         <label for="dispositif">Associé au Projet:</label>
         <select class="form-control" id="dispositif" formControlName="dispositif" required>
-          <option *ngFor="let dispositif of dispositifs" [ngValue]="dispositif">{{dispositif.nom}}</option>
+          <option *ngFor="let dispositif of dispositifs" [ngValue]="dispositif">{{dispositif.nom}}, {{dispositif.organisme}}</option>
         </select>
       </div>
       <button type="button" (click)="create('/displayEquipe')" class="btn btn-success">Créer Equipe</button>

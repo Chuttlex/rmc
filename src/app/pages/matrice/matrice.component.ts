@@ -7,6 +7,10 @@ import { Dispositif } from '../classe/dispositif';
 import { Equipe } from '../classe/equipe';
 import { Competence } from '../classe/competence';
 import { Ressource } from '../classe/ressource';
+import { FormGroup } from '@angular/forms';
+import { Ressourcehascompetence } from '../classe/ressourcehascompetence';
+import { RessourcehascompetenceService } from '../service/ressourcehascompetence.service';
+import { Router } from '@angular/router';
 
 export interface TestTeam {
   competence: string;
@@ -28,7 +32,7 @@ const TEAM_VALUE: TestTeam[] = [
   selector: 'app-matrice',
   templateUrl: './matrice.component.html',
   styleUrls: ['../../../assets/stylesheets/tabStyle.css'],
-  providers: [CompetenceService, RessourceService, DispositifService, EquipeService]
+  providers: [CompetenceService, RessourceService, DispositifService, EquipeService, RessourcehascompetenceService]
 })
 export class MatriceComponent implements OnInit {
   dispositifs: Dispositif[];
@@ -39,10 +43,11 @@ export class MatriceComponent implements OnInit {
   displayedColumns: string[] = ['competence', 'ressourceNom1', 'ressourceNom2', 'ressourceNom3', 'ressourceNom4'];
   columnToDisplay: string[] = this.displayedColumns.slice();
   dataSource: TestTeam[] = TEAM_VALUE;
+  form: FormGroup;
 
 
-  constructor(private compService: CompetenceService, private dispService: DispositifService,
-              private resService: RessourceService, private equipeService: EquipeService) { }
+  constructor(private compService: CompetenceService, private dispService: DispositifService, private router:Router,
+              private resService: RessourceService, private equipeService: EquipeService, private rcService: RessourcehascompetenceService) { }
 
   ngOnInit() {
     this.dispService.getAll().subscribe((d) => this.dispositifs = d);
@@ -66,5 +71,14 @@ export class MatriceComponent implements OnInit {
   // Génère ou envoie les données pour le tableau
   generateTable() {
     throw new Error('Method not implemented.');
+    // Ajout de FormControl dans le FormGroup
+  }
+
+  // Création des ressourcehascomeptence
+  evaluate() {
+    let rcs: Ressourcehascompetence[] = [];
+    this.rcService.createSome(rcs).subscribe(
+      (result) => this.router.navigate(['/displayRessourcehascompetence'])
+    )
   }
 }

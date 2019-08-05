@@ -18,6 +18,11 @@ const httpOptions = {
         return this.http.post(url, JSON.stringify(rc), httpOptions);
     }
 
+    createSome(rcs: Ressourcehascompetence[]): Observable<any> {
+        const url = Constantes.url + 'api/infotel/createRessourcehascompetences';
+        return this.http.post(url, JSON.stringify(rcs), httpOptions);
+    }
+
     clear(): Observable<any> {
         return this.http.delete(Constantes.url + 'api/infotel/clearRessourcehascompetences');
     }
