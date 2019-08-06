@@ -23,7 +23,7 @@ const httpOptions = {
     }
 
     getAll(): Observable<Historiqueres[]> {
-        const url = Constantes.url + 'api/infotel/getHistorique';
+        const url = Constantes.url + 'api/infotel/getHistoriques';
         return this.http.get<Historiqueres[]>(url);
     }
 

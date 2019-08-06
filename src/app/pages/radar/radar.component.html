@@ -3,16 +3,16 @@
 </head>
 <form class="form-group">
   <mat-form-field [formGroup]="form" class="formField">
-    <mat-select class="dispositif" formControlName="dispositif">
+    <mat-select class="dispositif" formControlName="dispositif" (selectionChange)="updateEquipes($event.value)">
       <mat-option selected value="">Select</mat-option>
-      <mat-option *ngFor="let dispositif of projets" [value]="dispositif" (change)="updateEquipes($event.target.value)">
+      <mat-option *ngFor="let dispositif of projets" [value]="dispositif">
         {{dispositif.nom}}, {{dispositif.organisme}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field [formGroup]="form" class="formField">
-    <mat-select class="equipe" formControlName="equipe">
+    <mat-select class="equipe" formControlName="equipe" (selectionChange)="updateRegles($event.value)">
       <mat-option selected value="">Select</mat-option>
-      <mat-option *ngFor="let equipe of equipes" [value]="equipe" (change)="updateRegles($event.target.value)">{{equipe.nom}}</mat-option>
+      <mat-option *ngFor="let equipe of equipes" [value]="equipe">{{equipe.nom}}</mat-option>
     </mat-select>
   </mat-form-field><br>
   <button mat-button class="button" (click)="generateRadar()" id="boutonValider">Générer Radar</button>

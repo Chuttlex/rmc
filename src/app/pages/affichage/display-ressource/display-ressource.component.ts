@@ -4,6 +4,7 @@ import { RessourceService } from '../../service/ressource.service';
 import { Router } from '@angular/router';
 import { Historiqueres } from '../../classe/historiqueres';
 import { HistoriqueresService } from '../../service/historique.service';
+import { RessourcePlusHistorique } from 'src/app/autres/ressourceplushistorique';
 
 const testRessource1: Ressource = {id: 1, nom: 'Martin', prenom: 'Paul', referenceClient: 25631, equipe: 'A Team', organisme: 'Infotel', dispositif: 'Stagiaires'};
 const testRessource2: Ressource = {id: 2, nom: 'Michellac', prenom: 'Pierre', referenceClient: 35214, equipe: 'B Team', organisme: 'Infotel', dispositif: 'Stagiaires'};
@@ -19,31 +20,49 @@ export class DisplayRessourceComponent implements OnInit {
 
   ressources: Ressource[] = [];
   historiques: Historiqueres[] = [];
-  selectedR: Ressource;
+  selectedRH: RessourcePlusHistorique;
   isSelected: boolean;
+  list: RessourcePlusHistorique[] = [];
 
-  constructor(private resService: RessourceService, private router: Router, private hitService: HistoriqueresService) { }
+  constructor(private resService: RessourceService, private router: Router, private histService: HistoriqueresService) { }
 
   ngOnInit() {
     this.resService.getAll().subscribe((res) => {
       this.ressources = res;
       this.isSelected = false;
       this.ressources.push(testRessource1,testRessource2,testRessource3);
-      this.hitService.getAll().subscribe((hist) => this.historiques = hist);
+      this.histService.getAll().subscribe((hist) => {
+        this.historiques = hist;
+        this.lierRessourceEtHistorique();
+      });
     });
   }
 
-  onSelect(ressource: Ressource): void {
-    this.selectedR = ressource;
+  lierRessourceEtHistorique(): void {
+    for(let i = 0; i<this.ressources.length; i++){
+      for(let j = 0; j< this.historiques.length; j++){
+        if(this.historiques[j].rnom==this.ressources[i].nom && this.historiques[j].rprenom==this.ressources[i].prenom
+          && this.historiques[j].equipe==this.ressources[i].equipe){
+            let plus = new RessourcePlusHistorique();
+            plus.ressource = this.ressources[i];
+            plus.historique = this.historiques[j];
+            this.list.push(plus);
+          }
+      }
+    }
+  }
+
+  onSelect(rh: RessourcePlusHistorique): void {
+    this.selectedRH = rh;
     this.isSelected = true;
   }
 
   edit(): void {
-    this.router.navigate(['/editRessource'], {state: {ressource: this.selectedR}});
+    this.router.navigate(['/editRessource'], {state: {rh: this.selectedRH}});
   }
 
   add(): void {
-    this.router.navigate(['/createRessource'], {state: {ressource: this.selectedR}});
+    this.router.navigate(['/createRessource']);
   }
 
   clear(): void {

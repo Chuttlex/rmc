@@ -127,15 +127,17 @@ export class RadarComponent implements OnInit, AfterViewInit {
   }
 
   updateRegles(equipe: Equipe): void {
-    this.regleService.getByEquipe(equipe.nom).subscribe((regles) => this.regles = regles);
-    this.selectedEquipe = equipe;
-    this.generateRadar();
+    this.regleService.getByEquipe(equipe.nom).subscribe((regles) => {
+      this.regles = regles;
+      this.selectedEquipe = equipe;
+    });
+    
   }
 
   generateRadar(): void {
     // Ajout du nombre de labels et les labels
     // Exemple: values : '0:5:1', labels : ['Java','C','Javascript',"Travail d'equipe", 'Conseil', 'Angular' ],
-    let competences: string[];
+    let competences: string[] = [];
     for (let i = 0; i < this.regles.length; i++) {
       competences.push(this.regles[0].cnom);
     }
@@ -165,8 +167,8 @@ export class RadarComponent implements OnInit, AfterViewInit {
   ]
     */
    let series: string;
-   const vEquipe = [];
-   const vRegle = [];
+   let vEquipe = [];
+   let vRegle = [];
    let map: Map<String, Number>;
    // Récupère le niveau moyen de l'équipe pour chaque compétence
    this.calcService.getMoyenneForEquipe(this.selectedEquipe).subscribe((gmap) => map = gmap);
