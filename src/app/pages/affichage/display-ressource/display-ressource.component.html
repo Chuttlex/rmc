@@ -12,13 +12,17 @@
     <th>Date de sortie de l'équipe</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
-  <tr *ngFor="let ressource of ressources" [class.selected]="ressource === selectedRessource" (click)="onSelect(ressource)" tabindex="0">
-    <td>{{ressource.nom}}</td>
-    <td>{{ressource.prenom}}</td>
-    <td>{{ressource.referenceClient}}</td>
-    <td>{{ressource.equipe}}</td>
-    <td>{{ressource.organisme}}</td>
-    <td>{{ressource.dispositif}}</td>
+  <tr *ngFor="let rh of list" [class.selected]="rh === selectedRH" (click)="onSelect(rh)" tabindex="0">
+    <td>{{rh.ressource.nom}}</td>
+    <td>{{rh.ressource.prenom}}</td>
+    <td>{{rh.ressource.referenceClient}}</td>
+    <td>{{rh.ressource.equipe}}</td>
+    <td>{{rh.ressource.organisme}}</td>
+    <td>{{rh.ressource.dispositif}}</td>
+    <td>{{rh.historique.actif}}</td>
+    <td>{{rh.historique.dateentree}}</td>
+    <td>{{rh.historique.datesortie}}</td>
+>>>>>>> f432a897bc48bbbfe6d4d1ae5403ef2322f4314a
   </tr>
 </table>
 
