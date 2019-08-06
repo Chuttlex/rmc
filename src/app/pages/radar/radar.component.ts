@@ -107,18 +107,18 @@ export class RadarComponent implements OnInit, AfterViewInit {
   };
 
   constructor(private regleService: RegleService, private equipeService: EquipeService, private dispService: DispositifService,
-    private calcService: CalcService) { }
+              private calcService: CalcService) { }
 
   ngOnInit() {
     this.dispService.getAll().subscribe((dispositifs) => this.projets = dispositifs);
   }
 
   ngAfterViewInit() {
-    zing.render({ 
-      id : 'myChart', 
-      data : this.chart, 
-      height: '90%', 
-      width: '90%' 
+    zing.render ({
+      id : 'myChart',
+      data : this.chart,
+      height: '90%',
+      width: '90%'
     });
   }
 
