@@ -7,6 +7,9 @@
     <th>Equipe</th>
     <th>Organisme</th>
     <th>Projet</th>
+    <th>Actif ?</th>
+    <th>Date d'entrée dans l'équipe</th>
+    <th>Date de sortie de l'équipe</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
   <tr *ngFor="let ressource of ressources" [class.selected]="ressource === selectedRessource" (click)="onSelect(ressource)" tabindex="0">
