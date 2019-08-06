@@ -4,7 +4,7 @@
       <div class="form-group">
         <label for="competence">Compétence:</label>
         <select class="form-control" id="competence" formControlName="competenceForm" required>
-          <option *ngFor="let competence of competences" [ngValue]="competence">{{competence.nom}}, {{competence.dispositif}}</option>
+          <option *ngFor="let competence of competences" [ngValue]="competence">{{competence.nom}}</option>
         </select>
       </div>
       <div class="form-group">
