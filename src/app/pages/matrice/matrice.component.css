@@ -1,7 +1,19 @@
-#boutonEquipe {
-  background-color: #316195;
-  color: white;
-  margin: 10px;
-  font-family: Verdana, serif;
+/*les classes positions pour mettre les inputs et buttons alignés avec la table*/
+
+#selectPosition{
+  margin-left: 12%;
+  margin-top: 10px;
 }
 
+.buttonPosition {
+  margin-left: 12%;
+}
+
+td{
+  text-align: center;
+}
+
+/* classe pour modifier les header de la table*/
+.mat-header-cell{
+  text-align: center;
+}

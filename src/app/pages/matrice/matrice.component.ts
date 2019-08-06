@@ -31,7 +31,7 @@ const TEAM_VALUE: TestTeam[] = [
 @Component({
   selector: 'app-matrice',
   templateUrl: './matrice.component.html',
-  styleUrls: ['../../../assets/stylesheets/tabStyle.css'],
+  styleUrls: ['../../../assets/stylesheets/tabStyle.css', '../../../assets/stylesheets/formStyle.css', './matrice.component.css'],
   providers: [CompetenceService, RessourceService, DispositifService, EquipeService, RessourcehascompetenceService]
 })
 export class MatriceComponent implements OnInit {
@@ -45,13 +45,13 @@ export class MatriceComponent implements OnInit {
   dataSource: TestTeam[] = TEAM_VALUE;
   form: FormGroup;
 
-
   constructor(private compService: CompetenceService, private dispService: DispositifService, private router:Router,
               private resService: RessourceService, private equipeService: EquipeService, private rcService: RessourcehascompetenceService) { }
 
   ngOnInit() {
     this.dispService.getAll().subscribe((d) => this.dispositifs = d);
   }
+
 
   updateEquipes(dispositif: Dispositif) {
     this.equipeService.getByDispositif(dispositif.nom).subscribe((e) => this.equipes = e);

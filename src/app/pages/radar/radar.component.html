@@ -12,7 +12,7 @@
   <mat-form-field [formGroup]="form" class="formField">
     <mat-select class="equipe" formControlName="equipe" (selectionChange)="updateRegles($event.value)">
       <mat-option selected value="">Select</mat-option>
-      <mat-option *ngFor="let equipe of equipes" [value]="equipe">{{equipe.nom}}</mat-option>
+      <mat-option *ngFor="let equipe of equipes" [value]="equipe">{{equipe.nom}}, {{equipe.dispositif}}</mat-option>
     </mat-select>
   </mat-form-field><br>
   <button mat-button class="button" (click)="generateRadar()" id="boutonValider">Générer Radar</button>
