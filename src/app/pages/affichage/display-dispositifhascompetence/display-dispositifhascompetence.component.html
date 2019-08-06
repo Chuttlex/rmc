@@ -3,17 +3,13 @@
 <table>
   <caption>Liste des liens entre dispositifs et compétences</caption>
   <tr>
-    <th>Id Dispositif</th>
-    <th>Dispositif</th>
-    <th>Id Competence</th>
+    <th>Projet</th>
     <th>Competence</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
   <tr *ngFor="let dispositifhascompetence of dispositifhascompetences" [class.selected]="dispositifhascompetence === selectedDispositifhascompetence"
       (click)="onSelect(dispositifhascompetence)" tabindex="0">
-    <td>{{dispositifhascompetence?.idd}}</td>
     <td>{{dispositifhascompetence?.dispositif}}</td>
-    <td>{{dispositifhascompetence?.idc}}</td>
     <td>{{dispositifhascompetence?.competence}}</td>
   </tr>
 </table>

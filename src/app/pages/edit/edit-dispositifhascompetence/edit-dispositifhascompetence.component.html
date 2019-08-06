@@ -4,21 +4,21 @@
     <fieldset>
       <legend>Modification</legend>
 
-      <mat-form-field class="form-group">
+      <mat-form-field class="formField">
         <mat-select class="form-control" id="competence" formControlName="competenceForm"  placeholder="Competence" required>
           <mat-option *ngFor="let competence of competences" [value]="competence?.nom"></mat-option>
         </mat-select>
       </mat-form-field>
 
       <br>
-      <mat-form-field class="form-group">
+      <mat-form-field class="formField">
         <mat-select class="form-control" id="dispositif" formControlName="dispositifForm" placeholder="Dispositif" required>
           <mat-option *ngFor="let dispositif of dispositifs" [value]="dispositif?.nom"></mat-option>
         </mat-select>
       </mat-form-field>
 
       <br>
-      <button mat-button class="btn btn-success" (click)="update()" id="boutonValider">Modifier Projet</button>
+      <button mat-button class="formField" (click)="update()" id="boutonValider">Valider</button>
     </fieldset>
 
     </form>

@@ -3,25 +3,40 @@
   <form [formGroup]="form">
     <fieldset>
       <legend>Modification</legend>
-      <div class="form-group">
-        <select class="form-control" id="ressource" formControlName="ressource" required>
-          <option *ngFor="let ressource of ressources" [ngValue]="ressource">{{ressource?.nom}} {{ressource?.prenom}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <select class="form-control" id="competence" formControlName="competence" required>
-          <option *ngFor="let competence of competences" [ngValue]="competence">{{competence?.nom}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="niveau">Niveau:</label>
-        <input type="number" name="niveau" min="1" max="10" class="form-control" id="niveau"
-               formControlName="niveau" placeholder="1" required>
-      </div>
-      <div class="form-group">
-        <input type="date" class="form-control" id="dateevolcomp" formControlName="dateevolcomp" required>
-      </div>
-      <button type="button" class="btn btn-success" (click)="update()">Modifier</button>
+
+      <mat-form-field class="formField">
+        <mat-select id="ressource" formControlName="ressource" placeholder="Nom" required>
+          <mat-option *ngFor="let ressource of ressources" [value]="ressource?.nom"></mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="formField">
+        <mat-select class="form-control" id="competence" formControlName="competence"  placeholder="Compétence" required>
+          <mat-option *ngFor="let competence of competences" [value]="competence?.nom">{{competence?.nom}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="formField">
+        <input matInput min="1" max="10" class="form-control" id="niveau"
+               formControlName="niveau" placeholder="Niveau" required>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="formFieldDate">
+        <input matInput [matDatepicker]="piker" class="form-control"  formControlName="dateevolComp" placeholder="Date d'evaluation" required>
+        <mat-datepicker-toggle matSuffix [for]="piker"></mat-datepicker-toggle>
+        <mat-datepicker #piker></mat-datepicker>
+      </mat-form-field>
+
+      <br>
+
+      <button mat-button class="formField" id="boutonValider" (click)="update()">Valider</button>
+
     </fieldset>
-</form>
-  </div>
+  </form>
+</div>

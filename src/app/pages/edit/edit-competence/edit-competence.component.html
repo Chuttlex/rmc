@@ -3,13 +3,13 @@
   <form [formGroup]="form">
     <fieldset>
       <legend>Modification</legend>
-      <mat-form-field class="form-group">
-        <input matInput class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+      <mat-form-field class="formField">
+        <input matInput class="form-control" id="nom" formControlName="nom" placeholder="Nom" required>
       </mat-form-field>
 
       <br>
       <mat-form-field class="formField">
-        <mat-select class="form-control" id="domaine" formControlName="domaine" required>
+        <mat-select class="form-control" id="domaine" formControlName="domaine" placeholder="Domaine de Competence" required>
           <mat-option value="Technique">Technique</mat-option>
           <mat-option value="Fonctionnel">Fonctionnel</mat-option>
           <mat-option value="Exploitation">Exploitation</mat-option>
@@ -17,7 +17,7 @@
       </mat-form-field>
 
       <br>
-      <button mat-button class="btn btn-success" (click)="update()" id="boutonValider">Modifier</button>
+      <button mat-button class="formField" (click)="update()" id="boutonValider">Valider</button>
     </fieldset>
 
     </form>

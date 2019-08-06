@@ -3,13 +3,11 @@
 <table class="table-editable">
   <caption>Liste des Competences</caption>
   <tr>
-    <th>Id</th>
     <th>Nom</th>
     <th>Domaine</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
   <tr *ngFor="let competence of competences" [class.selected]="competence === selectedComeptence" (click)="onSelect(competence)" tabindex="0">
-    <td>{{competence.id}}</td>
     <td>{{competence.nom}}</td>
     <td>{{competence.domaine}}</td>
     <!--<app-competence [competence]="competence"></app-competence>-->

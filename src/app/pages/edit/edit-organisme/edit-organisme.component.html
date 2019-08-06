@@ -3,26 +3,29 @@
     <form [formGroup]="form">
       <fieldset>
         <legend>Modification</legend>
-        <section class="nouveau">
-          <div class="form-group">
-            <mat-form-field class="mat-formPerso">
-            <input matInput type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer le nom de l'organisme" [value]="organisme?.organisme"required>
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <mat-form-field class="mat-formPerso">
-              <input matInput type="text" class="form-control" formControlName="description" placeholder="Entrer une description" [value]="organisme?.description">
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <label>Echelle :</label>
-            <mat-radio-group aria-label="Echelle" id="matRadioButton" formControlName="echelle">
-              <mat-radio-button value="5" name="echelle" >5</mat-radio-button>
-              <mat-radio-button value="10" name="echelle" >10</mat-radio-button>
-            </mat-radio-group>
-          </div>
-      </section>
-      <button mat-button class="bouton" (click)="update()" id="boutonValider">Valider</button>
+
+        <mat-form-field class="mat-formPerso">
+          <input matInput type="text" class="form-control" id="nom" formControlName="nom" placeholder="Nom de l'organisme" [value]="organisme?.organisme"required>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="mat-formPerso">
+          <input matInput formControlName="description" placeholder="Description de l'organisme" [value]="organisme?.description">
+        </mat-form-field>
+
+        <br>
+
+        <label>Echelle de notation:</label>
+        <mat-radio-group aria-label="Echelle" id="matRadioButton" formControlName="echelle">
+          <mat-radio-button value="5" name="echelle" >5</mat-radio-button>
+          <mat-radio-button value="10" name="echelle" >10</mat-radio-button>
+        </mat-radio-group>
+
+        <br>
+
+        <button mat-button class="formField" (click)="update()" id="boutonValider">Valider</button>
+
       </fieldset>
    </form>
   </div>

@@ -1,13 +1,11 @@
 <table>
   <caption>Liste des Organismes</caption>
   <tr>
-    <th>Id</th>
     <th>Organisme</th>
     <th>Description</th>
   </tr>
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
   <tr *ngFor="let organisme of organismes" [class.selected]="organisme === selectedOrganisme" (click)="onSelect(organisme)" tabindex="0">
-    <td>{{organisme.id}}</td>
     <td>{{organisme.organisme}}</td>
     <td>{{organisme.description}}</td>
     <!--<app-organisme [organisme]="organisme"></app-organisme>-->

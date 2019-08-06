@@ -4,7 +4,7 @@
     <fieldset>
       <legend>Modification</legend>
 
-      <mat-form-field class="form-group">
+      <mat-form-field class="formField">
         <mat-select class="form-control" id="equipe" formControlName="equipe" placeholder="Equipe" required>
           <mat-option *ngFor="let equipe of equipes" [value]="equipe?.nom"></mat-option>
         </mat-select>
@@ -13,43 +13,47 @@
       <br>
 
       <mat-form-field class="formField">
-        <input matInput class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
+        <input matInput class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom"  [value]="ressource?.nom" required>
       </mat-form-field>
+
       <mat-form-field class="formField">
-        <input matInput class="form-control" id="prenom" formControlName="prenom" placeholder="Entrer un prénom" required>
+        <input matInput class="form-control" id="prenom" formControlName="prenom" placeholder="Entrer un prénom"  [value]="ressource?.prenom" required>
       </mat-form-field>
 
       <br>
 
-      <mat-form-field class="form-group">
-        <input matInput class="form-control" id="referenceClient" formControlName="referenceClient" placeholder="Entrer le nombre référencent la ressource" required>
+      <mat-form-field class="formField">
+        <input matInput class="form-control" id="referenceClient" formControlName="referenceClient"
+               placeholder="Reference ressource" [value]="ressource?.referenceClient" required>
       </mat-form-field>
 
       <br>
 
-      <mat-form-field class="form-group">
-        <mat-select class="form-control" id="actif" formControlName="actif" required>
-          <mat-option value="true">Vrai</mat-option>
-          <mat-option value="false">Faux</mat-option>
+      <mat-form-field class="formField">
+        <mat-select class="form-control" id="actif" formControlName="actif" placeholder="Si actif" required>
+          <mat-option value="true">Oui</mat-option>
+          <mat-option value="false">Non</mat-option>
         </mat-select>
       </mat-form-field>
 
       <br>
 
-      <mat-form-field class="formField">
+      <mat-form-field class="formFieldDate">
         <input matInput [matDatepicker]="piker1" class="form-control"  formControlName="datesortie" placeholder="Entrée de l'Equipe" required>
         <mat-datepicker-toggle matSuffix [for]="piker1"></mat-datepicker-toggle>
         <mat-datepicker #piker1></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field class="formField">
+      <mat-form-field class="formFieldDate">
         <input matInput [matDatepicker]="piker" class="form-control" id="datesortie" formControlName="datesortie" placeholder="Sortie de l'Equipe">
         <mat-datepicker-toggle matSuffix [for]="piker"></mat-datepicker-toggle>
         <mat-datepicker #piker></mat-datepicker>
       </mat-form-field>
 
       <br>
-      <button mat-button class="btn btn-success" id="boutonValider" (click)="update()">Valider</button>
+
+      <button mat-button class="formField" id="boutonValider" (click)="update()">Valider</button>
+
     </fieldset>
   </form>
 </div>

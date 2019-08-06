@@ -3,25 +3,29 @@
     <form [formGroup]="form">
       <fieldset>
         <legend>Modification</legend>
-        <mat-form-field class="form-group">
-          <input matInput class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" [value]="dispositif?.nom" required>
+
+        <mat-form-field class="formField">
+          <input matInput class="form-control" id="nom" formControlName="nom" placeholder="Nom" [value]="dispositif?.nom" required>
         </mat-form-field>
 
         <br>
-        <mat-form-field class="form-group">
-          <input matInput class="form-control" formControlName="description" placeholder="Entrer une description" [value]="dispositif?.description">
+
+        <mat-form-field class="formField">
+          <input matInput class="form-control" formControlName="description" placeholder="Description" [value]="dispositif?.description">
         </mat-form-field>
 
         <br>
-        <mat-form-field class="form-group">
-          <mat-select class="form-control" id="organisme" formControlName="organisme" required>
-            <mat-option *ngFor="let organisme of organismes" [value]="organisme">{{organisme.organisme}}</mat-option>
+
+        <mat-form-field class="formField">
+          <mat-select id="organisme" formControlName="organisme" placeholder="Organisme" required>
+            <mat-option *ngFor="let organisme of organismes" [value]="organisme?.organisme">{{organisme.organisme}}</mat-option>
           </mat-select>
         </mat-form-field>
 
         <br>
-        <button mat-button class="btn btn-success" (click)="update()" id="boutonValider">Modifier Projet</button>
-      </fieldset>
 
+        <button mat-button class="formField" (click)="update()" id="boutonValider">Valider</button>
+
+      </fieldset>
     </form>
   </div>

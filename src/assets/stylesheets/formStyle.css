@@ -21,6 +21,7 @@ label {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
+  margin-left: 6px;
 }
 
 #boutonValider{
@@ -46,3 +47,7 @@ label {
    margin-left: 6px;
  }
 
+.formFieldDate {
+  width: 13%;
+  margin-left: 6px;
+}

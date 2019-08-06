@@ -1,33 +1,32 @@
 <div class="container">
     <h1>Modifier une équipe</h1>
     <form [formGroup]="form" >
-      <section class="actuel">
-          <div class="form-group">
-              <label for="nom">Nom:</label>
-              <span class="nom">{{equipe?.nom}}</span>
-            </div>
-            <div class="form-group">
-              <label for="rescible">Nombre de personnes minimum dans l'équipe:</label>
-              <span class="rescible">{{equipe?.rescible}}</span>
-            </div>
-            <div class="form-group">
-              <label for="dispositif">Associé au Projet:</label>
-              <span class="dispositif">{{equipe?.dispositif}}</span>
-            </div>
-      </section>
-      <section class="nouveau">
-          <div class="form-group">
-              <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
-            </div>
-            <div class="form-group">
-              <input type="number" class="form-control" value="1" formControlName="rescible" placeholder="Entrer un nombre supérieur à 0" required>
-            </div>
-            <div class="form-group">
-              <select class="form-control" id="dispositif" formControlName="dispositif" required>
-                <option *ngFor="let dispositif of dispositifs" [ngValue]="dispositif">{{dispositif.nom}}</option>
-              </select>
-            </div>
-      </section>      
-      <button type="button" class="btn btn-success" (click)="update()">Modifier</button>
+      <fieldset>
+        <legend>Modification</legend>
+
+        <mat-form-field class="formField">
+          <input matInput class="mat-form-field" id="nom" formControlName="nom" placeholder="Nom" [value]="equipe?.nom" required>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="formField">
+          <input matInput class="form-control" value="1" formControlName="rescible" placeholder="Nombre supérieur à 0" required>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="formField">
+          <mat-select class="form-control" id="dispositif" formControlName="dispositif"  placeholder="Projet" required>
+            <mat-option *ngFor="let dispositif of dispositifs" [value]="dispositif?.nom"></mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <br>
+
+        <button mat-button class="formField" (click)="update()" id="boutonValider">Valider</button>
+
+      </fieldset>
+
 </form>
   </div>

@@ -3,53 +3,57 @@
     <form [formGroup]="form">
       <fieldset>
         <legend>Modification</legend>
-        <section class="nouveau">
 
-          <mat-form-field class="formField">
-            <mat-label>Competence</mat-label>
-            <mat-select class="form-control" id="competence" formControlName="competence" [(value)]="selectedCompetence">
-              <mat-option *ngFor="let competence of competences">{{competence.nom}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="formField">
-            <mat-label>Equipe</mat-label>
-            <mat-select class="form-control" id="equipe" formControlName="equipe" required>
-              <mat-option *ngFor="let equipe of equipes">{{equipe.nom}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="formField">
-            <mat-label>Niveau</mat-label>
-            <mat-select class="form-control" formControlName="niveau"  ([value])="regle?.niveau" required>
-              <mat-option [value]="1">1</mat-option>
-              <mat-option [value]="2">2</mat-option>
-              <mat-option [value]="3">3</mat-option>
-              <mat-option [value]="4">4</mat-option>
-              <mat-option [value]="5">5</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <mat-form-field class="formField">
+          <mat-label>Competence</mat-label>
+          <mat-select class="form-control" id="competence" formControlName="competence" [(value)]="selectedCompetence">
+            <mat-option *ngFor="let competence of competences">{{competence.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-          <p>
-            <label>En rapport avec une moyenne:</label>
-            <mat-radio-group class="ui-radiobutton" formControlName="moyenne">
-              <mat-radio-button class="form-control" id="moyenneOui"  value=true>Oui</mat-radio-button>
-              <mat-radio-button class="form-control" id="moyenneNon"  value=false>Non</mat-radio-button>
-            </mat-radio-group>
-          </p>
+        <mat-form-field class="formField">
+          <mat-label>Equipe</mat-label>
+          <mat-select class="form-control" id="equipe" formControlName="equipe" required>
+            <mat-option *ngFor="let equipe of equipes">{{equipe.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-          <table>
-            <tr><mat-form-field>
-              <input matInput class="form-control" formControlName="pourcentage" maxlength="2" [value]="regle?.pourcentage"
-                     placeholder="Pourcentage de ressources pour respecter la règle" required>
-              <mat-icon [inline]="true" matSuffix>%</mat-icon>
-            </mat-form-field></tr>
+        <mat-form-field class="formField">
+          <mat-label>Niveau</mat-label>
+          <mat-select class="form-control" formControlName="niveau"  ([value])="regle?.niveau" required>
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+            <mat-option [value]="4">4</mat-option>
+            <mat-option [value]="5">5</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-            <tr><td><mat-form-field id="formFieldLength">
-              <input matInput class="form-control" id="nombre" formControlName="nombre" [value]="regle?.nombre"
-                        placeholder="Nombre de ressources devant respecter la règle">
-            </mat-form-field></td></tr>
-          </table>
+        <br>
 
-        </section>
+        <label>En rapport avec une moyenne:</label>
+        <mat-radio-group class="ui-radiobutton" formControlName="moyenne">
+          <mat-radio-button class="form-control" id="moyenneOui"  value=true>Oui</mat-radio-button>
+          <mat-radio-button class="form-control" id="moyenneNon"  value=false>Non</mat-radio-button>
+        </mat-radio-group>
+
+        <br>
+
+        <mat-form-field class="mat-formPerso">
+          <input matInput formControlName="pourcentage" maxlength="2" [value]="regle?.pourcentage"
+                    placeholder="Ressources pour respecter la règle (en pourcentage)" required>
+          <mat-icon [inline]="true" matSuffix>%</mat-icon>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field  class="mat-formPerso">
+          <input matInput class="form-control" id="nombre" formControlName="nombre" [value]="regle?.nombre"
+                 placeholder="Ressources devant respecter la règle">
+        </mat-form-field>
+
+        <br>
+
         <button mat-button class="bouton" (click)="update()" id="boutonValider">Valider</button>
       </fieldset>
     </form>
