@@ -6,7 +6,7 @@
 
         <mat-form-field class="formField">
           <mat-select  id="competence" formControlName="competenceForm" placeholder="Compétence" required>
-            <mat-option *ngFor="let competence of competences" [value]="competence">{{competence.nom}}, {{competence.dispositif}}</mat-option>
+            <mat-option *ngFor="let competence of competences" [value]="competence">{{competence.nom}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -25,7 +25,7 @@
         <br/>
 
         <mat-form-field class="formFieldDate">
-          <input matInput [matDatepicker]="piker"  placeholder="Date">
+          <input matInput [matDatepicker]="piker"  placeholder="Date" formControlName="dateEvolForm">
           <mat-datepicker-toggle matSuffix [for]="piker"></mat-datepicker-toggle>
           <mat-datepicker #piker></mat-datepicker>
         </mat-form-field>

@@ -10,12 +10,15 @@ import { Regle } from '../classe/regle';
 import * as zing from 'zingchart';
 import { CompetenceService } from '../service/competence.service';
 import { Competence } from '../classe/competence';
+import { Ressourcehascompetence } from '../classe/ressourcehascompetence';
+import { RessourcehascompetenceService } from '../service/ressourcehascompetence.service';
+import { RSA_PKCS1_OAEP_PADDING } from 'constants';
 
 @Component({
   selector: 'app-radar',
   templateUrl: './radar.component.html',
   styleUrls: ['../../../assets/stylesheets/formStyle.css'],
-  providers: [RegleService, EquipeService, DispositifService, CalcService, CompetenceService]
+  providers: [RegleService, EquipeService, DispositifService, CalcService, CompetenceService, RessourcehascompetenceService]
 })
 export class RadarComponent implements OnInit, AfterViewInit {
   equipes: Equipe[];
@@ -110,7 +113,7 @@ export class RadarComponent implements OnInit, AfterViewInit {
   };
 
   constructor(private regleService: RegleService, private equipeService: EquipeService, private dispService: DispositifService,
-              private calcService: CalcService, private compService: CompetenceService) { }
+              private calcService: CalcService, private compService: CompetenceService, private rcService: RessourcehascompetenceService) { }
 
   ngOnInit() {
     this.dispService.getAll().subscribe((dispositifs) => this.projets = dispositifs);
@@ -172,34 +175,62 @@ export class RadarComponent implements OnInit, AfterViewInit {
     */
    let vEquipe = [];
    let vRegle = [];
-   let map = new Map<String, Number>();
    // Récupère le niveau moyen de l'équipe pour chaque compétence
-   this.calcService.getMoyenneForEquipe(this.selectedEquipe).subscribe((gmap) => map = gmap);
-   for(let i = 0; i< comps.length; i++) {
-       if (this.regles[i].cnom === comps[i]) {
-         vRegle.push(this.regles[i].niveau+"");
+   let rcs: Ressourcehascompetence[] = [];
+   this.rcService.getAll().subscribe((g) => {
+     // récupérer toutes les évaluations
+     rcs = g;
+     // filtrer par l'équipe
+     rcs.filter((rc) => {rc.equipe === this.selectedEquipe.nom});
+     console.log(rcs);
+     // reduce pour avoir la dernière évaluation pour une ressource couplé à une compétence
+     rcs.reduce((rc1, rc2) => {
+       if(rc1.cnom == rc2.cnom && rc1.rnom == rc2.rnom && rc1.rprenom == rc2.rprenom && rc1.dateEvolComp>rc2.dateEvolComp){
+         return rc1;
        }
-       vEquipe.push(map.get(comps[i])+"");
-   }
-   console.log("Equipe: " + vEquipe);
-   console.log("Regle: " + vRegle);
-   let series = [
-     {
-       "values" : vEquipe,
-       "text" : 'Equipe'
-     },
-     {
-       "values": vRegle,
-       "text" : 'Règles'
+       else if(rc1.cnom == rc2.cnom && rc1.rnom == rc2.rnom && rc1.rprenom == rc2.rprenom && rc1.dateEvolComp<=rc2.dateEvolComp){
+        return rc2;
+      }
+     })
+     // calcul de la moyenne pour chaque compétence
+     for(let a = 0; a< comps.length; a++){
+       let somme = 0;
+       for(let b = 0; b< rcs.length; b++){
+         // Si l'évaluation correspond à la bonne compétence
+         if(rcs[b].cnom == comps[a]){
+           somme+=rcs[b].niveau;
+         }
+       }
+       vEquipe.push(somme/rcs.length*comps.length);
      }
-   ];
-   this.chart.series = series;
-   // regénération du radar
-   zing.render({ 
-    id : 'myChart', 
-    data : this.chart, 
-    height: '90%', 
-    width: '90%' 
-  });
+     for(let i = 0; i< comps.length; i++) {
+      for(let j=0; j<this.regles.length; j++){
+        if (this.regles[j].cnom === comps[i]) {
+          vRegle.push(this.regles[j].niveau+"");
+        }
+        // vEquipe.push(map.get(comps[i])+"");
+      }
+    }
+    console.log("Equipe: " + vEquipe);
+    console.log("Regle: " + vRegle);
+    let series = [
+      {
+        "values" : vEquipe,
+        "text" : 'Equipe'
+      },
+      {
+        "values": vRegle,
+        "text" : 'Règles'
+      }
+    ];
+    this.chart.series = series;
+    // regénération du radar
+    zing.render({ 
+     id : 'myChart', 
+     data : this.chart, 
+     height: '90%', 
+     width: '90%' 
+   });
+   })
   }
 }
