@@ -6,14 +6,14 @@
 
         <mat-form-field class="formField">
           <mat-select id="competence" formControlName="competence" placeholder="Compétence">
-            <mat-option *ngFor="let competence of competences" [value]="competence?.nom">{{competence.nom}}</mat-option>
+            <mat-option *ngFor="let competence of competences" [value]="competence">{{competence.nom}}</mat-option>
           </mat-select>
         </mat-form-field>
 
 
         <mat-form-field class="formField">
           <mat-select id="equipe" formControlName="equipe" placeholder="Equipe" required>
-            <mat-option *ngFor="let equipe of equipes" [value]="equipe?.nom">{{equipe.nom}}, {{equipe.dispositif}}</mat-option>
+            <mat-option *ngFor="let equipe of equipes" [value]="equipe">{{equipe.nom}}, {{equipe.dispositif}}</mat-option>
           </mat-select>
         </mat-form-field>
 

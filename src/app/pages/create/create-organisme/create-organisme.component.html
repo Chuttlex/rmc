@@ -17,7 +17,7 @@
         <br/>
 
         <label>Echelle :</label>
-        <mat-radio-group class="mat-radio-button">
+        <mat-radio-group class="mat-radio-button" id>
           <mat-radio-button value="5">5</mat-radio-button>
           <mat-radio-button value="10">10</mat-radio-button>
         </mat-radio-group>
@@ -28,7 +28,7 @@
         <mat-menu #choix="matMenu">
           <button mat-menu-item (click)="create('/displayOrganisme')" class="btn btn-success">Valider</button>
           <button mat-menu-item (click)="create('/createOrganisme')" class="btn btn-success">Valider & créer un nouvel Organisme</button>
-          <button mat-menu-item (click)="create('/createDispositif')" class="btn btn-success">Valider et créer un Projet</button>
+          <button mat-menu-item (click)="create('/createDispositif')" class="btn btn-success">Valider & créer un Projet</button>
         </mat-menu>
 
         <!-- On garde la version bouton classique en cas de bug lors de l'utilisation du mat-button menu

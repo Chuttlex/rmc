@@ -17,7 +17,7 @@
 
       <mat-form-field class="formField">
         <mat-select formControlName="dispositif" placeholder="Associé au Projet" required>
-          <mat-option *ngFor="let dispositif of dispositifs" [value]="dispositif?.nom">{{dispositif.nom}}, {{dispositif.organisme}}</mat-option>
+          <mat-option *ngFor="let dispositif of dispositifs" [value]="dispositif">{{dispositif.nom}}, {{dispositif.organisme}}</mat-option>
         </mat-select>
       </mat-form-field>
 
