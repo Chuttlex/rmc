@@ -86,9 +86,9 @@ export class CreateDispositifComponent implements OnInit {
     const disp = new Dispositif();
     disp.nom = this.form.get('nom').value;
     disp.description = this.form.get('description').value;
-    let org: Organisme;
+    let org: string;
     org = this.form.get('organisme').value;
-    disp.organisme = org.organisme;
+    disp.organisme = org;
     let cs : Competence[] = [];
     for(let i = 0; i < this.competencesT.length; i++) {
       let c = new Competence();

@@ -170,32 +170,29 @@ export class RadarComponent implements OnInit, AfterViewInit {
     }
   ]
     */
-   let series: string;
    let vEquipe = [];
    let vRegle = [];
    let map = new Map<String, Number>();
    // Récupère le niveau moyen de l'équipe pour chaque compétence
    this.calcService.getMoyenneForEquipe(this.selectedEquipe).subscribe((gmap) => map = gmap);
-   while (vEquipe.length !== this.competences.length && vRegle.length !== this.competences.length) {
-     for (let j = 0; j < this.competences.length; j++) {
-       if (this.regles[j].cnom === this.competences[j].nom) {
-         vRegle.push(this.regles[j].niveau+"");
+   for(let i = 0; i< comps.length; i++) {
+       if (this.regles[i].cnom === comps[i]) {
+         vRegle.push(this.regles[i].niveau+"");
        }
-       vEquipe.push(map.get(this.competences[j].nom)+"");
-     }
+       vEquipe.push(map.get(comps[i])+"");
    }
    console.log("Equipe: " + vEquipe);
    console.log("Regle: " + vRegle);
-   series = `[
+   let series = [
      {
-       values :` + vEquipe + `,
-       text : 'Equipe',
+       "values" : vEquipe,
+       "text" : 'Equipe'
      },
      {
-       values: ` + vRegle + `,
-       text : 'Règles'
+       "values": vRegle,
+       "text" : 'Règles'
      }
-   ]`;
+   ];
    this.chart.series = series;
    // regénération du radar
    zing.render({ 
