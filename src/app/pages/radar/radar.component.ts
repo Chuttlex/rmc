@@ -8,17 +8,20 @@ import { Equipe } from '../classe/equipe';
 import { Dispositif } from '../classe/dispositif';
 import { Regle } from '../classe/regle';
 import * as zing from 'zingchart';
+import { CompetenceService } from '../service/competence.service';
+import { Competence } from '../classe/competence';
 
 @Component({
   selector: 'app-radar',
   templateUrl: './radar.component.html',
   styleUrls: ['../../../assets/stylesheets/formStyle.css'],
-  providers: [RegleService, EquipeService, DispositifService, CalcService]
+  providers: [RegleService, EquipeService, DispositifService, CalcService, CompetenceService]
 })
 export class RadarComponent implements OnInit, AfterViewInit {
   equipes: Equipe[];
   projets: Dispositif[];
   regles: Regle[];
+  competences: Competence[];
 
   form = new FormGroup ({
     dispositif: new FormControl(''),
@@ -29,10 +32,10 @@ export class RadarComponent implements OnInit, AfterViewInit {
   chart: zing.Chart = {
     type : 'radar',
     title : {
-      text : "Radar utilisant Zing"
+      text : "Radar affichant le niveau d'une équipe et le niveau souhaité dans une règle pour des compétences"
     },
     subtitle : {
-      text : "petit test"
+      // text : "petit test"
     },
     legend :{
         "highlight-plot":true,
@@ -107,7 +110,7 @@ export class RadarComponent implements OnInit, AfterViewInit {
   };
 
   constructor(private regleService: RegleService, private equipeService: EquipeService, private dispService: DispositifService,
-              private calcService: CalcService) { }
+              private calcService: CalcService, private compService: CompetenceService) { }
 
   ngOnInit() {
     this.dispService.getAll().subscribe((dispositifs) => this.projets = dispositifs);
@@ -123,7 +126,10 @@ export class RadarComponent implements OnInit, AfterViewInit {
   }
 
   updateEquipes(disp: Dispositif): void {
-    this.equipeService.getByDispositif(disp.nom).subscribe((equipes) => this.equipes = equipes);
+    this.equipeService.getByDispositif(disp.nom).subscribe((equipes) => {
+      this.equipes = equipes;
+      this.compService.getByDispositif(disp.nom).subscribe((comps) => this.competences = comps);
+    });
   }
 
   updateRegles(equipe: Equipe): void {
@@ -137,14 +143,12 @@ export class RadarComponent implements OnInit, AfterViewInit {
   generateRadar(): void {
     // Ajout du nombre de labels et les labels
     // Exemple: values : '0:5:1', labels : ['Java','C','Javascript',"Travail d'equipe", 'Conseil', 'Angular' ],
-    let competences: string[] = [];
-    for (let i = 0; i < this.regles.length; i++) {
-      competences.push(this.regles[0].cnom);
+    let comps: string[] = [];
+    for (let i = 0; i < this.competences.length; i++) {
+      comps.push(this.competences[i].nom);
     }
-    // Filtrage pour avoir chaque compétence en 1 exemplaire
-    competences = competences.filter((elem, index, self) => index === self.indexOf(elem));
-    this.chart.scaleK.values = "'0:" + competences.length + ":1'";
-    this.chart.scaleK.labels = competences;
+    this.chart.scaleK.values = "'0:" + this.competences.length + ":1'";
+    this.chart.scaleK.labels = comps;
     // Ajout des valeurs
     // Exemple:
     /*
@@ -169,18 +173,20 @@ export class RadarComponent implements OnInit, AfterViewInit {
    let series: string;
    let vEquipe = [];
    let vRegle = [];
-   let map: Map<String, Number>;
+   let map = new Map<String, Number>();
    // Récupère le niveau moyen de l'équipe pour chaque compétence
    this.calcService.getMoyenneForEquipe(this.selectedEquipe).subscribe((gmap) => map = gmap);
-   while (vEquipe.length === competences.length && vRegle.length === competences.length) {
-     for (let j = 0; j < competences.length; j++) {
-       if (this.regles[j].cnom === competences[j]) {
-         vRegle.push(this.regles[j].niveau.toString());
+   while (vEquipe.length !== this.competences.length && vRegle.length !== this.competences.length) {
+     for (let j = 0; j < this.competences.length; j++) {
+       if (this.regles[j].cnom === this.competences[j].nom) {
+         vRegle.push(this.regles[j].niveau+"");
        }
-       vEquipe.push(map.get(competences[j]).toString());
+       vEquipe.push(map.get(this.competences[j].nom)+"");
      }
    }
-   series = `series : [
+   console.log("Equipe: " + vEquipe);
+   console.log("Regle: " + vRegle);
+   series = `[
      {
        values :` + vEquipe + `,
        text : 'Equipe',
