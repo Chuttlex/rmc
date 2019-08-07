@@ -1,25 +1,26 @@
 <div class="container">
     <h1>Créer un Projet</h1>
     <form [formGroup]="form">
-      <div class="form-group">
-        <label for="nom">Nom:</label>
-        <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
-      </div>
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <input type="text" class="form-control" formControlName="description" placeholder="Entrer une description">
-      </div>
-      <div class="form-group">
-        <label for="domaine">Organisme:</label>
-        <select class="form-control" id="organisme" formControlName="organisme" required>
-          <option *ngFor="let organisme of organismes" [ngValue]="organisme">{{organisme.organisme}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="competence">Entrez les Compétences à créer</label>
+      <fieldset>
+        <legend>Création</legend>
+
+        <mat-form-field class="formField">
+          <input matInput formControlName="nom" placeholder="Nom" required>
+        </mat-form-field>
+
+        <mat-form-field class="formField">
+          <mat-select id="organisme" formControlName="organisme" placeholder="Organisme" required>
+            <mat-option *ngFor="let organisme of organismes" [value]="organisme?.organisme">{{organisme.organisme}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="formField">
+          <textarea matInput formControlName="description" placeholder="Description"></textarea>
+        </mat-form-field>
+
         <br/>
-        <div id="technique">
-            <h2>Entrez les compétences techniques</h2>
+
+        <h3>Compétences Techniques</h3>
         <mat-form-field class="example-chip-list">
           <mat-chip-list #chipList aria-label="Competence selection">
             <mat-chip
@@ -31,7 +32,6 @@
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
             <input
-              placeholder="Nouvelle compétence"
               #competenceInputT
               [formControl]="competenceTCtrl"
               [matAutocomplete]="autoT"
@@ -46,10 +46,10 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-      </div>
-      <br/>
-      <div id="fonctionnel">
-          <h2>Entrez les compétences fonctionelles</h2>
+
+        <br/>
+
+        <h3>Compétences Fonctionnelles</h3>
         <mat-form-field class="example-chip-list">
           <mat-chip-list #chipList aria-label="Competence selection">
             <mat-chip
@@ -61,7 +61,6 @@
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
             <input
-              placeholder="Nouvelle compétence"
               #competenceInputF
               [formControl]="competenceFCtrl"
               [matAutocomplete]="autoF"
@@ -76,10 +75,10 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-      </div>
-      <br/>
-      <div id="exploitation">
-        <h2>Entrez les compétences d'exploitation</h2>
+
+        <br/>
+
+        <h3>Compétences d'éxploitation</h3>
         <mat-form-field class="example-chip-list">
           <mat-chip-list #chipList aria-label="Competence selection">
             <mat-chip
@@ -91,7 +90,6 @@
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
             <input
-              placeholder="Nouvelle compétence"
               #competenceInputE
               [formControl]="competenceECtrl"
               [matAutocomplete]="autoE"
@@ -106,12 +104,27 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-      </div>
-      </div>
-      <button type="button" class="btn btn-success" (click)="create('/displayDispositif')">Créer Projet</button>
-    <br/>
-      <button type="button" class="btn btn-success" (click)="create('/createEquipe')">Créer Projet et Equipe</button>
-  <br/>
-      <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Projet et Compétence</button>
+
+        <br/>
+
+        <button mat-button id="boutonValider" [matMenuTriggerFor]="choix">Valider</button>
+        <mat-menu #choix="matMenu">
+          <button mat-menu-item (click)="create('/displayDispositif')">Valider</button>
+          <button mat-menu-item (click)="create('/createEquipe')">Valider & créer une Equipe</button>
+          <button mat-menu-item (click)="create('/createCompetence')">Valider & créer une Compétence</button>
+        </mat-menu>
+
+        <!-- On garde la version bouton classique en cas de bug lors de l'utilisation du mat-button menu
+
+        <button type="button" class="btn btn-success" (click)="create('/displayDispositif')">Créer Projet</button>
+        <br/>
+        <button type="button" class="btn btn-success" (click)="create('/createEquipe')">Créer Projet et Equipe</button>
+        <br/>
+        <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Projet et Compétence</button>
+
+        -->
+
+
+      </fieldset>
     </form>
   </div>

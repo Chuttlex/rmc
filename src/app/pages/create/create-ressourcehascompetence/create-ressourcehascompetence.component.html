@@ -1,32 +1,55 @@
 <div class="container">
     <h1>Créer une Ressource liée</h1>
     <form [formGroup]="form">
-      <div class="form-group">
-        <label for="competence">Compétence:</label>
-        <select class="form-control" id="competence" formControlName="competenceForm" required>
-          <option *ngFor="let competence of competences" [ngValue]="competence">{{competence.nom}}, {{competence.dispositif}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="ressource">Ressource:</label>
-        <select class="form-control" id="ressource" formControlName="ressourceForm" required>
-          <option *ngFor="let ressource of ressources" [ngValue]="ressource">{{ressource.nom}} {{ressource.prenom}}, {{ressource.equipe}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-          <label for="niveau">Niveau:</label>
-          <input type="number" name="niveau" min="1" max="10" class="form-control" id="niveau" 
-          formControlName="niveauForm" placeholder="1" required>
-        </div>
-        <div class="form-group">
-            <label for="date">Date:</label>
-            <input type="date" class="form-control" id="dateEvol" formControlName="dateEvolForm" required>
-          </div>
-     <button type="button" class="btn btn-success" (click)="create('/displayRessourcehascompetence')">Créer Ressource liée</button>
+      <fieldset>
+        <legend> Création </legend>
+
+        <mat-form-field class="formField">
+          <mat-select  id="competence" formControlName="competenceForm" placeholder="Compétence" required>
+            <mat-option *ngFor="let competence of competences" [value]="competence">{{competence.nom}}, {{competence.dispositif}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="formField">
+          <mat-select id="ressource" formControlName="ressourceForm" placeholder="Ressource" required>
+            <mat-option *ngFor="let ressource of ressources" [value]="ressource">{{ressource.nom}} {{ressource.prenom}}, {{ressource.equipe}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <br/>
-      <button type="button" class="btn btn-success" (click)="create('/createRessourcehascompetence')">Créer Ressource liée et créer une nouvelle Ressource liée</button>
-      <br/>
-      <button type="button" class="btn btn-success" (click)="create('/createRegle')">Créer Ressource liée et Règle</button>
+
+        <mat-form-field class="formField">
+          <input matInput id="niveau" formControlName="niveauForm" placeholder="Niveau" required>
+        </mat-form-field>
+
+        <br/>
+
+        <mat-form-field class="formFieldDate">
+          <input matInput [matDatepicker]="piker"  placeholder="Date">
+          <mat-datepicker-toggle matSuffix [for]="piker"></mat-datepicker-toggle>
+          <mat-datepicker #piker></mat-datepicker>
+        </mat-form-field>
+
+        <br/>
+
+        <button mat-button id="boutonValider" [matMenuTriggerFor]="choix">Valider</button>
+        <mat-menu #choix="matMenu">
+          <button mat-menu-item (click)="create('/displayRessourcehascompetence')">Valider</button>
+          <button mat-menu-item (click)="create('/createRessourcehascompetence')">Valider & créer une nouvelle Ressource liée</button>
+          <button mat-menu-item (click)="create('/createRegle')">Valider & créer une Règle</button>
+        </mat-menu>
+
+        <!--
+
+        <button type="button" class="btn btn-success" (click)="create('/displayRessourcehascompetence')">Créer Ressource liée</button>
+        <br/>
+        <button type="button" class="btn btn-success" (click)="create('/createRessourcehascompetence')">Créer Ressource liée et créer une nouvelle Ressource liée</button>
+        <br/>
+        <button type="button" class="btn btn-success" (click)="create('/createRegle')">Créer Ressource liée et Règle</button>
+
+        -->
+
+      </fieldset>
     </form>
   </div>
   

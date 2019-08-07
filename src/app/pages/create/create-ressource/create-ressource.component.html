@@ -1,45 +1,72 @@
 <div class="container">
   <h1>Créer une Ressource</h1>
   <form [formGroup]="form">
-      <div class="form-group">
-          <label for="equipe">Equipe:</label>
-          <select class="form-control" id="equipe" formControlName="equipe" required>
-              <option *ngFor="let equipe of equipes" [ngValue]="equipe">{{equipe.nom}}, {{equipe.dispositif}}</option>
-            </select>
-        </div>
-    <div class="form-group">
-      <label for="nom">Nom:</label>
-      <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
-    </div>
-    <div class="form-group">
-      <label for="prenom">Prénom:</label>
-      <input type="text" class="form-control" id="prenom" formControlName="prenom" placeholder="Entrer un prénom" required>
-    </div>
-    <div class="form-group">
-      <label for="referenceClient">Référence:</label>
-      <input type="number" class="form-control" id="referenceClient" formControlName="referenceClient" placeholder="Entrer le nombre référencent la ressource" required>
-    </div>
-    <div class="form-group">
-        <label for="actif">Est actif:</label>
-        <select class="form-control" id="actif" formControlName="actif" required>
-          <option value="true">Vrai</option>
-          <option value="false">Faux</option>
-        </select>
-      </div>
-      <div class="form-group">
-          <label for="DateEntree">Date d'entrée:</label>
-          <input type="date" class="form-control" id="DateEntree" formControlName="dateentree" placeholder="Entrer la date à laquelle la ressource entre dans l'équipe" required>
-        </div>
-        <div class="form-group">
-            <label for="DateSortie">Date de sortie:</label>
-            <input type="date" class="form-control" id="DateSortie" formControlName="datesortie" placeholder="Entrer la date à laquelle la ressource quitte l'équipe">
-          </div>
-          <button type="button" class="btn btn-success" (click)="create('/displayRessource')">Créer Ressource</button>
-        <br/>
-          <button type="button" class="btn btn-success" (click)="create('/createRessource')">Créer Ressource et une nouvelle Ressource</button>
+    <fieldset>
+      <legend>Création</legend>
+
+      <mat-form-field class="formField">
+        <input matInput id="nom" formControlName="nom" placeholder="Nom" required>
+      </mat-form-field>
+
+      <mat-form-field class="formField">
+        <input matInput id="prenom" formControlName="prenom" placeholder="Prénom" required>
+      </mat-form-field>
+
+      <mat-form-field class="formField">
+        <mat-select class="form-control" id="equipe" formControlName="equipe"  placeholder="Equipe" required>
+          <mat-option *ngFor="let equipe of equipes" [value]="equipe">{{equipe.nom}}, {{equipe.dispositif}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <br/>
-          <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Ressource et Compétence</button>
-        <br/>
-        <button type="button" (click)="create('/matrice')" class="btn btn-success">Créer Ressource et évaluer les ressources d'une Equipe</button>
+
+      <mat-form-field class="mat-formPerso">
+        <input matInput id="referenceClient" formControlName="referenceClient" placeholder="Référence de la ressource" required>
+      </mat-form-field>
+
+      <br/>
+
+      <mat-radio-group>
+        <label>Actif :</label>
+        <mat-radio-button value=true> Oui </mat-radio-button>
+        <mat-radio-button value=false> Non </mat-radio-button>
+      </mat-radio-group>
+
+      <br/>
+
+      <mat-form-field class="formFieldDate">
+        <input matInput [matDatepicker]="piker1" class="form-control"  formControlName="dateentree" placeholder="Entrée de l'Equipe" required>
+        <mat-datepicker-toggle matSuffix [for]="piker1"></mat-datepicker-toggle>
+        <mat-datepicker #piker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="formFieldDate">
+        <input matInput [matDatepicker]="piker" formControlName="datesortie" placeholder="Sortie de l'Equipe">
+        <mat-datepicker-toggle matSuffix [for]="piker"></mat-datepicker-toggle>
+        <mat-datepicker #piker></mat-datepicker>
+      </mat-form-field>
+
+      <br/>
+
+      <button mat-button id="boutonValider" [matMenuTriggerFor]="choix">Valider</button>
+      <mat-menu #choix="matMenu">
+        <button mat-menu-item (click)="create('/displayRessource')">Valider</button>
+        <button mat-menu-item (click)="create('/createRessource')">Valider & créer une nouvelle Ressource</button>
+        <button mat-menu-item (click)="create('/createCompetence')">Valider & créer une Compétence</button>
+        <button mat-menu-item (click)="create('/matrice')" class="btn btn-success">Valider & évaluer les ressources d'une Equipe</button>
+      </mat-menu>
+
+      <!--
+
+      <button type="button" class="btn btn-success" (click)="create('/displayRessource')">Créer Ressource</button>
+      <br/>
+      <button type="button" class="btn btn-success" (click)="create('/createRessource')">Créer Ressource et une nouvelle Ressource</button>
+      <br/>
+      <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Ressource et Compétence</button>
+      <br/>
+      <button type="button" (click)="create('/matrice')" class="btn btn-success">Créer Ressource et évaluer les ressources d'une Equipe</button>
+
+      -->
+    </fieldset>
   </form>
 </div>

@@ -5,12 +5,17 @@ import { OrganismeService } from '../../service/organisme.service';
 import { Organisme } from '../../classe/organisme';
 import { Niveau } from '../../classe/niveau';
 import { NiveauService } from '../../service/niveau.service';
+import {MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material';
 
 @Component({
   selector: 'app-create-organisme',
   templateUrl: './create-organisme.component.html',
-  styleUrls: ['./create-organisme.component.css'],
-  providers: [OrganismeService, NiveauService]
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  /*MAT_RADIO permet de changer la couleur par defaut des radio buttons*/
+  providers: [OrganismeService, NiveauService, {
+    provide: MAT_RADIO_DEFAULT_OPTIONS,
+    useValue: { color: 'primary' },
+  }]
 })
 export class CreateOrganismeComponent implements OnInit {
   organisme: string;

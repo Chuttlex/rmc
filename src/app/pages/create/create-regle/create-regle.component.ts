@@ -12,12 +12,16 @@ import { Regle } from '../../classe/regle';
 import { Organisme } from '../../classe/organisme';
 import { DispositifService } from '../../service/dispositif.service';
 import { OrganismeService } from '../../service/organisme.service';
+import {MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material';
 
 @Component({
   selector: 'app-regle-form',
   templateUrl: './create-regle.component.html',
-  styles: [],
-  providers: [RegleService, CompetenceService, EquipeService, NiveauService, DispositifService, OrganismeService]
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  providers: [RegleService, CompetenceService, EquipeService, NiveauService, DispositifService, OrganismeService, {
+    provide: MAT_RADIO_DEFAULT_OPTIONS,
+    useValue: { color: 'primary' },
+  }]
 })
 export class CreateRegleComponent implements OnInit {
 

@@ -18,9 +18,8 @@ import { Dispositif } from '../../classe/dispositif';
 @Component({
   selector: 'app-create-ressourcehascompetence',
   templateUrl: './create-ressourcehascompetence.component.html',
-  styleUrls: ['./create-ressourcehascompetence.component.css'],
-  providers: [RessourceService, CompetenceService, RessourcehascompetenceService, NiveauService, 
-    EquipeService, OrganismeService, DispositifService]
+  styleUrls: ['./create-ressourcehascompetence.component.css', '../../../../assets/stylesheets/formStyle.css'],
+  providers: [RessourceService, CompetenceService, RessourcehascompetenceService, NiveauService, EquipeService, OrganismeService, DispositifService]
 })
 export class CreateRessourcehascompetenceComponent implements OnInit {
   ressources: Ressource[];

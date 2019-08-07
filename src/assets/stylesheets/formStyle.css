@@ -51,3 +51,12 @@ label {
   width: 13%;
   margin-left: 6px;
 }
+
+.buttonCreate {
+  background-color: #316195;
+  color: white;
+  font-family: Verdana, serif;
+  width: auto;
+  margin-top: 10px;
+  margin-left: 6px;
+}

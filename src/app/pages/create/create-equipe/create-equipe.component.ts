@@ -9,7 +9,7 @@ import { Equipe } from '../../classe/equipe';
 @Component({
   selector: 'app-create-equipe',
   templateUrl: './create-equipe.component.html',
-  styles: [],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [DispositifService, EquipeService]
 })
 export class CreateEquipeComponent implements OnInit {

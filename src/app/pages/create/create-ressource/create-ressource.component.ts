@@ -7,12 +7,16 @@ import { Router } from '@angular/router';
 import { Equipe } from '../../classe/equipe';
 import { Historiqueres } from '../../classe/historiqueres';
 import { Ressource } from '../../classe/ressource';
+import {MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material';
 
 @Component({
   selector: 'app-create-ressource',
   templateUrl: './create-ressource.component.html',
-  styles: [],
-  providers: [RessourceService, EquipeService, HistoriqueresService]
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  providers: [RessourceService, EquipeService, HistoriqueresService,{
+    provide: MAT_RADIO_DEFAULT_OPTIONS,
+    useValue: { color: 'primary' },
+  }]
 })
 export class CreateRessourceComponent implements OnInit {
 

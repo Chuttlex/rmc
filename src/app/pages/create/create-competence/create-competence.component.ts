@@ -13,7 +13,7 @@ import { Dispositif } from '../../classe/dispositif';
 @Component({
   selector: 'app-create-competence',
   templateUrl: './create-competence.component.html',
-  styles: [],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
   providers: [CompetenceService, DispositifService, DispositifhascompetenceService, DomaineService]
 })
 export class CreateCompetenceComponent implements OnInit {

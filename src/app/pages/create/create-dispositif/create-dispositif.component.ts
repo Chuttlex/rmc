@@ -18,7 +18,7 @@ import { DispositifhascompetenceService } from '../../service/dispositifhascompe
 @Component({
   selector: 'app-create-dispositif',
   templateUrl: './create-dispositif.component.html',
-  styles: ['./create-dispositif.component.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css', './create-dispositif.component.css'],
   providers: [OrganismeService, DispositifService, CompetenceService, DispositifhascompetenceService]
 })
 export class CreateDispositifComponent implements OnInit {
@@ -53,7 +53,7 @@ export class CreateDispositifComponent implements OnInit {
     nom: new FormControl(''),
     description: new FormControl(''),
     organisme: new FormControl(''),
-  })
+  });
 
   constructor(private orgService: OrganismeService, private dispositifService: DispositifService, private router: Router,
     private compService: CompetenceService, private dcService: DispositifhascompetenceService) {
@@ -75,10 +75,10 @@ export class CreateDispositifComponent implements OnInit {
       this.compService.getAll().subscribe(
         (c) => {
           this.comps = c;
-          for(let i = 0;i<this.comps.length;i++){
+          for(let i = 0; i < this.comps.length; i++) {
             this.allCompetences.push(this.comps[i].nom);
           }
-        })
+        });
     });
   }
 
@@ -90,7 +90,7 @@ export class CreateDispositifComponent implements OnInit {
     org = this.form.get('organisme').value;
     disp.organisme = org.organisme;
     let cs : Competence[] = [];
-    for(let i = 0; i< this.competencesT.length; i++){
+    for(let i = 0; i < this.competencesT.length; i++) {
       let c = new Competence();
       c.domaine = "Technique";
       c.nom = this.competencesT[i];
@@ -119,7 +119,7 @@ export class CreateDispositifComponent implements OnInit {
       (result) => this.compService.createSome(cs).subscribe(
         (result) => this.dcService.createSome(dcs).subscribe(
           (result) => this.router.navigate([route])
-        )        
+        )
       )
     );
   }

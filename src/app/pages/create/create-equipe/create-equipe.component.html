@@ -1,26 +1,53 @@
 <div class="container">
-    <h1>Créer une équipe</h1>
-    <form [formGroup]="form">
-      <div class="form-group">
-        <label for="nom">Nom:</label>
-        <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom" required>
-      </div>
-      <div class="form-group">
-        <label for="rescible">Nombre de personnes minimum dans l'équipe:</label>
-        <input type="number" class="form-control" value="1" formControlName="rescible" placeholder="Entrer un nombre supérieur à 0" required>
-      </div>
-      <div class="form-group">
-        <label for="dispositif">Associé au Projet:</label>
-        <select class="form-control" id="dispositif" formControlName="dispositif" required>
-          <option *ngFor="let dispositif of dispositifs" [ngValue]="dispositif">{{dispositif.nom}}, {{dispositif.organisme}}</option>
-        </select>
-      </div>
-      <button type="button" (click)="create('/displayEquipe')" class="btn btn-success">Créer Equipe</button>
-    <br/>
-      <button type="button" (click)="create('/createEquipe')" class="btn btn-success">Créer Equipe et créer une nouvelle Equipe</button>
-  <br/>
-      <button type="button" (click)="create('/createRessource')" class="btn btn-success">Créer Equipe et Ressource</button>
+  <h1>Créer une équipe</h1>
+  <form [formGroup]="form">
+    <fieldset>
+      <legend>Création</legend>
+      <mat-form-field class="formField">
+        <input matInput id="nom" formControlName="nom" placeholder="Nom" required>
+      </mat-form-field>
+
       <br/>
-      <button type="button" (click)="create('/createRegle')" class="btn btn-success">Créer Equipe et Règle</button>
-    </form>
-  </div>
+
+      <mat-form-field class="formField">
+        <input matInput formControlName="rescible" placeholder="Nombre de personne minimum" required>
+      </mat-form-field>
+
+      <br/>
+
+      <mat-form-field class="formField">
+        <mat-select formControlName="dispositif" placeholder="Associé au Projet" required>
+          <mat-option *ngFor="let dispositif of dispositifs" [value]="dispositif?.nom">{{dispositif.nom}}, {{dispositif.organisme}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br/>
+
+      <button mat-button id="boutonValider" [matMenuTriggerFor]="choix">Valider</button>
+      <mat-menu #choix="matMenu">
+        <button mat-menu-item (click)="create('/displayEquipe')">Valider</button>
+        <button mat-menu-item (click)="create('/createEquipe')" >Valider & créer une nouvelle Equipe</button>
+        <button mat-menu-item (click)="create('/createRessource')" >Valider & et créer une Ressource</button>
+        <button mat-menu-item (click)="create('/createRegle')" >Valider & créer Règle</button>
+      </mat-menu>
+
+      <!-- On garde la version bouton classique en cas de bug lors de l'utilisation du mat-button menu
+
+      <button mat-button class="buttonCreate" (click)="create('/displayEquipe')">Valider</button>
+
+      <br/>
+
+      <button mat-button class="buttonCreate" (click)="create('/createEquipe')" >Valider & créer une nouvelle Equipe</button>
+
+      <br/>
+
+      <button mat-button class="buttonCreate" (click)="create('/createRessource')" >Valider & et créer une Ressource</button>
+
+      <br/>
+
+      <button mat-button class="buttonCreate" (click)="create('/createRegle')" >Valider & créer Règle</button>-->
+
+
+    </fieldset>
+  </form>
+</div>

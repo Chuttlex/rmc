@@ -1,44 +1,72 @@
 <div class="container">
     <h1>Créer une Regle</h1>
     <form [formGroup]="form">
-      <div class="form-group">
-        <label for="competence">Competence:</label>
-        <select class="form-control" id="competence" formControlName="competence">
-          <option *ngFor="let competence of competences" [ngValue]="competence">{{competence.nom}}, {{competence.dispositif}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="Equipe">Equipe:</label>
-        <select class="form-control" id="equipe" formControlName="equipe" required>
-          <option *ngFor="let equipe of equipes" [ngValue]="equipe">{{equipe.nom}}, {{equipe.dispositif}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-          <label for="niveau">Niveau:</label>
-          <input type="number" min="1" max="10" class="form-control" formControlName="niveau" placeholder="Entrer le niveau qui doit être atteint pour cette règle (1 à 5 ou 10 selon l'échelle)" required>
-        </div>
-      <div class="ui-radiobutton">
-        <label for="moyenne">Moyenne:</label>
-        <input type="radio" class="form-control" id="moyenneOui" formControlName="moyenne" value=true>Oui
-        <input type="radio" class="form-control" id="moyenneNon" formControlName="moyenne" value=false>Non
-      </div>
-      <div class="form-group">
-          <label for="pourcentage">Pourcentage:</label>
-          <input type="number" min="0" max="100" class="form-control" formControlName="pourcentage" placeholder="Entrer un pourcentage correspondant au nombre de ressources devant respecter la règle" required>
-          <label for="pourcentage">%</label>
-        </div>
-        <div class="form-group">
-            <label for="nombre">Nombre de ressources pour la règle:</label>
-            <input type="number" min="0" class="form-control" id="nombre" formControlName="nombre" placeholder="Entrer le nombre de ressources devant respecter la règle">
-          </div>
-          <button type="button" class="btn btn-success" (click)="create('/displayRegle')">Créer Règle</button>
+      <fieldset>
+        <legend>Création</legend>
+
+        <mat-form-field class="formField">
+          <mat-select id="competence" formControlName="competence" placeholder="Compétence">
+            <mat-option *ngFor="let competence of competences" [value]="competence?.nom">{{competence.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="formField">
+          <mat-select id="equipe" formControlName="equipe" placeholder="Equipe" required>
+            <mat-option *ngFor="let equipe of equipes" [value]="equipe?.nom">{{equipe.nom}}, {{equipe.dispositif}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <br/>
-          <button type="button" class="btn btn-success" (click)="create('/createRegle')">Créer Règle et une nouvelle Règle</button>
-      <br/>
-          <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Règle et Compétence</button>
-    <br/>
-          <button type="button" class="btn btn-success" (click)="create('/createEquipe')">Créer Règle et Equipe</button>
-    <br/>
-    <button type="button" class="btn btn-success" (click)="create('/matrice')">Créer Règle et évaluer les ressources d'une Equipe</button>
+
+        <mat-form-field class="formField">
+          <input matInput min="1" max="10" formControlName="niveau" placeholder="Objectif de niveau (selon echelle)" required>
+        </mat-form-field>
+
+        <mat-radio-group class="mat-radio-button">
+          <label>Moyenne :</label>
+          <mat-radio-button value=true>Atteinte </mat-radio-button>
+          <mat-radio-button value=false>Non Atteinte </mat-radio-button>
+        </mat-radio-group>
+
+        <br/>
+
+        <mat-form-field class="mat-formPerso">
+          <input matInput class="form-control" formControlName="pourcentage"
+                 placeholder="Ressources pour respecter la règle (en pourcentage)" required>
+          <mat-icon [inline]="true" matSuffix>%</mat-icon>
+        </mat-form-field>
+
+        <br/>
+
+        <mat-form-field class="mat-formPerso">
+          <input matInput id="nombre" formControlName="nombre" placeholder="Nombre de Ressources devant respecter la règle">
+        </mat-form-field>
+
+        <br/>
+
+        <button mat-button id="boutonValider" [matMenuTriggerFor]="choix">Valider</button>
+        <mat-menu #choix="matMenu">
+          <button mat-menu-item (click)="create('/displayRegle')">Valider</button>
+          <button mat-menu-item (click)="create('/createRegle')">Valider & créer une nouvelle Règle</button>
+          <button mat-menu-item (click)="create('/createCompetence')">Valider & créer une Compétence</button>
+          <button mat-menu-item (click)="create('/createEquipe')">Valider & créer une Equipe</button>
+          <button mat-menu-item (click)="create('/matrice')">Valider & évaluer les ressources d'une Equipe</button>
+        </mat-menu>
+
+        <!--
+
+        <button type="button" class="btn btn-success" (click)="create('/displayRegle')">Créer Règle</button>
+        <br/>
+        <button type="button" class="btn btn-success" (click)="create('/createRegle')">Créer Règle et une nouvelle Règle</button>
+        <br/>
+        <button type="button" class="btn btn-success" (click)="create('/createCompetence')">Créer Règle et Compétence</button>
+        <br/>
+        <button type="button" class="btn btn-success" (click)="create('/createEquipe')">Créer Règle et Equipe</button>
+        <br/>
+        <button type="button" class="btn btn-success" (click)="create('/matrice')">Créer Règle et évaluer les ressources d'une Equipe</button>
+
+        -->
+      </fieldset>
     </form>
   </div>
