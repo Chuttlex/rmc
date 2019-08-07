@@ -5,19 +5,17 @@
       <legend>Modification</legend>
 
       <mat-form-field class="formField">
-        <mat-select class="form-control" id="equipe" formControlName="equipe" placeholder="Equipe" required>
-          <mat-option *ngFor="let equipe of equipes" [value]="equipe?.nom"></mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <br>
-
-      <mat-form-field class="formField">
         <input matInput class="form-control" id="nom" formControlName="nom" placeholder="Entrer un nom"  [value]="ressource?.nom" required>
       </mat-form-field>
 
       <mat-form-field class="formField">
         <input matInput class="form-control" id="prenom" formControlName="prenom" placeholder="Entrer un prénom"  [value]="ressource?.prenom" required>
+      </mat-form-field>
+
+      <mat-form-field class="formField">
+        <mat-select class="form-control" id="equipe" formControlName="equipe" placeholder="Equipe" required>
+          <mat-option *ngFor="let equipe of equipes" [value]="equipe?.nom"></mat-option>
+        </mat-select>
       </mat-form-field>
 
       <br>

@@ -12,7 +12,7 @@ import {MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material';
 @Component({
   selector: 'app-create-ressource',
   templateUrl: './create-ressource.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css', './create-ressource.component.css'],
   providers: [RessourceService, EquipeService, HistoriqueresService,{
     provide: MAT_RADIO_DEFAULT_OPTIONS,
     useValue: { color: 'primary' },

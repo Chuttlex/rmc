@@ -14,7 +14,7 @@ import {MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material';
 @Component({
   selector: 'app-edit-regle',
   templateUrl: './edit-regle.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css', './edit-regle.component.css'],
   providers: [RegleService, CompetenceService, EquipeService, NiveauService, {
     provide: MAT_RADIO_DEFAULT_OPTIONS,
     useValue: { color: 'primary' },

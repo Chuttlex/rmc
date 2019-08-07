@@ -11,7 +11,7 @@ import {MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material';
 @Component({
   selector: 'app-edit-organisme',
   templateUrl: './edit-organisme.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css', './edit-organisme.component.css'],
   providers: [OrganismeService, NiveauService, {
     provide: MAT_RADIO_DEFAULT_OPTIONS,
     useValue: { color: 'primary' },

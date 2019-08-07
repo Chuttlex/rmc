@@ -10,7 +10,7 @@ import {MAT_RADIO_DEFAULT_OPTIONS} from '@angular/material';
 @Component({
   selector: 'app-create-organisme',
   templateUrl: './create-organisme.component.html',
-  styleUrls: ['../../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../../assets/stylesheets/formStyle.css', './create-organisme.component.css'],
   /*MAT_RADIO permet de changer la couleur par defaut des radio buttons*/
   providers: [OrganismeService, NiveauService, {
     provide: MAT_RADIO_DEFAULT_OPTIONS,
