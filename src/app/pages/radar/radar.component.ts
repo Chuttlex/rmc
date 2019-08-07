@@ -12,7 +12,6 @@ import { CompetenceService } from '../service/competence.service';
 import { Competence } from '../classe/competence';
 import { Ressourcehascompetence } from '../classe/ressourcehascompetence';
 import { RessourcehascompetenceService } from '../service/ressourcehascompetence.service';
-import { RSA_PKCS1_OAEP_PADDING } from 'constants';
 
 @Component({
   selector: 'app-radar',
