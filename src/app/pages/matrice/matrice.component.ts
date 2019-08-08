@@ -11,6 +11,7 @@ import { FormGroup } from '@angular/forms';
 import { Ressourcehascompetence } from '../classe/ressourcehascompetence';
 import { RessourcehascompetenceService } from '../service/ressourcehascompetence.service';
 import { Router } from '@angular/router';
+import {log} from 'util';
 
 export interface TestTeam {
   competence: string;
@@ -80,5 +81,18 @@ export class MatriceComponent implements OnInit {
     this.rcService.createSome(rcs).subscribe(
       (result) => this.router.navigate(['/displayRessourcehascompetence'])
     )
+  }
+
+  getDatasource() {
+    console.log(this.dataSource);
+  }
+
+  dataChange(index: any, item: any) {
+    console.log(index);
+    console.log(item);
+    console.log(this.dataSource[index]);
+    this.dataSource[index] = item;
+    console.log(this.dataSource[index]);
+
   }
 }

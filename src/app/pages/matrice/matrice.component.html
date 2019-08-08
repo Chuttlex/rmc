@@ -13,19 +13,21 @@
   </mat-select>
 </mat-form-field>
 
-<!-- Ajouter un form pour le formGroup -->
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-    <th mat-header-cell *matHeaderCellDef>{{column}}</th>
-    <td mat-cell *matCellDef="let element" contenteditable="true"> {{element[column]}}</td>
-  </ng-container>
+<form #testForm="ngForm">
+  <table mat-table [dataSource]="dataSource" [trackBy]="dataChange" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+      <th mat-header-cell *matHeaderCellDef>{{column}}</th>
+      <td mat-cell *matCellDef="let element" contenteditable="true"> {{element[column]}}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnToDisplay"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnToDisplay"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="columnToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnToDisplay"></tr>
+  </table>
+</form>
 
 
-<button mat-button id="boutonValider" class="buttonPosition">Valider</button>
+
+<button mat-button id="boutonValider" class="buttonPosition" (click)="getDatasource()">Valider</button>
 
 
 

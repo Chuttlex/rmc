@@ -61,6 +61,7 @@ import {
   MatChipsModule,
   MatInputModule,
   MatTableModule,
+  MatSortModule,
   MatRadioModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -72,7 +73,7 @@ import { DisplayDispositifhascompetenceComponent } from './pages/affichage/displ
 import { EditDispositifhascompetenceComponent } from './pages/edit/edit-dispositifhascompetence/edit-dispositifhascompetence.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-
+import { ContenteditableModule } from '@ng-stack/contenteditable';
 
 @NgModule({
   declarations: [
@@ -138,10 +139,12 @@ import { environment } from '../environments/environment';
     MatIconModule,
     MatInputModule,
     MatTableModule,
+    MatSortModule,
     MatRadioModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ContenteditableModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [

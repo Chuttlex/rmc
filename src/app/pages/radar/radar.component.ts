@@ -16,7 +16,7 @@ import { RessourcehascompetenceService } from '../service/ressourcehascompetence
 @Component({
   selector: 'app-radar',
   templateUrl: './radar.component.html',
-  styleUrls: ['../../../assets/stylesheets/formStyle.css'],
+  styleUrls: ['../../../assets/stylesheets/formStyle.css', './radar.component.css'],
   providers: [RegleService, EquipeService, DispositifService, CalcService, CompetenceService, RessourcehascompetenceService]
 })
 export class RadarComponent implements OnInit, AfterViewInit {
