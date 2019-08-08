@@ -119,12 +119,12 @@ export class RadarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    zing.render ({
+    /*zing.render ({
       id : 'myChart',
       data : this.chart,
       height: '90%',
       width: '90%'
-    });
+    });*/
   }
 
   updateEquipes(disp: Dispositif): void {
