@@ -65,67 +65,12 @@ export class DisplayRessourceComponent implements OnInit {
     this.router.navigate(['/createRessource']);
   }
 
-  clear(): void {
-    this.resService.clear().subscribe();
-  }
-
-  create(ressource: Ressource): void {
-    this.resService.create(ressource).subscribe((ressourcec) => this.ressources.push(ressourcec));
-  }
-
-  delete(id: number): void {
-    this.ressources = this.ressources.filter((c) => c.id !== id);
-    this.resService.delete(id).subscribe();
-  }
-
-  update(ressource: Ressource): void {
-    this.ressources = this.ressources.filter((c) => c.id !== ressource.id);
-    this.ressources.push(ressource);
-    this.resService.update(ressource).subscribe();
-  }
-
-  getRessources(): void {
-    this.resService.getAll().subscribe((ressources) => this.ressources = ressources);
-  }
-
-  getById(id: number): void {
-    this.resService.getById(id).subscribe((ressource) => this.ressources.push(ressource));
-  }
-
-  getByNomAndPrenom(nom: string, prenom: string): void {
-    this.resService.getByNomAndPrenom(nom, prenom).subscribe((ressource) => this.ressources.push(ressource));
-  }
-
-  getByEquipe(nom: string): void {
-    this.resService.getByEquipe(nom).subscribe((ressources) => this.ressources = ressources);
-  }
-
-  getByCompetence(nom: string): void {
-    this.resService.getByCompetence(nom).subscribe((ressources) => this.ressources = ressources);
-  }
-
-  getByCompetenceAndNiveau(nom: string, niveau: number, orgnom: string): void {
-    this.resService.getByCompetenceAndNiveau(nom, niveau, orgnom).subscribe((ressources) => this.ressources = ressources);
-  }
-
-  getByNiveau(niveau: number, orgnom: string): void {
-    this.resService.getByNiveau(niveau, orgnom).subscribe((ressources) => this.ressources = ressources);
-  }
-
-  getByIsActif(actif: boolean): void {
-    this.resService.getByIsActif(actif).subscribe((ressources) => this.ressources = ressources);
-  }
-
-  getByIsActifAsBackUp(actif: boolean): void {
-    this.resService.getByIsActifAsBackUp(actif).subscribe((ressources) => this.ressources = ressources);
-  }
-
-  getByDateEntree(date: Date): void {
-    this.resService.getByDateEntree(date).subscribe((ressources) => this.ressources = ressources);
-  }
-
-  getByDateSortie(date: Date): void {
-    this.resService.getByDateSortie(date).subscribe((ressources) => this.ressources = ressources);
+  delete(): void {
+    this.histService.delete(this.selectedRH.historique.id).subscribe(
+      (result) => this.resService.delete(this.selectedRH.ressource.id).subscribe(
+        (result) => this.router.navigate(['displayRessource'])
+      )
+    )
   }
 
   getColorButton(): string {
