@@ -183,7 +183,7 @@ export class RadarComponent implements OnInit, AfterViewInit {
      rcs.filter((rc) => {rc.equipe === this.selectedEquipe.nom});
      // récupération de la dernière évaluation pour une ressource couplé à une compétence
      let list: Ressourcehascompetence[] = [];
-     for(let counter=0;counter<rcs.length-1;counter++){
+     for(let counter=0;counter<rcs.length;counter++){
        list.push(rcs[counter]);
        for(let counter2=counter+1;counter2<rcs.length;counter2++){
         if(rcs[counter].cnom === rcs[counter2].cnom &&
@@ -193,7 +193,7 @@ export class RadarComponent implements OnInit, AfterViewInit {
             list.pop();
             list.push(rcs[counter2]);
           }
-       }       
+       }
      }
      // tri pour obtenir chaque évaluation en un seul exemplaire
      list.filter((rc,index,self) => {

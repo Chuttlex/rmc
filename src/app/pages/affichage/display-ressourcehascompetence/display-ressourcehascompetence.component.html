@@ -9,7 +9,7 @@
   <!-- boucle qui parcours tout les attributs de compétence pour pouvoir les selectionner -->
   <tr *ngFor="let ressourcehascompetence of rcs" [class.selected]="ressourcehascompetence === selected" (click)="onSelect(ressourcehascompetence)" tabindex="0">
     <td>{{ressourcehascompetence.cnom}}</td>
-    <td>{{ressourcehascompetence.rnom}}</td>
+    <td>{{ressourcehascompetence.rnom}} {{ressourcehascompetence.rprenom}}</td>
     <td>{{ressourcehascompetence.niveau}}</td>
     <td>{{ressourcehascompetence.dateEvolComp}}</td>
     <!--<app-ressourcehascompetence [ressourcehascompetence]="ressourcehascompetence"></app-ressourcehascompetence>-->
