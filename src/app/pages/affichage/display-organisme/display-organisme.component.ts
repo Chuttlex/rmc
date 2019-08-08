@@ -41,6 +41,11 @@ export class DisplayOrganismeComponent implements OnInit {
     this.router.navigate(['/createOrganisme']);
   }
 
+  delete(): void{
+    this.orgService.delete(this.selectedOrganisme.id).subscribe(
+      (result) => this.router.navigate(['/displayOrganisme']))
+  }
+
   getColorButton(): string {
     if (!this.isSelected) {
       return '#6d071a';
