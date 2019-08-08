@@ -181,26 +181,34 @@ export class RadarComponent implements OnInit, AfterViewInit {
      rcs = g;
      // filtrer par l'équipe
      rcs.filter((rc) => {rc.equipe === this.selectedEquipe.nom});
-     console.log(rcs);
-     // reduce pour avoir la dernière évaluation pour une ressource couplé à une compétence
-     rcs.reduce((rc1, rc2) => {
-       if(rc1.cnom == rc2.cnom && rc1.rnom == rc2.rnom && rc1.rprenom == rc2.rprenom && rc1.dateEvolComp>rc2.dateEvolComp){
-         return rc1;
-       }
-       else if(rc1.cnom == rc2.cnom && rc1.rnom == rc2.rnom && rc1.rprenom == rc2.rprenom && rc1.dateEvolComp<=rc2.dateEvolComp){
-        return rc2;
-      }
-     })
+     // récupération de la dernière évaluation pour une ressource couplé à une compétence
+     let list: Ressourcehascompetence[] = [];
+     for(let counter=0;counter<rcs.length-1;counter++){
+       list.push(rcs[counter]);
+       for(let counter2=counter+1;counter2<rcs.length;counter2++){
+        if(rcs[counter].cnom === rcs[counter2].cnom &&
+          rcs[counter].rnom === rcs[counter2].rnom &&
+          rcs[counter].rprenom === rcs[counter2].rprenom &&
+          rcs[counter].dateEvolComp <= rcs[counter2].dateEvolComp){
+            list.pop();
+            list.push(rcs[counter2]);
+          }
+       }       
+     }
+     // tri pour obtenir chaque évaluation en un seul exemplaire
+     list.filter((rc,index,self) => {
+       return self.indexOf(rc) === index;
+      });
      // calcul de la moyenne pour chaque compétence
      for(let a = 0; a< comps.length; a++){
        let somme = 0;
-       for(let b = 0; b< rcs.length; b++){
-         // Si l'évaluation correspond à la bonne compétence
-         if(rcs[b].cnom == comps[a]){
-           somme+=rcs[b].niveau;
-         }
+       let rcsComp = list.filter((rc) => rc.cnom === comps[a]);
+       let numberValues = rcsComp.length;
+       for(let b = 0; b< rcsComp.length; b++){
+        // Si l'évaluation correspond à la bonne compétence
+        somme+=rcsComp[b].niveau;
        }
-       vEquipe.push(somme/rcs.length*comps.length);
+       vEquipe.push(somme/numberValues);
      }
      for(let i = 0; i< comps.length; i++) {
       for(let j=0; j<this.regles.length; j++){
