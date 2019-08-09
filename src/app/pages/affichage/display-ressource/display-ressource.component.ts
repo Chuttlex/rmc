@@ -70,7 +70,7 @@ export class DisplayRessourceComponent implements OnInit {
       (result) => this.resService.delete(this.selectedRH.ressource.id).subscribe(
         (result) => this.router.navigate(['displayRessource'])
       )
-    )
+    );
   }
 
   getColorButton(): string {

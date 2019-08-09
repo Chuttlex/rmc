@@ -45,9 +45,9 @@ export class DisplayDispositifComponent implements OnInit {
     this.dispService.create(dispositif).subscribe((dispositifc) => this.dispositifs.push(dispositifc));
   }
 
-  delete(id: number): void {
-    this.dispositifs = this.dispositifs.filter((c) => c.id !== id);
-    this.dispService.delete(id).subscribe();
+  delete(): void {
+    this.dispService.delete(this.selectedDispositif.id).subscribe(
+      (result) => this.router.navigate(['/displayDispositif']));
   }
 
   update(dispositif: Dispositif): void {

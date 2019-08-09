@@ -50,3 +50,10 @@ tr:focus {
   margin-top: 6px;
   margin-right: 6px;
 }
+
+#boutonSuppr {
+  background-color: #316195;
+  color: white;
+  font-family: Verdana, serif;
+  margin-left: 6px;
+}

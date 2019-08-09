@@ -42,9 +42,9 @@ export class DisplayRessourcehascompetenceComponent implements OnInit {
     this.rcService.create(rc).subscribe((rcc) => this.rcs.push(rcc));
   }
 
-  delete(idr: number, idc:number): void {
-    this.rcs = this.rcs.filter((c) => c.idr !== idr && c.idc !== idc);
-    this.rcService.delete(idr, idc).subscribe();
+  delete(): void {
+    this.rcService.delete(this.selected.id).subscribe(
+      (result) => this.router.navigate(['/displayRessourcehascompetence']));
   }
 
   update(rc: Ressourcehascompetence): void {

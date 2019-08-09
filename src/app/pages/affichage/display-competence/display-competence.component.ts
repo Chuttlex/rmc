@@ -38,7 +38,7 @@ export class DisplayCompetenceComponent implements OnInit {
     this.compService.clear().subscribe();
   }
 
-  delete(): void{
+  delete(): void {
     this.compService.delete(this.selectedCompetence.id).subscribe(
       (result) => this.router.navigate(['/displayOrganisme']));
   }

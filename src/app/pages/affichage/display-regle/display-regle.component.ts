@@ -42,9 +42,9 @@ export class DisplayRegleComponent implements OnInit {
     this.regleService.clear().subscribe();
   }
 
-  delete(id: number): void {
-    this.regles = this.regles.filter((c) => c.id !== id);
-    this.regleService.delete(id).subscribe();
+  delete(): void {
+    this.regleService.delete(this.selectedRegle.id).subscribe(
+      (result) => this.router.navigate(['/displayOrganisme']));
   }
 
   getRegles(): void {

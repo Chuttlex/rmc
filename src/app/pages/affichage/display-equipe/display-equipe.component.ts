@@ -38,9 +38,9 @@ export class DisplayEquipeComponent implements OnInit {
     this.equipeService.clear().subscribe();
   }
 
-  delete(id: number): void {
-    this.equipes = this.equipes.filter((c) => c.id !== id);
-    this.equipeService.delete(id).subscribe();
+  delete(): void {
+    this.equipeService.delete(this.selectedEquipe.id).subscribe(
+      (result) => this.router.navigate(['/displayOrganisme']));
   }
 
   getEquipes(): void {
