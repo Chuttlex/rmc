@@ -119,11 +119,12 @@ export class RadarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    /*zing.render ({
+    /* pour générer en arrivant sur la page après le ngOnInit
+    zing.render ({
       id : 'myChart',
       data : this.chart,
-      height: '90%',
-      width: '90%'
+      height: window.innerHeight,
+      width: window.innerWidth
     });*/
   }
 
@@ -235,8 +236,8 @@ export class RadarComponent implements OnInit, AfterViewInit {
     zing.render({ 
      id : 'myChart', 
      data : this.chart, 
-     height: '90%', 
-     width: '90%' 
+     height: window.innerHeight, 
+     width: window.innerWidth
    });
    })
   }
