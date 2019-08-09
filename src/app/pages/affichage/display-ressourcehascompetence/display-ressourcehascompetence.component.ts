@@ -18,12 +18,16 @@ export class DisplayRessourcehascompetenceComponent implements OnInit {
   constructor(private rcService: RessourcehascompetenceService, private router: Router) { }
 
   ngOnInit() {
-    this.rcService.getAll().subscribe((rcs) => this.rcs = rcs);
+    this.getAll();
   }
 
   onSelect(rc: Ressourcehascompetence): void {
     this.selected = rc;
     this.isSelected = true;
+  }
+
+  getAll() {
+    this.rcService.getAll().subscribe((rcs) => this.rcs = rcs);
   }
 
   edit(): void {
@@ -36,7 +40,14 @@ export class DisplayRessourcehascompetenceComponent implements OnInit {
 
   delete(): void {
     this.rcService.delete(this.selected.idr, this.selected.idc).subscribe(
-      (result) => this.router.navigate(['/displayRessourcehascompetence']));
+      (result) => {
+        this.rcService.getAll().subscribe(
+          (rcs) => {
+          this.rcs = rcs;
+          this.isSelected=false;
+          this.router.navigate(['/displayRessourcehascompetence']);
+        });
+      });
   }
 
   getColorButton(): string {

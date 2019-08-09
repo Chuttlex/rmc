@@ -18,6 +18,10 @@ export class DisplayDispositifComponent implements OnInit {
   constructor(private dispService: DispositifService, private router: Router) { }
 
   ngOnInit() {
+    this.getAll();
+  }
+
+  getAll() {
     this.dispService.getAll().subscribe((d) => {
       this.dispositifs = d;
     });
@@ -35,37 +39,18 @@ export class DisplayDispositifComponent implements OnInit {
   add(): void {
     this.router.navigate(['/createDispositif'], {state: {dispositif: this.selectedDispositif}});
   }
-
-
-  clear(): void {
-    this.dispService.clear().subscribe();
-  }
-
-  create(dispositif: Dispositif): void {
-    this.dispService.create(dispositif).subscribe((dispositifc) => this.dispositifs.push(dispositifc));
-  }
-
+  
   delete(): void {
     this.dispService.delete(this.selectedDispositif.id).subscribe(
-      (result) => this.router.navigate(['/displayDispositif']));
-  }
-
-  update(dispositif: Dispositif): void {
-    this.dispositifs = this.dispositifs.filter((c) => c.id !== dispositif.id);
-    this.dispositifs.push(dispositif);
-    this.dispService.update(dispositif).subscribe();
-  }
-
-  getDispositifs(): void {
-    this.dispService.getAll().subscribe((dispositifs) => this.dispositifs = dispositifs);
-  }
-
-  getById(id: number): void {
-    this.dispService.getById(id).subscribe((dispositif) => this.dispositifs.push(dispositif));
-  }
-
-  getByNom(nom: string): void {
-    this.dispService.getByNom(nom).subscribe((dispositif) => this.dispositifs.push(dispositif));
+      (result) => {
+        this.dispService.getAll().subscribe(
+          (disps) => {
+            this.dispositifs = disps;
+            this.isSelected=false;
+            this.router.navigate(['/displayDispositif']);
+          }
+        )
+      })
   }
 
   getColorButton(): string {

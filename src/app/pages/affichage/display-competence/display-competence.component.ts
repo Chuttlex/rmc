@@ -34,19 +34,17 @@ export class DisplayCompetenceComponent implements OnInit {
     this.router.navigate(['/createCompetence'], {state: {competence: this.selectedCompetence}});
   }
 
-  clear(): void {
-    this.compService.clear().subscribe();
-  }
-
   delete(): void {
     this.compService.delete(this.selectedCompetence.id).subscribe(
-      (result) => this.router.navigate(['/displayOrganisme']));
-  }
-
-  update(competence: Competence): void {
-    this.competences = this.competences.filter((c) => c.id !== competence.id);
-    this.competences.push(competence);
-    this.compService.update(competence).subscribe();
+      (result) => {
+        this.compService.getAll().subscribe(
+          (comps) => {
+            this.competences = comps;
+            this.isSelected=false;
+            this.router.navigate(['/displayOrganisme']);
+          }
+        )
+      })
   }
 
   getColorButton(): string {

@@ -68,7 +68,21 @@ export class DisplayRessourceComponent implements OnInit {
   delete(): void {
     this.histService.delete(this.selectedRH.historique.id).subscribe(
       (result) => this.resService.delete(this.selectedRH.ressource.id).subscribe(
-        (result) => this.router.navigate(['displayRessource'])
+        (result) => {
+          this.resService.getAll().subscribe(
+            (res) => {
+              this.ressources = res;
+              this.histService.getAll().subscribe(
+                (hist) => {
+                  this.historiques = hist;
+                  this.lierRessourceEtHistorique();
+                  this.isSelected=false;
+                  this.router.navigate(['displayRessource']);
+                }
+              )
+            }
+          )
+        }
       )
     );
   }

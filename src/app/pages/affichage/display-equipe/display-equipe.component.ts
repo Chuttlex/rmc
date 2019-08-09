@@ -34,37 +34,16 @@ export class DisplayEquipeComponent implements OnInit {
     this.router.navigate(['/createEquipe'], {state: {equipe: this.selectedEquipe}});
   }
 
-  clear(): void {
-    this.equipeService.clear().subscribe();
-  }
-
   delete(): void {
     this.equipeService.delete(this.selectedEquipe.id).subscribe(
-      (result) => this.router.navigate(['/displayOrganisme']));
-  }
-
-  getEquipes(): void {
-    this.equipeService.getAll().subscribe((equipes) => this.equipes = equipes);
-  }
-
-  getById(id: number): void {
-    this.equipeService.getById(id).subscribe((equipe) => this.equipes.push(equipe));
-  }
-
-  getByDispositif(nom: string): void {
-    this.equipeService.getByDispositif(nom).subscribe((equipes) => this.equipes = equipes);
-  }
-
-  getByRessource(id: number): void {
-    this.equipeService.getByRessource(id).subscribe((equipe) => this.equipes.push(equipe));
-  }
-
-  getByCompetence(nom: string): void {
-    this.equipeService.getByCompetence(nom).subscribe((equipes) => this.equipes = equipes);
-  }
-
-  getByNiveau(niveau: number, orgnom: string): void {
-    this.equipeService.getByNiveau(niveau, orgnom).subscribe((equipes) => this.equipes = equipes);
+      (result) => {
+        this.equipeService.getAll().subscribe(
+          (equipes) => {
+            this.equipes = equipes;
+            this.isSelected=false;
+            this.router.navigate(['/displayOrganisme']);
+          })
+      })
   }
 
   getColorButton(): string {
