@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CompetenceService } from '../service/competence.service';
 import { RessourceService } from '../service/ressource.service';
 import { DispositifService } from '../service/dispositif.service';
@@ -7,11 +7,11 @@ import { Dispositif } from '../classe/dispositif';
 import { Equipe } from '../classe/equipe';
 import { Competence } from '../classe/competence';
 import { Ressource } from '../classe/ressource';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Ressourcehascompetence } from '../classe/ressourcehascompetence';
 import { RessourcehascompetenceService } from '../service/ressourcehascompetence.service';
 import { Router } from '@angular/router';
-import {log} from 'util';
+import { log } from 'util';
 
 export interface TestTeam {
   competence: string;
@@ -19,14 +19,13 @@ export interface TestTeam {
   ressourceNom2: number;
   ressourceNom3: number;
   ressourceNom4: number;
-
 }
 
 const TEAM_VALUE: TestTeam[] = [
-  {competence: 'Java', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4},
-  {competence: 'C', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4},
-  {competence: '.Net', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4},
-  {competence: 'Js', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4},
+  { competence: 'Java', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4 },
+  { competence: 'C', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4 },
+  { competence: '.Net', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4 },
+  { competence: 'Js', ressourceNom1: 1, ressourceNom2: 2, ressourceNom3: 3, ressourceNom4: 4 },
 ];
 
 @Component({
@@ -46,11 +45,15 @@ export class MatriceComponent implements OnInit {
   dataSource: TestTeam[] = TEAM_VALUE;
   form: FormGroup;
 
-  constructor(private compService: CompetenceService, private dispService: DispositifService, private router:Router,
-              private resService: RessourceService, private equipeService: EquipeService, private rcService: RessourcehascompetenceService) { }
+  constructor(private compService: CompetenceService, private dispService: DispositifService, private router: Router,
+    private resService: RessourceService, private equipeService: EquipeService, private rcService: RessourcehascompetenceService, private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.dispService.getAll().subscribe((d) => this.dispositifs = d);
+    this.form = new FormGroup({
+      dispositif: new FormControl(),
+      equipe: new FormControl()
+    });
   }
 
 
@@ -87,12 +90,11 @@ export class MatriceComponent implements OnInit {
     console.log(this.dataSource);
   }
 
-  dataChange(index: any, item: any) {
-    console.log(index);
-    console.log(item);
-    console.log(this.dataSource[index]);
-    this.dataSource[index] = item;
-    console.log(this.dataSource[index]);
-
+  changeValue(element: any, property: string, event: any) {
+    for(let i = 0; i < this.dataSource.length; i++) {
+      if(this.dataSource[i].competence === element) {
+        this.dataSource[i][property] = parseInt(event.target.textContent);
+      }
+    }
   }
 }
