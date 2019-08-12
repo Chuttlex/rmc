@@ -3,9 +3,9 @@ import { OrganismeService } from '../../service/organisme.service';
 import { Organisme } from '../../classe/organisme';
 import { Router } from '@angular/router';
 
-const testOrga1: Organisme = {id: 1, organisme: 'Infotel', description: 'ESN'};
+/*const testOrga1: Organisme = {id: 1, organisme: 'Infotel', description: 'ESN'};
 const testOrga2: Organisme = {id: 2, organisme: 'Air France', description: 'Compagnie Aerienne'};
-const testOrga3: Organisme = {id: 3, organisme: 'Pro BTP', description: 'Assureur'};
+const testOrga3: Organisme = {id: 3, organisme: 'Pro BTP', description: 'Assureur'};*/
 
 @Component({
   selector: 'app-display-organisme',
@@ -28,9 +28,12 @@ export class DisplayOrganismeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orgService.getAll().subscribe(orgs => this.organismes = orgs);
+    this.getAll();
     this.isSelected = false;
-    this.organismes.push(testOrga1, testOrga2, testOrga3);
+  }
+
+  getAll() {
+    this.orgService.getAll().subscribe(orgs => this.organismes = orgs);
   }
 
   edit(): void {
@@ -43,7 +46,14 @@ export class DisplayOrganismeComponent implements OnInit {
 
   delete(): void {
     this.orgService.delete(this.selectedOrganisme.id).subscribe(
-      (result) => this.router.navigate(['/displayOrganisme']))
+      (result) => {
+        this.orgService.getAll().subscribe(
+          (orgs) => {
+            this.organismes = orgs;
+            this.isSelected = false;
+            this.router.navigate(['/displayOrganisme']);
+          })
+      });
   }
 
   getColorButton(): string {
