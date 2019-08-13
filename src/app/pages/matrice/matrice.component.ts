@@ -11,7 +11,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Ressourcehascompetence } from '../classe/ressourcehascompetence';
 import { RessourcehascompetenceService } from '../service/ressourcehascompetence.service';
 import { Router } from '@angular/router';
-import { log } from 'util';
 
 export interface TestTeam {
   competence: string;
@@ -74,8 +73,6 @@ export class MatriceComponent implements OnInit {
 
   // Génère ou envoie les données pour le tableau
   generateTable() {
-    throw new Error('Method not implemented.');
-    // Ajout de FormControl dans le FormGroup
   }
 
   // Création des ressourcehascomeptence
