@@ -11,6 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Ressourcehascompetence } from '../classe/ressourcehascompetence';
 import { RessourcehascompetenceService } from '../service/ressourcehascompetence.service';
 import { Router } from '@angular/router';
+import { tableMatrice } from 'src/app/autres/tableMatrice';
 
 export interface TestTeam {
   competence: string;
@@ -42,6 +43,8 @@ export class MatriceComponent implements OnInit {
   displayedColumns: string[] = ['competence', 'ressourceNom1', 'ressourceNom2', 'ressourceNom3', 'ressourceNom4'];
   columnToDisplay: string[] = this.displayedColumns.slice();
   dataSource: TestTeam[] = TEAM_VALUE;
+  tableau: tableMatrice[] = [];
+  selectedEquipe: Equipe;
   form: FormGroup;
 
   constructor(private compService: CompetenceService, private dispService: DispositifService, private router: Router,
@@ -62,6 +65,7 @@ export class MatriceComponent implements OnInit {
   }
 
   getRessourcesAndCompetences(equipe: Equipe) {
+    this.selectedEquipe = equipe;
     this.resService.getByEquipe(equipe.nom).subscribe((res) => {
       this.ressources = res;
       this.compService.getByDispositif(this.selectedDispositif.nom).subscribe((comps) => {
@@ -78,6 +82,19 @@ export class MatriceComponent implements OnInit {
   // Création des ressourcehascomeptence
   evaluate() {
     let rcs: Ressourcehascompetence[] = [];
+    for(let i=0; i<this.tableau.length; i++){
+      for(let j=0; j<this.tableau[i].ressourceWrapper.length; j++){
+        let rc = new Ressourcehascompetence();
+        rc.cnom = this.tableau[i].competence;
+        rc.rnom = this.tableau[i].ressourceWrapper[j].ressourceNom;
+        rc.rprenom = this.tableau[i].ressourceWrapper[j].ressourcePrenom;
+        rc.dateEvolComp = new Date();
+        rc.niveau = this.tableau[i].ressourceWrapper[j].niveau;
+        rc.organisme = this.selectedDispositif.organisme;
+        rc.equipe = this.selectedEquipe.nom;
+        rcs.push(rc);
+      }
+    }
     this.rcService.createSome(rcs).subscribe(
       (result) => this.router.navigate(['/displayRessourcehascompetence'])
     )

@@ -1,7 +1,8 @@
-export class dataSource{
+export class tableMatrice {
     competence: string;
     ressourceWrapper: {
-        ressource: string;
+        ressourceNom: string;
+        ressourcePrenom: string;
         niveau: number;
     }[];
 }
