@@ -41,7 +41,7 @@ export class DisplayCompetenceComponent implements OnInit {
           (comps) => {
             this.competences = comps;
             this.isSelected=false;
-            this.router.navigate(['/displayOrganisme']);
+            this.router.navigate(['/displayCompetence']);
           }
         )
       })
