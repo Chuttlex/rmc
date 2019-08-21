@@ -24,7 +24,7 @@
 
       <mat-form-field class="formField">
         <mat-select  id="dispositif" formControlName="dispositifForm" placeholder="Projet" required>
-          <mat-option *ngFor="let dispositif of dispositifs" [value]="dispositif"></mat-option>
+          <mat-option *ngFor="let dispositif of dispositifs" [value]="dispositif">{{dispositif?.nom}}</mat-option>
         </mat-select>
       </mat-form-field>
 

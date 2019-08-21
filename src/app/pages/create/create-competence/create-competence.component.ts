@@ -31,8 +31,12 @@ export class CreateCompetenceComponent implements OnInit {
     , private domaineService: DomaineService, private router: Router) { }
 
   ngOnInit() {
-    this.dispService.getAll().subscribe((dispositifs) => this.dispositifs = dispositifs);
-    this.domaineService.getAll().subscribe((domaines) => this.domaines = domaines);
+    this.dispService.getAll().subscribe((dispositifs) => 
+    {
+      this.dispositifs = dispositifs;
+      this.domaineService.getAll().subscribe((domaines) => this.domaines = domaines);
+    });
+    
   }
 
   create(route: string): void {

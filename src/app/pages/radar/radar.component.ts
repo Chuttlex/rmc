@@ -44,10 +44,10 @@ export class RadarComponent implements OnInit, AfterViewInit {
         "draggable":true, //automatically adds header
         // "drag-handler":"icon", //"header" (default) or "icon"
         header : {
-          text : "Equipes:"
+          text : "Valeurs:"
         },
         "toggle-action" : "remove", // "hide" (default),"remove","disabled" | peut aussi être utilisé sur des items et markers
-      layout : "3x1", // lignes x colonnes
+      layout : "2x1", // lignes x colonnes
       x : "70%",
       y : "10%"
     },
@@ -61,7 +61,8 @@ export class RadarComponent implements OnInit, AfterViewInit {
       }
     },
     scaleV : {
-      visible : false
+      // values : "0:5:5",
+      visible : false,
     },
     scaleK : {
       values : '0:5:1',
@@ -150,7 +151,7 @@ export class RadarComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < this.competences.length; i++) {
       comps.push(this.competences[i].nom);
     }
-    this.chart.scaleK.values = "'0:" + this.competences.length + ":1'";
+    this.chart.scaleK.values = "'0:" + (this.competences.length-1) + ":1'";
     this.chart.scaleK.labels = comps;
     // Ajout des valeurs
     // Exemple:
@@ -214,7 +215,7 @@ export class RadarComponent implements OnInit, AfterViewInit {
      for(let i = 0; i< comps.length; i++) {
       for(let j=0; j<this.regles.length; j++){
         if (this.regles[j].cnom === comps[i]) {
-          vRegle.push(this.regles[j].niveau+"");
+          vRegle.push(this.regles[j].niveau);
         }
         // vEquipe.push(map.get(comps[i])+"");
       }
